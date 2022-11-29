@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,16 +23,17 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/dashboard/categories', function(){
-        return 'Page categories';
-    })->name('categories');
-    Route::get('/dashboard/users', function(){
+    Route::prefix('dashboard')->group(function () {
+        Route::get('categories', [CategoriesController::class, 'index'])->name('categories');    
+    });
+
+    Route::get('/dashboard/users', function () {
         return 'Page users';
     })->name('users');
-    Route::get('/dashboard/services', function(){
+    Route::get('/dashboard/services', function () {
         return 'Page services';
     })->name('services');
-    Route::get('/dashboard/foods', function(){
+    Route::get('/dashboard/foods', function () {
         return 'Page foods';
     })->name('foods');
 });
