@@ -24,7 +24,7 @@ Route::middleware([
     })->name('dashboard');
 
     Route::prefix('dashboard')->group(function () {
-        Route::get('categories', [CategoriesController::class, 'index'])->name('categories');    
+        Route::resource('categories', CategoriesController::class);
     });
 
     Route::get('/dashboard/users', function () {
