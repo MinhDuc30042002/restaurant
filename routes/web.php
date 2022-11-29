@@ -21,4 +21,17 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/dashboard/categories', function(){
+        return 'Page categories';
+    })->name('categories');
+    Route::get('/dashboard/users', function(){
+        return 'Page users';
+    })->name('users');
+    Route::get('/dashboard/services', function(){
+        return 'Page services';
+    })->name('services');
+    Route::get('/dashboard/foods', function(){
+        return 'Page foods';
+    })->name('foods');
 });
