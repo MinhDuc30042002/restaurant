@@ -76,17 +76,17 @@
         <!-- Filter By Role -->
 
         <div class="inline-flex rounded-md shadow-sm" role="group">
-            <button wire:click="resetPage" type="button"
+            <button wire:click="$set('filteredRole', '')" type="button"
                 class="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                Tất cả ({{ $userCount }})
+                Tất cả ({{ $employeesCount }})
             </button>
-            <button wire:click="filterUserByRole('is_staff')" type="button"
+            <button wire:click="$set('filteredRole', 'is_staff')" type="button"
                 class="py-2 px-4 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                Nhân viên ({{ $isStaffCount }})
+                Nhân viên ({{ $staffsCount }})
             </button>
-            <button wire:click="filterUserByRole('is_manager')" type="button"
+            <button wire:click="$set('filteredRole', 'is_manager')" type="button"
                 class="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-r-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                Quản lý ({{ $isManagerCount }})
+                Quản lý ({{ $managersCount }})
             </button>
         </div>
 
@@ -132,15 +132,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($user as $item)
+            @foreach ($employees as $emp)
                 <tr
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td class="p-4 w-4">
                         <div class="flex items-center">
-                            <input wire:model="selectedRows" id="{{ $item->id }}" value="{{ $item->id }}"
+                            <input wire:model="selectedRows" id="{{ $emp->id }}" value="{{ $emp->id }}"
                                 type="checkbox"
                                 class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="{{ $item->id }}" class="sr-only">checkbox</label>
+                            <label for="{{ $emp->id }}" class="sr-only">checkbox</label>
                         </div>
                     </td>
                     <th scope="row"
@@ -149,30 +149,30 @@
                             src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA14FPFo.img?w=600&h=788&m=6&x=227&y=116&s=93&d=93"
                             alt="">
                         <div class="pl-3">
-                            <div class="text-base font-semibold">{{ $item->name }}</div>
-                            <div class="font-normal text-gray-500">{{ $item->email }}</div>
+                            <div class="text-base font-semibold">{{ $emp->name }}</div>
+                            <div class="font-normal text-gray-500">{{ $emp->email }}</div>
                         </div>
                     </th>
                     <td class="py-4 px-6">
-                        @if($item->is_staff) Nhân Viên @else Quản lý @endif
+                        @if($emp->is_staff) Nhân Viên @else Quản lý @endif
                     </td>
                     <td class="py-4 px-6">
                         <div class="flex items-center">
                             {{-- <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div> Online --}}
-                            {{$item->created_at->format('d/m/Y')}}
+                            {{$emp->created_at->format('d/m/Y')}}
                         </div>
                     </td>
                     <td class="py-4 px-6">
                         @can('delete', \App\Models\User::class)
                         <!-- Button Delete -->
-                            <x-jet-danger-button wire:click="deleteShowModal({{$item->id}})">
+                            <x-jet-danger-button wire:click="deleteShowModal({{$emp->id}})">
                                 {{__('Delete')}}
                             </x-jet-danger-button>
                         <!-- End Button Delete -->
                         @endcan
                         @can('update', \App\Models\User::class)
                         <!-- Button Update -->
-                            <x-jet-button wire:click="$emitTo('forms.update-employee-form', 'showUpdateUserForm', {{$item->id}})" >
+                            <x-jet-button wire:click="$emitTo('forms.update-employee-form', 'showUpdateUserForm', {{$emp->id}})" >
                                 {{__('Update')}}
                             </x-jet-button>
                         <!-- End Button Update -->
@@ -183,7 +183,7 @@
         </tbody>
     </table>
     <div class="p-4">
-        {{ $user->links()}}
+        {{ $employees->links()}}
     </div>
 
     <!-- Delete Modal -->
