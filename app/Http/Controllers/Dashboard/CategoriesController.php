@@ -15,8 +15,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('dashboard.categories.index', compact('categories'));
+        return view('dashboard.categories.index');
     }
 
     /**
@@ -37,8 +36,7 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create(['name' => $request->name]);
-        return back()->with('msg', 'Đã thêm mới thể loại ' . $request->name);
+        
     }
 
     /**
