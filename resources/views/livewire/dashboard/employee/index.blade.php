@@ -65,9 +65,11 @@
 
         <!-- Create Modal -->
         <div class="w-1/12">
+            @can('create', \App\Models\User::class)
             <x-jet-button wire:click="showCreateModal">
                 {{ __('Create Employee') }}
             </x-jet-button>
+            @endcan
         </div>
         <!-- End Create -->
 
@@ -161,16 +163,20 @@
                         </div>
                     </td>
                     <td class="py-4 px-6">
+                        @can('delete', \App\Models\User::class)
                         <!-- Button Delete -->
                             <x-jet-danger-button wire:click="deleteShowModal({{$item->id}})">
                                 {{__('Delete')}}
                             </x-jet-danger-button>
                         <!-- End Button Delete -->
+                        @endcan
+                        @can('update', \App\Models\User::class)
                         <!-- Button Update -->
                             <x-jet-button wire:click="updateShowModal({{$item->id}})">
                                 {{__('Update')}}
                             </x-jet-button>
                         <!-- End Button Update -->
+                        @endcan
                     </td>
                 </tr>
             @endforeach
