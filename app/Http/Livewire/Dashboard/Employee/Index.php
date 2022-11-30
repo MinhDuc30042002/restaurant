@@ -33,23 +33,7 @@ class Index extends Component
 
     public $modalUpdateFormVisible;
 
-    public $modalCreateFormVisible;
-
     public $modelId;
-
-    protected function rules()
-    {
-        return [
-            'name' => 'required|string|max:255',
-            // 'username' => 'required|min:6|max:255|alpha_dash|unique:users,username,' . $this->user->id,
-            'email' => 'required|string|email|max:255|unique:users,email,',
-        ];
-    }
-
-    protected $messages = [
-        'email.required' => 'The Email Address cannot be empty.',
-        'email.email' => 'The Email Address format is not valid.',
-    ];
 
     public function modelData()
     {
@@ -61,26 +45,11 @@ class Index extends Component
         ];
     }
 
-    public function update()
-    {
-        $this->authorize('edit', User::class);
-        User::find($this->modelId)->update($this->modelData());
-        $this->modalUpdateFormVisible = false;
-        $this->reset();
-    }
-
     public function loadModel()
     {
         $user = User::find($this->modelId);
         $this->name = $user->name;
         $this->email = $user->email;
-    }
-
-    public function updateShowModal($id)
-    {
-        $this->modelId = $id;
-        $this->modalUpdateFormVisible = true;
-        $this->loadModel();
     }
 
     public function deleteShowModal($id)
@@ -94,20 +63,6 @@ class Index extends Component
         User::destroy($this->modelId);
         $this->modalConfirmDeleteVisible = false;
         $this->resetPage();
-    }
-
-    public function create()
-    {
-        $this->validate();
-        User::create($this->modelData());
-        $this->modalCreateFormVisible = false;
-        $this->reset();
-    }
-
-    public function showCreateModal()
-    {
-        $this->reset();
-        $this->modalCreateFormVisible = true;
     }
 
     public function filterUserByRole($isRole = null)
