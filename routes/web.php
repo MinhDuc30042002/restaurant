@@ -24,12 +24,10 @@ Route::middleware([
     })->name('dashboard');
 
     Route::prefix('dashboard')->group(function () {
-        Route::get('categories', [CategoriesController::class, 'index'])->name('categories');    
+        Route::get('categories', [CategoriesController::class, 'index'])->name('categories');
     });
 
-    Route::get('/dashboard/users', function () {
-        return 'Page users';
-    })->name('users');
+    Route::get('/dashboard/employees', [App\Http\Controllers\Dashboard\EmployeeController::class, 'index'])->name('employees');
     Route::get('/dashboard/services', function () {
         return 'Page services';
     })->name('services');
