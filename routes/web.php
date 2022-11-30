@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware([
+    'staff',
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
@@ -27,9 +28,7 @@ Route::middleware([
         Route::resource('categories', CategoriesController::class);
     });
 
-    Route::get('/dashboard/users', function () {
-        return 'Page users';
-    })->name('users');
+    Route::get('/dashboard/employees', [App\Http\Controllers\Dashboard\EmployeeController::class, 'index'])->name('employees');
     Route::get('/dashboard/services', function () {
         return 'Page services';
     })->name('services');

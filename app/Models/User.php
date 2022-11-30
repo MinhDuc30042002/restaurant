@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -27,6 +27,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_staff',
+        'is_manager',
     ];
 
     /**
@@ -58,4 +60,42 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Relations
+    |--------------------------------------------------------------------------
+    */
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'group_user', 'user_id', 'group_id');
+    }
+
+    public function permissions(): Collection
+    {
+        $permissions = collect([]);
+        $this->groups()->each(function ($g) use (&$permissions) {
+            $permissions = $g->permissions->map(function ($perm) {
+                return $perm->name;
+            });
+        });
+
+        return $permissions;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Methods
+    |--------------------------------------------------------------------------
+    */
+
+    public function hasPermissions($permissions): bool
+    {
+        $user_permissions = $this->permissions();
+
+        return collect((array) $permissions)->every(function ($perm) use ($user_permissions) {
+            return $user_permissions->contains($perm);
+        });
+    }
 }
