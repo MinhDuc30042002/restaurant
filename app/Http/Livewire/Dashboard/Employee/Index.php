@@ -2,21 +2,39 @@
 
 namespace App\Http\Livewire\Dashboard\Employee;
 
-use Livewire\Component;
-use App\Models\User;
-use Livewire\WithPagination;
 use App\Exports\EmployeeExport;
-use Maatwebsite\Excel\Facades\Excel;
+use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Livewire\Component;
+use Livewire\WithPagination;
+
 class Index extends Component
 {
     use WithPagination;
-    public $selectedRows = array();
+    use AuthorizesRequests;
+
+    public $selectedRows = [];
+
     public $selectPageRows = false;
+
+    public $searchTerm = '';
+
     public $isRole = null;
-    public $name, $email, $is_staff = 0, $is_manager = 0;
+
+    public $name;
+
+    public $email;
+
+    public $is_staff = 0;
+
+    public $is_manager = 0;
+
     public $modalConfirmDeleteVisible;
+
     public $modalUpdateFormVisible;
+
     public $modalCreateFormVisible;
+
     public $modelId;
 
     protected function rules()
@@ -24,7 +42,7 @@ class Index extends Component
         return [
             'name' => 'required|string|max:255',
             // 'username' => 'required|min:6|max:255|alpha_dash|unique:users,username,' . $this->user->id,
-            'email' => 'required|string|email|max:255|unique:users,email,'
+            'email' => 'required|string|email|max:255|unique:users,email,',
         ];
     }
 
@@ -45,6 +63,7 @@ class Index extends Component
 
     public function update()
     {
+        $this->authorize('edit', User::class);
         User::find($this->modelId)->update($this->modelData());
         $this->modalUpdateFormVisible = false;
         $this->reset();
@@ -53,7 +72,7 @@ class Index extends Component
     public function loadModel()
     {
         $user = User::find($this->modelId);
-        $this->name = $user->name ;
+        $this->name = $user->name;
         $this->email = $user->email;
     }
 
@@ -77,7 +96,8 @@ class Index extends Component
         $this->resetPage();
     }
 
-    public function create(){
+    public function create()
+    {
         $this->validate();
         User::create($this->modelData());
         $this->modalCreateFormVisible = false;
@@ -96,37 +116,45 @@ class Index extends Component
         $this->isRole = $isRole;
     }
 
-    public function resetPage(){
+    public function resetPage()
+    {
         $this->reset();
     }
 
     public function updatedSelectPageRows($value)
     {
-        if($value){
-            $this->selectedRows = $this->user->pluck('id')->map(function ($id){
+        if ($value) {
+            $this->selectedRows = $this->user->pluck('id')->map(function ($id) {
                 return (string) $id;
             });
-        }else{
+        } else {
             $this->reset(['selectedRows', 'selectPageRows']);
         }
     }
 
     public function getUserProperty()
     {
-        if(isset($this->isRole)){
-            return  User::when($this->isRole, function ($query, $isRole){
-                        return $query->where($isRole, true);
-                    })->paginate(10);
+        if (isset($this->isRole)) {
+            return  User::when($this->isRole, function ($query, $isRole) {
+                return $query->where($isRole, true);
+            })->paginate(10);
         }
 
-        return  User::where('is_staff', true)->orWhere('is_manager', true)->paginate(10);
+        $users = User::where(function ($query) {
+            $query->where('is_manager', true)->orWhere('is_staff', true);
+        })->where(function ($query) {
+            $query->where('name', 'like', '%'.$this->searchTerm.'%')
+            ->orWhere('email', 'like', '%'.$this->searchTerm.'%');
+        });
+
+        return $users->paginate(10);
     }
 
     public function deleteSelectedRows()
     {
         User::whereIn('id', $this->selectedRows)->delete();
 
-        #message delete
+        //message delete
         // $this->dispatchBrowserEvent('deleted', ['message' => 'All Delete']);
 
         $this->reset(['selectedRows', 'selectPageRows']);
@@ -136,7 +164,8 @@ class Index extends Component
     public function exportIsRoleToExcel($isRole = null)
     {
         $this->isRole = $isRole;
-        return (new ManagerExport($this->isRole))->download('employees.xlsx');
+
+        return (new EmployeeExport($this->isRole))->download('employees.xlsx');
     }
 
     public function render()
@@ -145,6 +174,7 @@ class Index extends Component
         $userCount = User::where('is_staff', true)->orWhere('is_manager', true)->count();
         $isStaffCount = User::where('is_staff', true)->count();
         $isManagerCount = User::where('is_manager', true)->count();
+
         return view('livewire.dashboard.employee.index', [
             'user' => $user,
             'userCount' => $userCount,
