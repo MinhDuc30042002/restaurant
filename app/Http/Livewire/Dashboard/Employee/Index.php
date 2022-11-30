@@ -136,7 +136,7 @@ class Index extends Component
     public function exportIsRoleToExcel($isRole = null)
     {
         $this->isRole = $isRole;
-        return (new ManagerExport($this->isRole))->download('employees.xlsx');
+        return (new EmployeeExport($this->isRole))->download('employees.xlsx');
     }
 
     public function render()
