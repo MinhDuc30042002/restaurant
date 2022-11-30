@@ -11,12 +11,15 @@ class Index extends Component
     public $category = [];
 
     public $modalDialog;
+
     public $modalUpdate;
 
     public $name;
+
     public $tempID;
 
     public string $search = '';
+
     use WithPagination;
 
     public function render()

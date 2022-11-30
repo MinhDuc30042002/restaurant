@@ -21,22 +21,7 @@ class Index extends Component
 
     public $filteredRole;
 
-    public $modalConfirmDeleteVisible;
-
-    public $modelId;
-
-    public function deleteShowModal($id)
-    {
-        $this->modelId = $id;
-        $this->modalConfirmDeleteVisible = true;
-    }
-
-    public function delete()
-    {
-        User::destroy($this->modelId);
-        $this->modalConfirmDeleteVisible = false;
-        $this->resetPage();
-    }
+    protected $listeners = ['resetPage' => 'resetPage'];
 
     public function updatedSelectPageRows($value)
     {

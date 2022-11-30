@@ -47,6 +47,8 @@ class StoreEmployeeForm extends Component
         $this->authorize('create', User::class);
         $validatedData = $this->validate();
         User::create([...$validatedData, 'password' => 'password']);
+        $this->open = false;
+        $this->emitUp('resetPage');
     }
 
     public function show()

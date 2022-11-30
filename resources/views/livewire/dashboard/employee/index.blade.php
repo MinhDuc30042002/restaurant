@@ -165,7 +165,7 @@
                     <td class="py-4 px-6">
                         @can('delete', \App\Models\User::class)
                         <!-- Button Delete -->
-                            <x-jet-danger-button wire:click="deleteShowModal({{$emp->id}})">
+                            <x-jet-danger-button wire:click="$emitTo('forms.destroy-employee-form', 'showDestroyUserForm', {{$emp->id}})">
                                 {{__('Delete')}}
                             </x-jet-danger-button>
                         <!-- End Button Delete -->
@@ -187,24 +187,7 @@
     </div>
 
     <!-- Delete Modal -->
-    <x-jet-dialog-modal wire:model="modalConfirmDeleteVisible">
-        <x-slot name="title">
-            {{ __('Delete Modal Title') }}
-        </x-slot>
-
-        <x-slot name="content">
-            {{ __('Are you sure you want to delete this item?') }}
-        </x-slot>
-
-        <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$toggle('modalConfirmDeleteVisible')" wire:loading.attr="disabled">
-                {{ __('Cancel') }}
-            </x-jet-secondary-button>
-            <x-jet-danger-button class="ml-3" wire:click="delete" wire:loading.attr="disabled">
-                {{ __('Delete Item') }}
-            </x-jet-danger-button>
-        </x-slot>
-    </x-jet-dialog-modal>
+    <livewire:forms.destroy-employee-form>
     <!-- End Delete Modal -->
     <!-- Update Modal -->
     <livewire:forms.update-employee-form>

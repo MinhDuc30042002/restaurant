@@ -51,6 +51,8 @@ class UpdateEmployeeForm extends Component
         $validatedData = $this->validate();
         Log::debug($validatedData);
         $this->user->update($validatedData);
+        $this->open = false;
+        $this->emitUp('resetPage');
     }
 
     public function show(User $user)
