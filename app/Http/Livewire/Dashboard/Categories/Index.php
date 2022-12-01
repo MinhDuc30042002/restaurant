@@ -23,13 +23,12 @@ class Index extends Component
     {
         return view(
             'livewire.dashboard.categories.index',
-            ['data' => Category::paginate(5)]
+            ['data' => Category::orderByDesc('id')->paginate(5)]
         );
     }
 
     public function showModal()
     {
-        $this->reset();
         $this->modalDialog = true;
     }
 
