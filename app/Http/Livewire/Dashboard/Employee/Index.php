@@ -93,7 +93,7 @@ class Index extends Component
     {
         User::destroy($this->modelId);
         $this->modalConfirmDeleteVisible = false;
-        $this->resetPage();
+        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Xóa thành công']);
     }
 
     public function create()
@@ -101,6 +101,7 @@ class Index extends Component
         $this->validate();
         User::create($this->modelData());
         $this->modalCreateFormVisible = false;
+        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Đã thêm '.$this->name]);
         $this->reset();
     }
 
@@ -137,7 +138,7 @@ class Index extends Component
         if (isset($this->isRole)) {
             return  User::when($this->isRole, function ($query, $isRole) {
                 return $query->where($isRole, true);
-            })->paginate(10);
+            })->paginate(5);
         }
 
         $users = User::where(function ($query) {
@@ -147,7 +148,7 @@ class Index extends Component
             ->orWhere('email', 'like', '%'.$this->searchTerm.'%');
         });
 
-        return $users->paginate(10);
+        return $users->paginate(5);
     }
 
     public function deleteSelectedRows()

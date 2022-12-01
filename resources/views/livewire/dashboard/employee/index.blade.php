@@ -60,9 +60,6 @@
 
         <!-- End SelectedRows -->
 
-
-
-
         <!-- Create Modal -->
         <div class="w-1/12">
             @can('create', \App\Models\User::class)
