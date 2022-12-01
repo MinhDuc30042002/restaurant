@@ -19,108 +19,9 @@ class Index extends Component
 
     public $searchTerm = '';
 
-    public $isRole = null;
+    public $filteredRole;
 
-    public $name;
-
-    public $email;
-
-    public $is_staff = 0;
-
-    public $is_manager = 0;
-
-    public $modalConfirmDeleteVisible;
-
-    public $modalUpdateFormVisible;
-
-    public $modalCreateFormVisible;
-
-    public $modelId;
-
-    protected function rules()
-    {
-        return [
-            'name' => 'required|string|max:255',
-            // 'username' => 'required|min:6|max:255|alpha_dash|unique:users,username,' . $this->user->id,
-            'email' => 'required|string|email|max:255|unique:users,email,',
-        ];
-    }
-
-    protected $messages = [
-        'email.required' => 'The Email Address cannot be empty.',
-        'email.email' => 'The Email Address format is not valid.',
-    ];
-
-    public function modelData()
-    {
-        return [
-            'name' => $this->name,
-            'email' => $this->email,
-            'is_staff' => $this->is_staff,
-            'is_manager' => $this->is_manager,
-        ];
-    }
-
-    public function update()
-    {
-        $this->authorize('edit', User::class);
-        User::find($this->modelId)->update($this->modelData());
-        $this->modalUpdateFormVisible = false;
-        $this->reset();
-    }
-
-    public function loadModel()
-    {
-        $user = User::find($this->modelId);
-        $this->name = $user->name;
-        $this->email = $user->email;
-    }
-
-    public function updateShowModal($id)
-    {
-        $this->modelId = $id;
-        $this->modalUpdateFormVisible = true;
-        $this->loadModel();
-    }
-
-    public function deleteShowModal($id)
-    {
-        $this->modelId = $id;
-        $this->modalConfirmDeleteVisible = true;
-    }
-
-    public function delete()
-    {
-        User::destroy($this->modelId);
-        $this->modalConfirmDeleteVisible = false;
-        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Xóa thành công']);
-    }
-
-    public function create()
-    {
-        $this->validate();
-        User::create($this->modelData());
-        $this->modalCreateFormVisible = false;
-        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Đã thêm '.$this->name]);
-        $this->reset();
-    }
-
-    public function showCreateModal()
-    {
-        $this->reset();
-        $this->modalCreateFormVisible = true;
-    }
-
-    public function filterUserByRole($isRole = null)
-    {
-        $this->resetPage();
-        $this->isRole = $isRole;
-    }
-
-    public function resetPage()
-    {
-        $this->reset();
-    }
+    protected $listeners = ['resetPage' => 'resetPage'];
 
     public function updatedSelectPageRows($value)
     {
@@ -131,24 +32,6 @@ class Index extends Component
         } else {
             $this->reset(['selectedRows', 'selectPageRows']);
         }
-    }
-
-    public function getUserProperty()
-    {
-        if (isset($this->isRole)) {
-            return  User::when($this->isRole, function ($query, $isRole) {
-                return $query->where($isRole, true);
-            })->paginate(5);
-        }
-
-        $users = User::where(function ($query) {
-            $query->where('is_manager', true)->orWhere('is_staff', true);
-        })->where(function ($query) {
-            $query->where('name', 'like', '%'.$this->searchTerm.'%')
-            ->orWhere('email', 'like', '%'.$this->searchTerm.'%');
-        });
-
-        return $users->paginate(5);
     }
 
     public function deleteSelectedRows()
@@ -162,24 +45,37 @@ class Index extends Component
         $this->resetPage();
     }
 
-    public function exportIsRoleToExcel($isRole = null)
+    public function exportIsRoleToExcel($filteredRole = null)
     {
-        $this->isRole = $isRole;
-        return (new EmployeeExport($this->isRole))->download('employees.xlsx');
+        $this->filteredRole = $filteredRole;
+
+        return (new EmployeeExport($this->filteredRole))->download('employees.xlsx');
+    }
+
+    protected function getEmployees()
+    {
+        $users = User::where(function ($query) {
+            $query->where('name', 'like', '%'.$this->searchTerm.'%')
+            ->orWhere('email', 'like', '%'.$this->searchTerm.'%');
+        });
+        if ($this->filteredRole) {
+            $users = $users->where($this->filteredRole, '=', true);
+        }
+
+        return $users->paginate(10);
     }
 
     public function render()
     {
-        $user = $this->user;
-        $userCount = User::where('is_staff', true)->orWhere('is_manager', true)->count();
-        $isStaffCount = User::where('is_staff', true)->count();
-        $isManagerCount = User::where('is_manager', true)->count();
+        $employeesCount = User::count();
+        $staffsCount = User::where('is_staff', true)->count();
+        $managersCount = User::where('is_manager', true)->count();
 
         return view('livewire.dashboard.employee.index', [
-            'user' => $user,
-            'userCount' => $userCount,
-            'isStaffCount' => $isStaffCount,
-            'isManagerCount' => $isManagerCount,
+            'employees' => $this->getEmployees(),
+            'employeesCount' => $employeesCount,
+            'staffsCount' => $staffsCount,
+            'managersCount' => $managersCount,
         ]);
     }
 }
