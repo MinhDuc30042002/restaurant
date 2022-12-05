@@ -36,8 +36,8 @@ class StoreEmployeeForm extends Component
     {
         return [
             'firstname' => 'required|string|max:50',
-            'lastname' =>  'required|string|max:50',
-            'phone_number' => ['required','numeric', 'digits:10'],
+            'lastname' => 'required|string|max:50',
+            'phone_number' => ['required', 'numeric', 'digits:10'],
             'address' => 'required',
             'email' => 'required|string|email|max:255|unique:users,email,',
             'is_staff' => '',
@@ -60,7 +60,7 @@ class StoreEmployeeForm extends Component
         'lastname' => 'Tên',
         'phone_number' => 'Số điện thoại',
         'address' => 'Địa chỉ',
-        'email' => 'Địa chỉ mail'
+        'email' => 'Địa chỉ mail',
     ];
 
     public function updated($propertyName)
@@ -72,7 +72,7 @@ class StoreEmployeeForm extends Component
     {
         $this->authorize('create', User::class);
         $validatedData = $this->validate();
-        User::create([...$validatedData, 'name' => $this->firstname.' '.$this->lastname,'password' => 'password']);
+        User::create([...$validatedData, 'name' => $this->firstname.' '.$this->lastname, 'password' => 'password']);
         $this->open = false;
         $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Thêm thanhg công']);
         $this->emitUp('resetPage');

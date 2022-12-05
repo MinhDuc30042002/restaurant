@@ -12,14 +12,23 @@ class ShowEmployeeForm extends Component
     public $open = false;
 
     public $user;
+
     public $name;
+
     public $firstname;
+
     public $lastname;
+
     public $email;
+
     public $phone_number;
+
     public $gender;
+
     public $address;
+
     public $staff;
+
     public $manager;
 
     protected $listeners = ['showUserForm' => 'show'];
@@ -38,7 +47,6 @@ class ShowEmployeeForm extends Component
         $this->manager = $user->manager;
         $this->open = true;
     }
-
 
     public function render()
     {
