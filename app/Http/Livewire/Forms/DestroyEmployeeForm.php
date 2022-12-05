@@ -21,6 +21,7 @@ class DestroyEmployeeForm extends Component
         $this->authorize('delete', $this->user);
         $this->user->delete();
         $this->open = false;
+        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Delete OK !']);
         $this->emitUp('resetPage');
     }
 

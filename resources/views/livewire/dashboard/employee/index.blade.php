@@ -45,17 +45,10 @@
         <!--SelectedRows -->
 
         <div class="w-4/12">
-            <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Hành động <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-            <!-- Dropdown menu -->
-            <div id="dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
-                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
-                    <li>
-                        <a wire:click="deleteSelectedRows" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Xóa mục đã chọn</a>
-                    </li>
-                </ul>
-            </div>
-            <label>đã chọn {{count($selectedRows)}}</label>
-
+            @if ($selectedRows)
+            <button type="button" wire:click="deleteSelectedRows" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Xóa</button>
+            <label>{{count($selectedRows)}} đã chọn</label>
+            @endif
         </div>
 
         <!-- End SelectedRows -->
@@ -75,15 +68,17 @@
         <div class="inline-flex rounded-md shadow-sm" role="group">
             <button wire:click="$set('filteredRole', '')" type="button"
                 class="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                Tất cả ({{ $employeesCount }})
+                Tất cả <span class="bg-blue-700 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-200 dark:text-blue-800">{{ $employeesCount }}</span>
             </button>
             <button wire:click="$set('filteredRole', 'is_staff')" type="button"
                 class="py-2 px-4 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                Nhân viên ({{ $staffsCount }})
+                Nhân viên
+                <span class="bg-red-700 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-200 dark:text-blue-800">{{ $staffsCount }}</span>
             </button>
             <button wire:click="$set('filteredRole', 'is_manager')" type="button"
                 class="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-r-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                Quản lý ({{ $managersCount }})
+                Quản lý
+                <span class="bg-yellow-700 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-200 dark:text-blue-800">{{ $managersCount }}</span>
             </button>
         </div>
 
@@ -108,11 +103,6 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="p-4">
-                    <div class="flex items-center">
-                        <input wire:model="selectPageRows" id="checkbox-all-search" type="checkbox"
-                            class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                    </div>
                 </th>
                 <th scope="col" class="py-3 px-6">
                     Họ tên
@@ -142,16 +132,24 @@
                     </td>
                     <th scope="row"
                         class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
+                        @if($emp->profile_photo_path)
                         <img class="w-10 h-10 rounded-full"
                             src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA14FPFo.img?w=600&h=788&m=6&x=227&y=116&s=93&d=93"
                             alt="">
+                        @else
+                        <div class="overflow-hidden relative w-10 h-10 bg-gray-100 rounded-full dark:bg-gray-600">
+                            <svg class="absolute -left-1 w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        @endif
                         <div class="pl-3">
                             <div class="text-base font-semibold">{{ $emp->name }}</div>
                             <div class="font-normal text-gray-500">{{ $emp->email }}</div>
                         </div>
                     </th>
                     <td class="py-4 px-6">
-                        @if($emp->is_staff) Nhân Viên @else Quản lý @endif
+                        @if($emp->is_manager) Quản lý @endif
+                        @if($emp->is_staff) Nhân viên @endif
+                        @if($emp->is_manager == false && $emp->is_staff == false) Người dùng @endif
                     </td>
                     <td class="py-4 px-6">
                         <div class="flex items-center">
@@ -174,6 +172,11 @@
                             </x-jet-button>
                         <!-- End Button Update -->
                         @endcan
+                        <!-- Button Show -->
+                        <x-jet-button wire:click="$emitTo('forms.show-employee-form', 'showUserForm', {{$emp->id}})" >
+                            {{__('Show')}}
+                        </x-jet-button>
+                    <!-- End Button Show -->
                     </td>
                 </tr>
             @endforeach
@@ -191,8 +194,12 @@
     <!-- End Update Modal -->
 
     <!-- Create Modal -->
-    <livewire:forms.store-employee-form>
+    <livewire:forms.store-employee-form/>
      <!-- End Create Modal -->
+
+    <!-- Show Modal Form -->
+    <livewire:forms.show-employee-form/>
+    <!-- End Show->>
 </div>
 
 

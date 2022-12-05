@@ -23,16 +23,16 @@ class Index extends Component
 
     protected $listeners = ['resetPage' => 'resetPage'];
 
-    public function updatedSelectPageRows($value)
-    {
-        if ($value) {
-            $this->selectedRows = $this->user->pluck('id')->map(function ($id) {
-                return (string) $id;
-            });
-        } else {
-            $this->reset(['selectedRows', 'selectPageRows']);
-        }
-    }
+    // public function updatedSelectPageRows($value)
+    // {
+    //     if ($value) {
+    //         $this->selectedRows = User::pluck('id')->map(function ($id) {
+    //             return (string) $id;
+    //         });
+    //     } else {
+    //         $this->reset(['selectedRows', 'selectPageRows']);
+    //     }
+    // }
 
     public function deleteSelectedRows()
     {

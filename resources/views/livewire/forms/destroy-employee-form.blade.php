@@ -1,10 +1,10 @@
-<x-jet-dialog-modal wire:model="open">
+<x-jet-confirmation-modal wire:model="open">
     <x-slot name="title">
-        {{ __('Delete Modal Title') }}
+        Xóa Tài Khoản
     </x-slot>
 
     <x-slot name="content">
-        {{ __('Are you sure you want to delete this item?') }}
+        Bạn có chắc rằng bạn muốn xóa tài khoản của bạn? Khi tài khoản bị xóa, tất cả các tài nguyên và dữ liệu của nó sẽ bị xóa vĩnh viễn.
     </x-slot>
 
     <x-slot name="footer">
@@ -15,4 +15,4 @@
             {{ __('Delete Item') }}
         </x-jet-danger-button>
     </x-slot>
-</x-jet-dialog-modal>
+</x-jet-confirmation-modal>

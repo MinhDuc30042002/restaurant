@@ -10,22 +10,35 @@ class StoreEmployeeForm extends Component
 {
     use AuthorizesRequests;
 
+    public $maxWidth = '3xl';
+
     public $open = false;
 
-    public $name;
+    // public $name;
+
+    public $firstname;
+
+    public $lastname;
+
+    public $phone_number;
+
+    public $address;
 
     public $email;
 
-    public $is_manager;
+    public $is_manager = 0;
 
-    public $is_staff;
+    public $is_staff = 0;
 
     protected $listeners = ['showStoreUserForm' => 'show'];
 
     protected function rules()
     {
         return [
-            'name' => 'required|string|max:255',
+            'firstname' => 'required|string|max:50',
+            'lastname' =>  'required|string|max:50',
+            'phone_number' => ['required','numeric', 'digits:10'],
+            'address' => 'required',
             'email' => 'required|string|email|max:255|unique:users,email,',
             'is_staff' => '',
             'is_manager' => '',
@@ -33,8 +46,21 @@ class StoreEmployeeForm extends Component
     }
 
     protected $messages = [
-        'email.required' => 'The Email Address cannot be empty.',
-        'email.email' => 'The Email Address format is not valid.',
+        'firstname.required' => ':attribute không được bỏ trống',
+        'lastname.required' => ':attribute không được bỏ trống',
+        'phone_number.phone_number' => ':attribute không được bỏ trống',
+        'address' => ':attribute không được bỏ trống',
+        'email.required' => ':attribute không được bỏ trống',
+        'email.unique' => ':attribute này đã được sử dụng',
+        'email.email' => ':attribute không đúng',
+    ];
+
+    protected $validationAttributes = [
+        'firstname' => 'Họ',
+        'lastname' => 'Tên',
+        'phone_number' => 'Số điện thoại',
+        'address' => 'Địa chỉ',
+        'email' => 'Địa chỉ mail'
     ];
 
     public function updated($propertyName)
@@ -46,13 +72,15 @@ class StoreEmployeeForm extends Component
     {
         $this->authorize('create', User::class);
         $validatedData = $this->validate();
-        User::create([...$validatedData, 'password' => 'password']);
+        User::create([...$validatedData, 'name' => $this->firstname.' '.$this->lastname,'password' => 'password']);
         $this->open = false;
+        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Thêm thanhg công']);
         $this->emitUp('resetPage');
     }
 
     public function show()
     {
+        $this->reset();
         $this->open = true;
     }
 
