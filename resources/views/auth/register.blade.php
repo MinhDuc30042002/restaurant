@@ -4,29 +4,76 @@
             <x-jet-authentication-card-logo />
         </x-slot>
 
-        <x-jet-validation-errors class="mb-4" />
-
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
             <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-jet-label for="firstname" value="{{ __('First Name') }}" />
+                <x-jet-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')"  autofocus autocomplete="firstname" />
+                @error('firstname')
+                <p>{{$message}}</p>
+                @enderror
+            </div>
+
+            <div>
+                <x-jet-label for="lastname" value="{{ __('Last Name') }}" />
+                <x-jet-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')"  autocomplete="lastname" />
+                @error('lastname')
+                <p>{{$message}}</p>
+                @enderror
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"  />
+                @error('email')
+                <p>{{$message}}</p>
+                @enderror
             </div>
 
             <div class="mt-4">
+                <x-jet-label for="phone_number" value="{{ __('Phone Number') }}" />
+                <x-jet-input id="phone_number" class="block mt-1 w-full" type="text" name="phone_number" :value="old('phone_number')"  />
+                @error('phone_number')
+                <p>{{$message}}</p>
+                @enderror
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="address" value="{{ __('Address') }}" />
+                <x-jet-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')"  />
+                @error('address')
+                <p>{{$message}}</p>
+                @enderror
+            </div>
+            <div class="mt-4 flex">
+                <x-jet-label value="{{ __('Gender:') }}" />
+                <div class="flex flex-row ml-2">
+                    <x-jet-input id="male" class="" type="radio" name="gender" value="male"  />
+                    <x-jet-label for="male" class="ml-1">{{__('Male')}}</x-jet-label>
+                </div>
+               <div class="flex flex-row ml-2">
+                <x-jet-input id="female"  type="radio" name="gender" value="female"  />
+                <x-jet-label for="female" class="ml-1">{{__('Female')}}</x-jet-label>
+               </div>
+                @error('gender')
+                <p>{{$message}}</p>
+                @enderror
+            </div>
+            <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password"  autocomplete="new-password" />
+                @error('password')
+                <p>{{$message}}</p>
+                @enderror
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation"  autocomplete="new-password" />
+                @error('password_confirmation')
+                <p>{{$message}}</p>
+                @enderror
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
