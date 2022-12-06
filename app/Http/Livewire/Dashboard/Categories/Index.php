@@ -71,7 +71,7 @@ class Index extends Component
 
     public function showFood($id)
     {
-        return redirect('/dashboard/food/category/' . $id);
+        return redirect(route('food.index') . '?categories[0]=' . $id);
     }
 
     public function removeCategory($id)

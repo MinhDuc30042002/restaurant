@@ -3,18 +3,19 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Food;
 use Illuminate\Http\Request;
 
 class FoodController extends Controller
 {
-    public function index($id)
+    public function index()
     {
-        return view('dashboard.categories.show', compact('id'));
+        return view('dashboard.food.index');
     }
 
     public function show($id)
     {
-        return view('dashboard.food.show', compact('id'));
+        return view('dashboard.food.show', ['id' => $id]);
     }
 
     public function create()
