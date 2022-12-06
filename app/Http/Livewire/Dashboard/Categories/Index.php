@@ -14,11 +14,14 @@ class Index extends Component
     public $action = ['saved' => false];
 
     public $modalDialog;
+
     public $modalUpdate;
     public $name;
+
     public $tempID;
 
     public string $search = '';
+
     use WithPagination;
 
     public function render()
