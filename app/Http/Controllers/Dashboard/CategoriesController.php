@@ -36,7 +36,6 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        
     }
 
     /**
@@ -47,7 +46,6 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**

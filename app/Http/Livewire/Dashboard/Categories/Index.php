@@ -9,10 +9,12 @@ use Livewire\WithPagination;
 class Index extends Component
 {
     public $category = [];
+    public $saved = false;
+
+    public $action = ['saved' => false];
 
     public $modalDialog;
     public $modalUpdate;
-
     public $name;
     public $tempID;
 
@@ -23,7 +25,9 @@ class Index extends Component
     {
         return view(
             'livewire.dashboard.categories.index',
-            ['data' => Category::orderByDesc('id')->paginate(5)]
+            [
+                'data' => Category::withCount('foods')->orderByDesc('id')->paginate(5)
+            ]
         );
     }
 
@@ -49,13 +53,47 @@ class Index extends Component
 
     public function storeCategory()
     {
+        $this->validate();
+
         Category::create(['name' => $this->name]);
         $this->modalDialog = false;
         $this->reset();
+        $this->action['saved'] = true;
+    }
+
+    protected function hiddenSaved()
+    {
+        $this->action['saved'] = false;
+    }
+
+    public function showFood($id)
+    {
+        return redirect('/dashboard/food/category/' . $id);
     }
 
     public function removeCategory($id)
     {
         Category::destroy($id);
+    }
+
+    protected function rules()
+    {
+        return [
+            'name' => 'required'
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            'name.required' => 'The :attribute cannot be empty.'
+        ];
+    }
+
+    protected function attributes()
+    {
+        return [
+            'name' => 'Địa chỉ email'
+        ];
     }
 }
