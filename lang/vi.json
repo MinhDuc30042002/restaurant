@@ -786,5 +786,16 @@
     "Zambia": "Zambia",
     "Zimbabwe": "Zimbabwe",
     "Zip / Postal Code": "Zip / Mã Bưu Điện",
-    "Åland Islands": "Quần đảo Åland"
+    "Åland Islands": "Quần đảo Åland",
+    "Phone number": "Số điện thoại",
+    "Email address": "Email",
+    "Confirm password": "Xác nhận mật khẩu",
+    "Are you sure you want to delete?": "Bạn có chắc là muốn xóa?",
+    "terms and conditions": "điều khoản và điều kiện",
+    "New password":"Mật khẩu mới",
+    "Old password": "Mật khẩu cũ",
+    "Created_at": "Ngày tạo",
+    "Invoice history": "Lịch sử hóa đơn",
+    "Detail": "Chi tiết",
+    "Order detail": "Chi tiết đơn hàng"
 }
