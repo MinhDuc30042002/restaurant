@@ -13,6 +13,8 @@ class Food extends Model
         'name', 'price', 'image', 'description', 'available_quantity',
     ];
 
+    protected $table = 'foods';
+
     /*
     |--------------------------------------------------------------------------
     | Relations

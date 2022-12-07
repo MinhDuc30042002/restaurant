@@ -12,14 +12,23 @@ class ShowEmployeeForm extends Component
     public $open = false;
 
     public $user;
+
     public $name;
+
     public $firstname;
+
     public $lastname;
+
     public $email;
+
     public $phone_number;
+
     public $gender;
+
     public $address;
+
     public $staff;
+
     public $manager;
     public $created_at;
 
@@ -40,7 +49,6 @@ class ShowEmployeeForm extends Component
         $this->created_at = $user->created_at;
         $this->open = true;
     }
-
 
     public function render()
     {

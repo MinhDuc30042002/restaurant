@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\CategoriesController;
+use App\Http\Controllers\Dashboard\FoodController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ Route::middleware([
     'staff',
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -26,6 +27,7 @@ Route::middleware([
 
     Route::prefix('dashboard')->group(function () {
         Route::resource('categories', CategoriesController::class);
+        Route::resource('food', FoodController::class);
     });
 
     Route::get('/dashboard/employees', [App\Http\Controllers\Dashboard\EmployeeController::class, 'index'])->name('employees');
