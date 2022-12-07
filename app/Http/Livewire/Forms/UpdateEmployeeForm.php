@@ -20,6 +20,12 @@ class UpdateEmployeeForm extends Component
 
     public $email;
 
+    public $address;
+
+    public $phong_number;
+
+    public $gender;
+
     public $is_manager;
 
     public $is_staff;
@@ -29,7 +35,11 @@ class UpdateEmployeeForm extends Component
     protected function rules()
     {
         return [
-            'name' => 'required|string|max:255',
+            'firstname' => 'required|string|max:50',
+            'lastname' =>  'required|string|max:50',
+            'phone_number' => ['required','numeric', 'digits:10'],
+            'address' => 'required',
+            'gender' => '',
             'email' => ['required', 'email', Rule::unique('users')->ignore($this->user)],
             'is_staff' => '',
             'is_manager' => '',
@@ -37,8 +47,17 @@ class UpdateEmployeeForm extends Component
     }
 
     protected $messages = [
-        'email.required' => 'The Email Address cannot be empty.',
-        'email.email' => 'The Email Address format is not valid.',
+        'firstname.required' => ':attribute không được bỏ trống',
+        'firstname.max' => ':attribute quá dài, tối đa 50 kí tự',
+        'lastname.required' => ':attribute không được bỏ trống',
+        'lastname.max' => ':attribute quá dài, tối đa 50 kí tự',
+        'phone_number.phone_number' => ':attribute không được bỏ trống',
+        'address.required' => ':attribute không được bỏ trống',
+        'gender.required' => ':attribute không được bỏ trống',
+        'email.required' => ':attribute không được bỏ trống',
+        'email.unique' => ':attribute này đã được sử dụng',
+        'email.max' => ':attribute quá dài, tối đa 255 kí tự',
+        'email.email' => ':attribute không đúng',
     ];
 
     public function updated($propertyName)
@@ -46,11 +65,24 @@ class UpdateEmployeeForm extends Component
         $this->validateOnly($propertyName);
     }
 
+    protected $validationAttributes = [
+        'firstname' => 'Họ',
+        'lastname' => 'Tên',
+        'phone_number' => 'Số điện thoại',
+        'gender' => 'Giới tính',
+        'address' => 'Địa chỉ',
+        'email' => 'Địa chỉ mail'
+    ];
+
     public function submit()
     {
+
         $validatedData = $this->validate();
+
         Log::debug($validatedData);
-        $this->user->update($validatedData);
+        // dd($validatedData);
+        $this->user->update([...$validatedData, 'name' => $this->firstname.' '.$this->lastname]);
+        $this->dispatchBrowserEvent('alert', ['type' => 'info',  'message' => 'Cập nhật '.$this->name.'  thành công']);
         $this->open = false;
         $this->emitUp('resetPage');
     }
@@ -61,6 +93,11 @@ class UpdateEmployeeForm extends Component
         $this->user = $user;
         $this->name = $user->name;
         $this->email = $user->email;
+        $this->firstname = $user->firstname;
+        $this->lastname = $user->lastname;
+        $this->address = $user->address;
+        $this->phone_number = $user->phone_number;
+        $this->gender = $user->gender;
         $this->is_manager = $user->is_manager;
         $this->is_staff = $user->is_staff;
         $this->open = true;

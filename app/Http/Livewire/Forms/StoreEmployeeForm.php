@@ -26,6 +26,8 @@ class StoreEmployeeForm extends Component
 
     public $email;
 
+    public $gender;
+
     public $is_manager = 0;
 
     public $is_staff = 0;
@@ -39,6 +41,7 @@ class StoreEmployeeForm extends Component
             'lastname' =>  'required|string|max:50',
             'phone_number' => ['required','numeric', 'digits:10'],
             'address' => 'required',
+            'gender' => 'required',
             'email' => 'required|string|email|max:255|unique:users,email,',
             'is_staff' => '',
             'is_manager' => '',
@@ -47,11 +50,15 @@ class StoreEmployeeForm extends Component
 
     protected $messages = [
         'firstname.required' => ':attribute không được bỏ trống',
+        'firstname.max' => ':attribute quá dài, tối đa 50 kí tự',
         'lastname.required' => ':attribute không được bỏ trống',
+        'lastname.max' => ':attribute quá dài, tối đa 50 kí tự',
         'phone_number.phone_number' => ':attribute không được bỏ trống',
-        'address' => ':attribute không được bỏ trống',
+        'address.required' => ':attribute không được bỏ trống',
+        'gender.required' => ':attribute không được bỏ trống',
         'email.required' => ':attribute không được bỏ trống',
         'email.unique' => ':attribute này đã được sử dụng',
+        'email.max' => ':attribute quá dài, tối đa 255 kí tự',
         'email.email' => ':attribute không đúng',
     ];
 
@@ -59,6 +66,7 @@ class StoreEmployeeForm extends Component
         'firstname' => 'Họ',
         'lastname' => 'Tên',
         'phone_number' => 'Số điện thoại',
+        'gender' => 'Giới tính',
         'address' => 'Địa chỉ',
         'email' => 'Địa chỉ mail'
     ];

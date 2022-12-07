@@ -14,6 +14,8 @@ class DestroyEmployeeForm extends Component
 
     public $user;
 
+    public $name;
+
     protected $listeners = ['showDestroyUserForm' => 'show'];
 
     public function submit()
@@ -21,13 +23,14 @@ class DestroyEmployeeForm extends Component
         $this->authorize('delete', $this->user);
         $this->user->delete();
         $this->open = false;
-        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Delete OK !']);
+        $this->dispatchBrowserEvent('alert', ['type' => 'error',  'message' => 'Đã xóa '.$this->name.' thành công']);
         $this->emitUp('resetPage');
     }
 
     public function show(User $user)
     {
         $this->user = $user;
+        $this->name = $user->name;
         $this->open = true;
     }
 
