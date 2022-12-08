@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class Staff
 {
@@ -17,8 +18,9 @@ class Staff
      */
     public function handle(Request $request, Closure $next)
     {
-        if (! $request->user()->is_staff) {
-            redirect(RouteServiceProvider::HOME);
+        Log::debug($request->user());
+        if (! $request->user()->is_staff && ! $request->user()->is_manager) {
+            return redirect(RouteServiceProvider::HOME);
         }
 
         return $next($request);
