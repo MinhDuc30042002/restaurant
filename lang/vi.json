@@ -797,5 +797,9 @@
     "Created_at": "Ngày tạo",
     "Invoice history": "Lịch sử hóa đơn",
     "Detail": "Chi tiết",
-    "Order detail": "Chi tiết đơn hàng"
+    "Order detail": "Chi tiết đơn hàng",
+    "Quantity": "Số lượng",
+    "Food name": "Tên món ăn",
+    "Food price": "Giá",
+    "Amount" : "Tổng"
 }
