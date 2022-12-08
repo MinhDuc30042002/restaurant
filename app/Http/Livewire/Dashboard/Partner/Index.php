@@ -15,6 +15,7 @@ class Index extends Component
     public $orderdetail;
     public $detail;
     public $modelId;
+    public $modelId_detail;
     public $order_detail;
     public $detailOrder;
     public $order;
@@ -40,9 +41,9 @@ class Index extends Component
     }
     public function detail($id)
     {
-        $this->modelId = $id;
-        $order1 = Order::find($this->modelId);
-        $this->detailOrder = $order1->lines()->where('order_id',$this->modelId)->get();
+        $this->modelId_detail = $id;
+        $order1 = Order::find($this->modelId_detail);
+        $this->detailOrder = $order1->lines()->where('order_id',$this->modelId_detail)->get();
         $this->order_detail = true;
     }
 }

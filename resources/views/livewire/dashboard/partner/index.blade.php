@@ -146,7 +146,7 @@
                 </x-jet-secondary-button>
         </x-slot>
     </x-jet-dialog-modal>
-    <x-jet-dialog-modal wire:model="order_detail">
+    <x-jet-dialog-modal wire:model="order_detail" maxWidth="4xl">
         <x-slot name="title">
             {{ __('Order detail')}}
         </x-slot>
@@ -164,13 +164,13 @@
                             {{ __('ID')}}
                         </th>
                         <th scope="col" class="py-3 px-6">
-                            {{ __('State')}}
+                            {{ __('Food name')}}
                         </th>
                         <th scope="col" class="py-3 px-6">
-                            {{ __('Amount')}}
+                            {{ __('Food price')}}
                         </th>
                         <th scope="col" class="py-3 px-6">
-                            {{ __('Created_at')}}
+                            {{ __('Quantity')}}
                         </th>
                         <th scope="col" class="py-3 px-6">
                             {{ __('Action')}}
@@ -178,25 +178,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                   @if(isset($this->modelId))
-                   @foreach ($order as $item)
+                   @if(isset($this->modelId_detail))
+                   @foreach ($detailOrder as $item)
                    <tr class="bg-white border-b">
 
                        <td class="py-4 px-6">
                            <div class="flex items-center">
                               {{$item->id}}
                            </div>
-                       </td>
-                       <td class="py-4 px-6">
-                           <div class="flex items-center">
-                              {{$item->price}}
-                           </div>
-                       </td>
                        <td class="py-4 px-6">
                            <div class="flex items-center">
                               {{$item->food_name}}
                            </div>
                        </td>
+                    </td>
+                    <td class="py-4 px-6">
+                        <div class="flex items-center">
+                           {{$item->quantity}}
+                        </div>
+                    </td>
                        <td class="py-4 px-6">
                            {{$item->food_price}}
                        </td>
@@ -212,6 +212,9 @@
             </table>
         </x-slot>
         <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('order_detail')" wire:loading.attr="disabled">
+                {{ __('Cancel') }}
+            </x-jet-secondary-button>
         </x-slot>
     </x-jet-dialog-modal>
 </div>
