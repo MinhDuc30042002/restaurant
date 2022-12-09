@@ -1,27 +1,18 @@
 <div>
-    <div class="p-2">
-        <x-jet-button class="bg-green-600" wire:click="showModal">
-            {{ __('New category') }}
-        </x-jet-button>
-
-        @if ($action['saved'])
-            <span id="badge-dismiss-green"
-                class="float-right inline-flex items-center py-1 px-2 mr-2 text-sm font-medium text-green-800 bg-green-100 rounded dark:bg-green-200 dark:text-green-800">
-                Add item successfully.
-                <button wire:click="hiddenSaved" type="button"
-                    class="inline-flex items-center p-0.5 ml-2 text-sm text-green-400 bg-transparent rounded-sm hover:bg-green-200 hover:text-green-900 dark:hover:bg-green-300 dark:hover:text-green-900"
-                    data-dismiss-target="#badge-dismiss-green" aria-label="Remove">
-                    <svg aria-hidden="true" class="w-3.5 h-3.5" aria-hidden="true" fill="currentColor"
-                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="sr-only">Remove badge</span>
+    <div class="md:flex md:items-center md:justify-between py-8 p-4">
+        <div class="flex-1 min-w-0">
+            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Thể loại món ăn</h2>
+        </div>
+        <!-- Create Modal -->
+        <div class="mt-4 flex md:mt-0 md:ml-4">
+            @can('create', \App\Models\User::class)
+                <button wire:click="showModal"
+                    class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-medium text-white hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-600 transition sm:text-sm">
+                    {{ __('New category') }}
                 </button>
-            </span>
-        @endif
-
+            @endcan
+        </div>
+        <!-- End Create -->
     </div>
 
     <div class="overflow-x-auto relative">
@@ -50,17 +41,35 @@
                             {{ $category->id }}
                         </th>
                         <td class="py-4 px-6">
+                            <span class="text-base font-semibold">
                             {{ $category->name }}
+                            </span>
                         </td>
                         <td class="py-4 px-6">
-                            <x-jet-button wire:click="showFood({{ $category->id }})">{{ $category->foods_count }}
-                            </x-jet-button>
+                            <button class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" wire:click="showFood({{ $category->id }})">{{ $category->foods_count }}
+                            </button>
                         </td>
                         <td class="py-4 px-6">
                             <button wire:click="showModalUpdate({{ $category->id }})" type="button"
-                                class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-100">Sửa</button>
+                                class="text-gray-600 hover:text-red-700">
+                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                            aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                            </path>
+                                        </svg>
+                            </button>
                             <button wire:click="removeCategory({{ $category->id }})" type="button"
-                                class="btn-delete focus:outline-none text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-100">Xóa</button>
+                                class="text-gray-600 hover:text-red-700">
+                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                            aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                            </path>
+                                        </svg>
+                            </button>
                         </td>
                     </tr>
                 @endforeach
@@ -110,5 +119,26 @@
                 </x-jet-button>
             </x-slot>
         </x-jet-dialog-modal>
+    </div>
+
+    <div>
+        <x-jet-confirmation-modal wire:model="modalDelete">
+            <x-slot name="title">
+                Xóa Tài Khoản
+            </x-slot>
+
+            <x-slot name="content">
+                Bạn có chắc rằng bạn muốn xóa tài khoản của bạn? Khi tài khoản bị xóa, tất cả các tài nguyên và dữ liệu của nó sẽ bị xóa vĩnh viễn.
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-jet-secondary-button wire:click="$set('modalDelete', false)" wire:loading.attr="disabled">
+                    {{ __('Cancel') }}
+                </x-jet-secondary-button>
+                <x-jet-danger-button class="ml-3" wire:click="delete" wire:loading.attr="disabled">
+                    {{ __('Delete Item') }}
+                </x-jet-danger-button>
+            </x-slot>
+        </x-jet-confirmation-modal>
     </div>
 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Forms;
 
 use App\Models\User;
+use App\Models\Group;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 
@@ -32,6 +33,8 @@ class StoreEmployeeForm extends Component
 
     public $is_staff = 0;
 
+    public $group_id;
+
     protected $listeners = ['showStoreUserForm' => 'show'];
 
     protected function rules()
@@ -43,6 +46,7 @@ class StoreEmployeeForm extends Component
             'address' => 'required',
             'gender' => 'required',
             'email' => 'required|string|email|max:255|unique:users,email,',
+            'group_id' => 'required',
             'is_staff' => '',
             'is_manager' => '',
         ];
@@ -56,6 +60,7 @@ class StoreEmployeeForm extends Component
         'phone_number.phone_number' => ':attribute không được bỏ trống',
         'address.required' => ':attribute không được bỏ trống',
         'gender.required' => ':attribute không được bỏ trống',
+        'group_id.required' => ':attribute không được bỏ trống',
         'email.required' => ':attribute không được bỏ trống',
         'email.unique' => ':attribute này đã được sử dụng',
         'email.max' => ':attribute quá dài, tối đa 255 kí tự',
@@ -69,6 +74,7 @@ class StoreEmployeeForm extends Component
         'gender' => 'Giới tính',
         'address' => 'Địa chỉ',
         'email' => 'Địa chỉ mail',
+        'group_id' => 'Chức vụ',
     ];
 
     public function updated($propertyName)
@@ -80,9 +86,10 @@ class StoreEmployeeForm extends Component
     {
         $this->authorize('create', User::class);
         $validatedData = $this->validate();
-        User::create([...$validatedData, 'name' => $this->firstname.' '.$this->lastname, 'password' => 'password']);
-        $this->open = false;
-        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Thêm thanhg công']);
+        // dd($validatedData);
+        $group = Group::find($this->group_id);
+        $group->users()->create([...$validatedData, 'name' => $this->firstname.' '.$this->lastname, 'password' => 'password']);        $this->open = false;
+        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Thêm thành công']);
         $this->emitUp('resetPage');
     }
 
@@ -93,7 +100,7 @@ class StoreEmployeeForm extends Component
     }
 
     public function render()
-    {
-        return view('livewire.forms.store-employee-form');
+    {   $list_group = Group::all();
+        return view('livewire.forms.store-employee-form', [ 'list_group' => $list_group,]);
     }
 }

@@ -29,6 +29,16 @@
                 <label for="" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{__('Phone Number')}}</label>
                 @error('phone_number') <p id="standard_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span class="font-medium"> {{ $message }}</span></p> @enderror
             </div>
+            <div class="relative z-0 mb-6 w-full group">
+                <label for="underline_select" class="sr-only">Chức vụ</label>
+                <select id="underline_select" wire:model="group_id" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                    <option selected>Chức vụ</option>
+                    @foreach ($list_group as $item)
+                    <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
+                </select>
+                @error('group_id')<span id="standard_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span class="font-medium">{{ $message }}</span> </span> @enderror
+            </div>
             <div  class="relative z-0 mb-6 w-full group flex">
                 <label for="address" class="text-gray-500 dark:text-gray-400 duration-300 ">{{__('Gender')}}</label>
                <div class="flex flex-row ml-4">
