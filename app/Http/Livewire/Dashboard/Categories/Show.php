@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Dashboard\Categories;
 use App\Models\Category;
 use App\Models\Food;
 use App\Models\Partner;
+use App\Models\User;
 use Livewire\Component;
 use Illuminate\Database\Eloquent\Builder;
 
