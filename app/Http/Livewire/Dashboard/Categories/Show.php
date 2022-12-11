@@ -4,37 +4,42 @@ namespace App\Http\Livewire\Dashboard\Categories;
 
 use App\Models\Category;
 use App\Models\Food;
-use App\Models\Partner;
-use App\Models\User;
 use Livewire\Component;
-use Illuminate\Database\Eloquent\Builder;
 
 class Show extends Component
 {
     public $search = '';
 
     public $ident;
+
     private $foods;
+
     public $select;
+
     private $categories;
 
     public $modalDialog = ['create' => false];
+
     public $action = ['saved' => false];
 
     public function render()
     {
         $this->categories = Category::all();
 
-        if (!isset($this->select))  $this->select = $this->ident;
+        if (! isset($this->select)) {
+            $this->select = $this->ident;
+        }
 
         $this->foods = Food::whereHas('categories', function ($q) {
             $q->whereIn('category_id', [$this->select]);
         })->get();
 
-        if ($this->search != '')
-            $this->foods = Food::where('name', 'like', '%' . $this->search . '%')->get();
+        if ($this->search != '') {
+            $this->foods = Food::where('name', 'like', '%'.$this->search.'%')->get();
+        }
 
         sleep(0.5);
+
         return view('livewire.dashboard.categories.show', ['data' => $this->foods, 'list_categories' => $this->categories]);
     }
 

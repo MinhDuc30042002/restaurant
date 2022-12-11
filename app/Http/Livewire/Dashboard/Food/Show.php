@@ -9,10 +9,6 @@ use Livewire\Component;
 class Show extends Component
 {
     public $identify;
-    public $displayModal = false;
-    public $food = ['name', 'price', 'description', 'image'];
-    public $action = ['updated' => false];
-    public $foodDetail;
 
     public function render()
     {
@@ -57,13 +53,4 @@ class Show extends Component
         ];
     }
 
-    public function fillable()
-    {
-        return [
-            'name' => $this->food['name'],
-            'price' => $this->food['price'],
-            'image' => $this->food['image'],
-            'description' => $this->food['description']
-        ];
-    }
 }

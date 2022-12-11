@@ -9,6 +9,7 @@ use Livewire\WithPagination;
 class Index extends Component
 {
     public $category = [];
+
     public $saved = false;
 
     public $action = ['saved' => false];
@@ -16,6 +17,7 @@ class Index extends Component
     public $modalDialog;
 
     public $modalUpdate;
+
     public $name;
 
     public $tempID;
@@ -29,7 +31,7 @@ class Index extends Component
         return view(
             'livewire.dashboard.categories.index',
             [
-                'data' => Category::withCount('foods')->orderByDesc('id')->paginate(5)
+                'data' => Category::withCount('foods')->orderByDesc('id')->paginate(5),
             ]
         );
     }
@@ -71,7 +73,7 @@ class Index extends Component
 
     public function showFood($id)
     {
-        return redirect('/dashboard/food/category/' . $id);
+        return redirect(route('food.index').'?categories[0]='.$id);
     }
 
     public function removeCategory($id)
@@ -82,21 +84,21 @@ class Index extends Component
     protected function rules()
     {
         return [
-            'name' => 'required'
+            'name' => 'required',
         ];
     }
 
     protected function messages()
     {
         return [
-            'name.required' => 'The :attribute cannot be empty.'
+            'name.required' => 'The :attribute cannot be empty.',
         ];
     }
 
     protected function attributes()
     {
         return [
-            'name' => 'Địa chỉ email'
+            'name' => 'Địa chỉ email',
         ];
     }
 }

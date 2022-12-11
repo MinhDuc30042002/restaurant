@@ -7,6 +7,7 @@ use App\Http\Controllers\Client\FoodController as ClientFoodController;
 use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\FoodController;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,9 +31,7 @@ Route::middleware([
 
     Route::prefix('dashboard')->group(function () {
         Route::resource('categories', CategoriesController::class);
-        Route::get('food/category/{id}', [FoodController::class, 'index']);
-        Route::get('food/{id}', [FoodController::class, 'show']);
-        Route::get('foods/create', [FoodController::class, 'create']);
+        Route::resource('food', FoodController::class);
     });
 
     Route::get('/dashboard/employees', [App\Http\Controllers\Dashboard\EmployeeController::class, 'index'])->name('employees');

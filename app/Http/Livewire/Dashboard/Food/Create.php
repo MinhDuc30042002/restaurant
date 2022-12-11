@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Dashboard\Food;
 
 use App\Models\Category;
-use App\Models\Food;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -12,12 +11,15 @@ class Create extends Component
     use WithFileUploads;
 
     public $categories;
+
     public $fillable = [];
+
     public $action = ['saved' => false];
 
     public function render()
     {
         $this->categories = Category::all();
+
         return view('livewire.dashboard.food.create', ['list_categories' => $this->categories]);
     }
 
@@ -47,27 +49,27 @@ class Create extends Component
     }
 
     protected $rules = [
-        'fillable.name'               => 'required',
-        'fillable.price'              => 'required',
+        'fillable.name' => 'required',
+        'fillable.price' => 'required',
         'fillable.available_quantity' => 'required',
-        'fillable.category'           => 'required',
-        'fillable.image'              => 'required'
+        'fillable.category' => 'required',
+        'fillable.image' => 'required',
     ];
 
     protected $messages = [
-        'fillable.name.required'               => ':attribute không được bỏ trống.',
-        'fillable.price.required'              => ':attribute không được bỏ trống.',
+        'fillable.name.required' => ':attribute không được bỏ trống.',
+        'fillable.price.required' => ':attribute không được bỏ trống.',
         'fillable.available_quantity.required' => ':attribute không được bỏ trống.',
-        'fillable.category.required'           => 'Chọn :attribute.',
-        'fillable.image.required'              => 'Chọn :attribute.',
+        'fillable.category.required' => 'Chọn :attribute.',
+        'fillable.image.required' => 'Chọn :attribute.',
     ];
 
     protected $validationAttributes = [
-        'fillable.name'               => 'Tên món ăn',
-        'fillable.price'              => 'Giá món ăn',
+        'fillable.name' => 'Tên món ăn',
+        'fillable.price' => 'Giá món ăn',
         'fillable.available_quantity' => 'Số lượng món ăn',
-        'fillable.category'           => 'thể loại món ăn',
-        'fillable.image'              => 'Hình ảnh'
+        'fillable.category' => 'thể loại món ăn',
+        'fillable.image' => 'Hình ảnh',
     ];
 
     public function updated($propertyName)
