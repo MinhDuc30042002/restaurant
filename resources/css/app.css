@@ -42,3 +42,21 @@ textarea:-webkit-autofill {
     from {}
 }
 
+.fade-out-in {
+    -webkit-animation: fade-out-in 3s;
+    animation: fade-out-in 3s;
+}
+
+@keyframes fade-out-in {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.75;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

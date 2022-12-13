@@ -34,7 +34,7 @@
 <body class="antialiased font-sans">
     <x-layout.header />
     <main>
-        @yield('content')
+        {{ $slot }}
     </main>
 
     <x-layout.footer />

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Dashboard\Checkout;
+namespace App\Http\Livewire\Client\Wizard\Checkout;
 
 use Livewire\Component;
 
@@ -10,7 +10,7 @@ class Firststep extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.checkout.firststep');
+        return view('livewire.client.wizard.checkout.firststep');
     }
 
     protected function firstStepSubmit()
