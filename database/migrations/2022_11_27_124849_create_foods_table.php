@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('foods', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->float('price')->default(0.0);
             $table->string('image')->nullable();
             $table->text('description')->nullable();

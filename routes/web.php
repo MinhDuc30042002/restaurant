@@ -4,6 +4,7 @@ use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\CategoryController;
 use App\Http\Controllers\Client\CheckoutController;
 use App\Http\Controllers\Client\FoodController as ClientFoodController;
+use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\FoodController;
 use Illuminate\Support\Facades\Route;
@@ -41,13 +42,10 @@ Route::middleware([
     Route::get('/dashboard/foods', function () {
         return 'Page foods';
     })->name('foods');
-
-    Route::get('/', function () {
-        return view('welcome');
-    });
-
-    Route::get('/food/{slug}', [ClientFoodController::class, 'index']);
-    Route::resource('the-loai', CategoryController::class);
-    Route::get('/cart', [CartController::class, 'index']);
-    Route::get('/checkout', [CheckoutController::class, 'index']);
 });
+
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/mon-an/{slug}', [ClientFoodController::class, 'index']);
+Route::resource('the-loai', CategoryController::class);
+Route::get('/cart', [CartController::class, 'index']);
+Route::get('/checkout', [CheckoutController::class, 'index']);

@@ -47,9 +47,10 @@ class CategoryController extends Controller
      */
     public function show($slug)
     {
-        $match_slug = Category::where('slug', '=', $slug);
-        dd($match_slug);
-        return view('client.category.show');
+        $category = Category::where('slug', '=', $slug)->first();
+        $find_foods_by_category = $category->foods()->get();
+
+        return view('client.category.show', ['data' => $find_foods_by_category, 'category' => $category]);
     }
 
     /**
