@@ -789,5 +789,8 @@
     "Åland Islands": "Quần đảo Åland",
     "Create Employee" : "Thêm nhân viên",
     "Male" : "Nam",
-    "Female" : "Nữ"
+    "Female" : "Nữ",
+    "Firstname" : "Họ",
+    "Phone Number": "Số điện thoại",
+    "Gender": "Giới tính"
 }

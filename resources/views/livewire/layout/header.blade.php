@@ -271,12 +271,12 @@
                             Chào mừng bạn đến với nhà hàng của chúng tôi
                         </p>
                         <div class="hidden sm:flex items-center space-x-6">
-                            <a href="https://demo.cartify.dev/login"
+                            <a href="/login"
                                 class="text-sm font-medium text-white hover:text-gray-100">
                                 {{ __('Login') }}
                             </a>
                             <span class="h-6 w-px bg-white" aria-hidden="true"></span>
-                            <a href="https://demo.cartify.dev/register"
+                            <a href="/register"
                                 class="text-sm font-medium text-white hover:text-gray-100">
                                 {{ __('Create Account') }}
                             </a>
