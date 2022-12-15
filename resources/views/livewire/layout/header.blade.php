@@ -270,17 +270,18 @@
                         <p class="flex-1 text-sm text-center font-medium text-white sm:text-left lg:flex-none">
                             Chào mừng bạn đến với nhà hàng của chúng tôi
                         </p>
-                        <div class="hidden sm:flex items-center space-x-6">
-                            <a href="/login"
-                                class="text-sm font-medium text-white hover:text-gray-100">
-                                {{ __('Login') }}
-                            </a>
-                            <span class="h-6 w-px bg-white" aria-hidden="true"></span>
-                            <a href="/register"
-                                class="text-sm font-medium text-white hover:text-gray-100">
-                                {{ __('Create Account') }}
-                            </a>
-                        </div>
+                        @if (!isset(Auth::user()->name))
+                            <div class="hidden sm:flex items-center space-x-6">
+                                <a href="/login" class="text-sm font-medium text-white hover:text-gray-100">
+                                    {{ __('Login') }}
+                                </a>
+                                <span class="h-6 w-px bg-white" aria-hidden="true"></span>
+                                <a href="/register" class="text-sm font-medium text-white hover:text-gray-100">
+                                    {{ __('Create Account') }}
+                                </a>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
 
@@ -392,6 +393,66 @@
                                 <!-- User navigation -->
                                 <div class="flex-1 flex items-center justify-end">
                                     <div class="flex items-center lg:ml-8">
+                                        @if (isset(Auth::user()->name))
+                                            <div class="flow-root text-sm mr-8">
+                                                <div class="relative" x-data="{ open: false }">
+                                                    <div @click="open = ! open">
+                                                        <button class="group -m-2 p-2 flex items-center"
+                                                            type="button">
+                                                            <span class="sr-only">Open user menu</span>
+                                                            <img class="w-8 h-8 rounded-full"
+                                                                src="{{ Auth::user()->profile_photo_path }}"
+                                                                alt="user photo">
+                                                        </button>
+                                                    </div>
+                                                    <div x-show="open"
+                                                        x-transition:enter="transition ease-out duration-200"
+                                                        x-transition:enter-start="transform opacity-0 scale-95"
+                                                        x-transition:enter-end="transform opacity-100 scale-100"
+                                                        x-transition:leave="transition ease-in duration-75"
+                                                        x-transition:leave-start="transform opacity-100 scale-100"
+                                                        x-transition:leave-end="transform opacity-0 scale-95"
+                                                        class="absolute z-50 mt-2 w-80 rounded-md shadow-lg origin-top-right right-0"
+                                                        style="display: none;">
+                                                        <div
+                                                            class="m-auto rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
+                                                            <div class="px-4 py-2 ">
+                                                                <div
+                                                                    class="py-3 px-4 text-sm text-gray-900 dark:text-white">
+                                                                    <div>{{ Auth::user()->name }}</div>
+                                                                    <div class="font-medium truncate">
+                                                                        {{ Auth::user()->email }}
+                                                                    </div>
+                                                                </div>
+                                                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                                                    aria-labelledby="dropdownUserAvatarButton">
+                                                                    <li>
+                                                                        <a href="/setting/profile"
+                                                                            class="block py-2 px-4 hover:bg-gray-100">Hồ
+                                                                            sơ cá nhân</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#"
+                                                                            class="block py-2 px-4 hover:bg-gray-100">Lịch
+                                                                            sử đơn hàng</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <form method="POST"
+                                                                            action="{{ route('logout') }}" x-data>
+                                                                            @csrf
+                                                                            <a href="{{ route('logout') }}"
+                                                                                @click.prevent="$root.submit();"
+                                                                                class="block py-2 px-4 hover:bg-gray-100">{{ __('Log Out') }}</a>
+                                                                        </form>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+
                                         <!-- Account menu for mobile -->
                                         <a href="https://demo.cartify.dev/login"
                                             class="sm:hidden -m-2 p-2 text-gray-400 hover:text-gray-500">
@@ -452,7 +513,8 @@
                                                             class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
                                                             <div class="px-4 mt-px pb-6">
                                                                 <h2 class="sr-only">Shopping Cart</h2>
-                                                                <ul role="list" class="divide-y divide-gray-200 overflow-auto">
+                                                                <ul role="list"
+                                                                    class="divide-y divide-gray-200 overflow-auto">
                                                                     @foreach ($cart as $item)
                                                                         <li class="py-6 flex">
                                                                             <img src="{{ asset('images/products/' . $item->options['image']) }}"

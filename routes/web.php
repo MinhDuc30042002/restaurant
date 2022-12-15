@@ -8,6 +8,7 @@ use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\FoodController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +50,13 @@ Route::get('/mon-an/{slug}', [ClientFoodController::class, 'index']);
 Route::resource('the-loai', CategoryController::class);
 Route::get('/cart', [CartController::class, 'index']);
 Route::get('/checkout', [CheckoutController::class, 'index']);
+
+Route::prefix('login')->group(function () {
+    // Google Login
+    Route::get('/google', [AuthenticatedSessionController::class, 'redirectToGoogle'])->name('login.google');
+    Route::get('/google/callback', [AuthenticatedSessionController::class, 'handleGoogleCallback']);
+});
+
+Route::get('/setting/profile', function () {
+    return view('profile');
+});
