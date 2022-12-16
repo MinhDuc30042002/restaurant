@@ -24,78 +24,93 @@
                 <div class="max-w-4xl mx-auto">
                     <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">Giỏ hàng</h1>
 
-                    <form wire:submit.prevent="save" class="mt-12">
+                    <div class="mt-12">
                         <section aria-labelledby="cart-heading">
                             <h2 id="cart-heading" class="sr-only">
                                 Các món ăn trong giỏ hàng của bạn
                             </h2>
 
-                            @foreach ($cart as $item)
-                                <ul wire:loading.class="opacity-50" role="list"
-                                    class="border-t border-b border-gray-200 divide-y divide-gray-200">
-                                    <li class="flex py-6 sm:py-10">
-                                        <div class="flex-shrink-0">
-                                            <img src="{{ asset('images/products/' . $item->options['image']) }}"
-                                                alt="{{ $item->options['image'] }}"
-                                                class="rounded-lg object-center object-contain w-28 h-28 sm:w-32 sm:h-36">
-                                        </div>
+                            <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+                                <table class="w-full text-sm text-left text-gray-500 ">
+                                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="py-3 px-6">
+                                                <span class="sr-only">Image</span>
+                                            </th>
+                                            <th scope="col" class="py-3 px-6">
 
-                                        <div class="relative ml-4 flex-1 flex flex-col justify-between sm:ml-6">
-                                            <div>
-                                                <div class="flex justify-between sm:grid sm:grid-cols-2">
-                                                    <div class="pr-6">
-                                                        <h3 class="text-sm">
-                                                            <p href="https://demo.cartify.dev/products/organic-cloud-blouse"
-                                                                class="font-medium text-gray-700 hover:text-gray-800 line-clamp-2">
-                                                                {{ $item->name }}
-                                                            </p>
-                                                        </h3>
+                                            </th>
+                                            <th scope="col" class="py-3 px-6">
+
+                                            </th>
+                                            <th scope="col" class="py-3 px-6">
+
+                                            </th>
+                                            <th scope="col" class="py-3 px-6">
+
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach ($cart as $key => $item)
+                                            <tr wire:loading.class='opacity-50' class="bg-white border-b">
+                                                <td class="p-4 w-32">
+                                                    <img src="{{ asset('images/products/' . $item->options['image']) }}"
+                                                        alt="{{ $item->options['image'] }}">
+                                                </td>
+                                                <td class="py-4 px-6 font-semibold text-gray-900 ">
+                                                    <p class="mb-2">{{ $item->name }}</p>
+                                                    <p class="text-gray-600 text-xs mb-2">
+                                                        {{ number_format($item->price, 0, '', '.') }} đ</p>
+                                                </td>
+                                                <td class="py-4 px-6">
+                                                    <div class="flex items-center space-x-3">
+                                                        <p wire:click="decreaseQty('{{ $key }}', {{ $item->qty }})"
+                                                            class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white rounded-full border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200">
+                                                            <span class="sr-only">Quantity button</span>
+                                                            <svg class="w-4 h-4" aria-hidden="true" fill="currentColor"
+                                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                                                    clip-rule="evenodd"></path>
+                                                            </svg>
+                                                        </p>
+                                                        <div>
+                                                            <input wire:model="order.{{ $key }}.qty"
+                                                                wire:target="order.{{ $key }}.qty"
+                                                                wire:loading.class="opacity-50"
+                                                                class="shadow-sm border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md block w-20 text-center sm:text-sm show-spinners disabled:bg-white"
+                                                                type="text" min="1" max="99" disabled>
+                                                        </div>
+                                                        <button
+                                                            wire:click="increaseQty('{{ $key }}', {{ $item->qty }})"
+                                                            class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white rounded-full border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                                                            <span class="sr-only">Quantity button</span>
+                                                            <svg class="w-4 h-4" aria-hidden="true" fill="currentColor"
+                                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                                                    clip-rule="evenodd"></path>
+                                                            </svg>
+                                                        </button>
                                                     </div>
+                                                </td>
+                                                <td class="py-4 px-6 font-semibold text-gray-900 dark:text-white">
+                                                    {{ number_format($item->price * $item->qty, 0, '', '.') }}
 
-                                                    <p
-                                                        class="flex justify-end text-sm font-medium text-gray-900 text-right">
-                                                        <svg wire:loading.flex="1"
-                                                            wire:target="cart.items.0.quantity"
-                                                            class="hidden animate-spin h-5 w-5 text-blue-600"
-                                                            xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 24 24">
-                                                            <circle class="opacity-25" cx="12" cy="12"
-                                                                r="10" stroke="currentColor" stroke-width="4" />
-                                                            <path class="opacity-75" fill="currentColor"
-                                                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                                                        </svg> <span wire:loading.remove
-                                                            wire:target="cart.items.0.quantity">
-                                                            {{ number_format($item->price * $item->qty, 0, '', '.') }} đ
-                                                        </span>
-                                                    </p>
-                                                </div>
-
-                                                <div
-                                                    class="mt-4 flex items-center sm:block sm:absolute sm:top-0 sm:left-1/2 sm:mt-0">
-                                                    <label class="block font-medium text-sm text-gray-700 sr-only"
-                                                        for="item-0-quantity">
-                                                        Quantity
-                                                    </label>
-                                                    <input
-                                                        class="shadow-sm border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md block w-20 text-center sm:text-sm show-spinners disabled:bg-gray-100"
-                                                        type="number" value="{{ $item->qty }}">
-                                                </div>
-                                            </div>
-
-                                            <div class="mt-4 flex items-end justify-between">
-                                                <p class="flex items-center text-sm text-gray-900 space-x-2">
-                                                    {{ number_format($item->price, 0, '', '.') }} đ
-                                                </p>
-                                                <button wire:click="removeItem('{{ $item->rowId }}')" type="button"
-                                                    class="flex text-sm font-medium text-blue-600 hover:text-blue-500">
-                                                    <span>Xóa</span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                </ul>
-                            @endforeach
+                                                </td>
+                                                <td class="py-4 px-6">
+                                                    <button wire:click='removeItem("{{ $item->rowId }}")'
+                                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                                                        {{ __('Remove') }}
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </section>
 
                         <!-- Order summary -->
@@ -142,7 +157,7 @@
                                 </p>
                             </div>
                         </section>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
