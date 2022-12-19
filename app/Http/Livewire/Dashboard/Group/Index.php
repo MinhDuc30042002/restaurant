@@ -3,21 +3,25 @@
 namespace App\Http\Livewire\Dashboard\Group;
 
 use Livewire\Component;
-use App\Models\User;
+use App\Models\Group;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
+    use WithPagination;
+
+    protected $listeners = ['resetPage' => 'resetPage'];
 
     public function getGroup()
     {
-        $users = User::with('groups')->get();
-        return $users;
+        $groups = Group::with('permissions');
+        return $groups->paginate(10);
     }
 
     public function render()
     {
         return view('livewire.dashboard.group.index',[
-            'users' => $this->getGroup(),
+            'groups' => $this->getGroup(),
         ]);
     }
 }

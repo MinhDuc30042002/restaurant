@@ -14,6 +14,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Styles -->
     @livewireStyles
+    @stack('css')
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
@@ -78,6 +79,17 @@
                                 </svg> Employee
                             </a>
 
+                            <a href="{{route('groups.index')}}"
+                                class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
+                                <svg class="mr-3 flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                                    </path>
+                                </svg> Groups
+                            </a>
+
                             <a href="https://demo.cartify.dev/admin/orders"
                                 class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
                                 <svg class="mr-3 flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
@@ -107,7 +119,7 @@
                             </div>
                             <div class="ml-3">
                                 <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-                                    {{ Auth::user()->name }} 
+                                    {{ Auth::user()->name }}
                                 </p>
                                 <p
                                     class="inline-flex items-center text-xs font-medium text-gray-500 group-hover:text-gray-700">
@@ -136,6 +148,7 @@
     @stack('modals')
 
     @livewireScripts
+    @stack('scripts')
     <script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
     <script>
         window.addEventListener('alert', event => {

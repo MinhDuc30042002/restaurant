@@ -4,8 +4,12 @@ namespace App\Http\Livewire\Forms;
 
 use App\Models\User;
 use App\Models\Group;
+use App\Mail\MailCreateAccount;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
+use Illuminate\Support\Facades\Hash;
+use Str;
 
 class StoreEmployeeForm extends Component
 {
@@ -87,8 +91,12 @@ class StoreEmployeeForm extends Component
         $this->authorize('create', User::class);
         $validatedData = $this->validate();
         // dd($validatedData);
+        $name = $this->firstname.' '.$this->lastname;
+        $password = Str::random(8);
+        $hashed_random_password = Hash::make($password);
         $group = Group::find($this->group_id);
-        $group->users()->create([...$validatedData, 'name' => $this->firstname.' '.$this->lastname, 'password' => 'password']);        $this->open = false;
+        $group->users()->create([...$validatedData, 'name' => $name, 'password' => $hashed_random_password]);        $this->open = false;
+        Mail::to($this->email)->send(new MailCreateAccount($name, $password, $group->name));
         $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Thêm thành công']);
         $this->emitUp('resetPage');
     }
