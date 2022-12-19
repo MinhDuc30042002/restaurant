@@ -11,4 +11,8 @@ class GroupController extends Controller
     {
         return view('dashboard.group.index');
     }
+
+    public function create(){
+        // return view('dashboard.group.store');
+    }
 }
