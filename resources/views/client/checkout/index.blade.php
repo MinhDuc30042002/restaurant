@@ -1,3 +1,4 @@
 <x-layout.client>
-    <livewire:client.wizard.checkout>
+        <livewire:checkout.form>
+    </div>
 </x-layout.client>

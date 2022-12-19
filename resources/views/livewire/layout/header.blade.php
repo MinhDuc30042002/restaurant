@@ -427,12 +427,12 @@
                                                                 <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                                                     aria-labelledby="dropdownUserAvatarButton">
                                                                     <li>
-                                                                        <a href="/setting/profile"
+                                                                        <a href="{{ route('setting.profile') }}"
                                                                             class="block py-2 px-4 hover:bg-gray-100">Hồ
                                                                             sơ cá nhân</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="#"
+                                                                        <a href="{{ route('setting.orders') }}"
                                                                             class="block py-2 px-4 hover:bg-gray-100">Lịch
                                                                             sử đơn hàng</a>
                                                                     </li>

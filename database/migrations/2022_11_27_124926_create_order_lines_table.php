@@ -20,9 +20,10 @@ return new class extends Migration
             //
             $table->foreignId('food_id')->nullable()->constrained('foods')->cascadeOnUpdate()->nullOnDelete();
             $table->string('food_name')->nullable();
+            $table->string('food_image')->nullable();
             $table->float('food_price')->nullable();
             $table->integer('quantity')->default(1);
-            $table->float('amount')->nullable();
+            $table->float('amount',12)->nullable();
             $table->foreignId('order_id')->constrained('orders')->cascadeOnUpdate()->cascadeOnDelete();
         });
         Permission::crud('order_lines');

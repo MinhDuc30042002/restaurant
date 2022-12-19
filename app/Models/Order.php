@@ -10,7 +10,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'state', 'type_id', 'partner_id',
+        'state', 'type_id', 'partner_id', 'address', 'email', 'name', 'phone', 'amount' , 'ship_rate', 'tax_float' ,'subtotal_float'
     ];
 
     /*
@@ -35,7 +35,7 @@ class Order extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function add_line(Food $food, int $quantity)
+    public function add_line(int $food, int $quantity)
     {
         $this->lines()->create([
             'food_id' => $food,
