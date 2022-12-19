@@ -30,6 +30,7 @@ class ShowEmployeeForm extends Component
     public $staff;
 
     public $manager;
+    public $created_at;
 
     protected $listeners = ['showUserForm' => 'show'];
 
@@ -43,8 +44,9 @@ class ShowEmployeeForm extends Component
         $this->phone_number = $user->phone_number;
         $this->gender = $user->gender;
         $this->address = $user->address;
-        $this->staff = $user->staff;
-        $this->manager = $user->manager;
+        $this->staff = $user->is_staff;
+        $this->manager = $user->is_manager;
+        $this->created_at = $user->created_at;
         $this->open = true;
     }
 

@@ -38,6 +38,7 @@ Route::middleware([
     });
 
     Route::get('/dashboard/employees', [App\Http\Controllers\Dashboard\EmployeeController::class, 'index'])->name('employees');
+    Route::get('/dashboard/groups', [App\Http\Controllers\Dashboard\GroupController::class, 'index'])->name('groups');
     Route::get('/dashboard/services', function () {
         return 'Page services';
     })->name('services');

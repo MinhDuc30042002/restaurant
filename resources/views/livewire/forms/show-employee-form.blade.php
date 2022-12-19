@@ -23,11 +23,11 @@
                                     <li class="flex items-center py-3">
                                         <span>Vai trò</span>
                                         <span class="ml-auto">
-                                            <span class="bg-red-500 py-1 px-2 rounded text-white text-sm">Quản lý</span></span>
+                                            <span class="bg-red-500 py-1 px-2 rounded text-white text-sm">{{$staff ? 'Nhân viên':''}}{{$manager ? 'Quản lý':''}}</span></span>
                                     </li>
                                     <li class="flex items-center py-3">
                                         <span>Ngày tham gia</span>
-                                        <span class="ml-auto">Nov 07, 2016</span>
+                                        <span class="ml-auto">{{date('d-m-Y', strtotime($created_at))}}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -50,7 +50,7 @@
                                     </div>
                                     <div class="grid grid-cols-2">
                                         <div class="px-4 py-2 font-semibold">Giới tính</div>
-                                        <div class="px-4 py-2">@if($gender == 'male') {{__('Male')}} @else {{__('Female')}} @endif</div>
+                                        <div class="px-4 py-2">@if($gender == 'male') {{__('Male')}} @endif @if($gender == 'female') {{__('Female')}} @endif</div>
                                     </div>
                                     <div class="grid grid-cols-2">
                                         <div class="px-4 py-2 font-semibold">Số điện thoại</div>
