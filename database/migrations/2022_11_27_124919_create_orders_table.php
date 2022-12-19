@@ -20,6 +20,7 @@ return new class extends Migration
             $table->float('amount',12)->nullable();
             $table->timestamps();
             $table->string('email');
+            $table->string('address');
             $table->string('phone', 10);
             $table->string('name');
             $table->string('city')->nullable();
