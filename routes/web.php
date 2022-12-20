@@ -8,6 +8,7 @@ use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProfileController;
 use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\FoodController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
@@ -55,8 +56,8 @@ Route::get('/checkout', [CheckoutController::class, 'index']);
 
 Route::prefix('login')->group(function () {
     // Google Login
-    Route::get('/google', [AuthenticatedSessionController::class, 'redirectToGoogle'])->name('login.google');
-    Route::get('/google/callback', [AuthenticatedSessionController::class, 'handleGoogleCallback']);
+    Route::get('/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
+    Route::get('/google/callback', [LoginController::class, 'handleGoogleCallback']);
 });
 
 Route::prefix('setting')->group(function () {
