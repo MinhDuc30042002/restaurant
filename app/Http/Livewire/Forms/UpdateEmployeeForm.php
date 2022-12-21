@@ -82,21 +82,11 @@ class UpdateEmployeeForm extends Component
 
     public function submit()
     {
-
         $validatedData = $this->validate();
-
         Log::debug($validatedData);
-        // dd((int)$this->group_id);
         $groupId = (int)$this->group_id;
-
-        // dd($groupId);
-
-        $attributes = ['group_id' => $groupId];
-
         $this->user->update([...$validatedData, 'name' => $this->firstname.' '.$this->lastname]);
         $this->user->groups()->sync([$groupId]);
-        // $this->user->groups()->updateExistingPivot($groupId, $attributes);
-
         $this->dispatchBrowserEvent('alert', ['type' => 'info',  'message' => 'Cập nhật '.$this->name.'  thành công']);
         $this->open = false;
         $this->emitUp('resetPage');

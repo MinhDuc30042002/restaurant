@@ -8,8 +8,6 @@
                 </p>
             </div>
 
-            <x-jet-validation-errors class="mb-4" />
-
             @if (session('status'))
                 <div class="mb-4 font-medium text-sm text-green-600">
                     {{ session('status') }}
@@ -24,8 +22,11 @@
                         value="{{ __('Email') }}" />
                     <x-jet-input id="email"
                         class="shadow-sm border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md block mt-1 w-full sm:text-sm"
-                        type="email" name="email" :value="old('email')" required autofocus />
-                </div>
+                        type="email" name="email" :value="old('email')" autofocus />
+                        @error('email')
+                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span class="font-medium">Đã xảy ra lỗi!</span> {{$message}}</p>
+                        @enderror
+                    </div>
 
                 <div class="mt-4">
                     <div class="flex items-center justify-between">
@@ -42,7 +43,10 @@
 
                     <x-jet-input id="password"
                         class="shadow-sm border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md block mt-1 w-full sm:text-sm"
-                        type="password" name="password" required autocomplete="current-password" />
+                        type="password" name="password" autocomplete="current-password" />
+                        @error('password')
+                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span class="font-medium">Đã xảy ra lỗi!</span> {{$message}}</p>
+                        @enderror
                 </div>
 
                 <div class="block mt-4">

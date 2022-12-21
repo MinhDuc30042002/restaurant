@@ -16,7 +16,7 @@
                         <x-jet-input id="firstname" class="block mt-1 w-full" type="text" name="firstname"
                             :value="old('firstname')" autofocus autocomplete="firstname" />
                         @error('firstname')
-                            <p>{{ $message }}</p>
+                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">{{$message}}.</p>
                         @enderror
                     </div>
                     <div>
@@ -24,7 +24,7 @@
                         <x-jet-input id="lastname" class="block mt-1 w-full" type="text" name="lastname"
                             :value="old('lastname')" autocomplete="lastname" />
                         @error('lastname')
-                            <p>{{ $message }}</p>
+                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">{{$message}}.</p>
                         @enderror
                     </div>
                     <div class="mt-4">
@@ -32,7 +32,7 @@
                         <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email"
                             :value="old('email')" />
                         @error('email')
-                            <p>{{ $message }}</p>
+                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">{{$message}}.</p>
                         @enderror
                     </div>
                     <div class="mt-4">
@@ -40,7 +40,7 @@
                         <x-jet-input id="phone_number" class="block mt-1 w-full" type="text" name="phone_number"
                             :value="old('phone_number')" />
                         @error('phone_number')
-                            <p>{{ $message }}</p>
+                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">{{$message}}.</p>
                         @enderror
                     </div>
                     <div class="mt-4">
@@ -48,7 +48,7 @@
                         <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password"
                             autocomplete="new-password" />
                         @error('password')
-                            <p>{{ $message }}</p>
+                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">{{$message}}.</p>
                         @enderror
                     </div>
 
@@ -57,7 +57,7 @@
                         <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password"
                             name="password_confirmation" autocomplete="new-password" />
                         @error('password_confirmation')
-                            <p>{{ $message }}</p>
+                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">{{$message}}.</p>
                         @enderror
                     </div>
                 </div>
@@ -72,17 +72,17 @@
                         <x-jet-input id="female" type="radio" name="gender" value="female" />
                         <x-jet-label for="female" class="ml-1">{{ __('Female') }}</x-jet-label>
                     </div>
-                    @error('gender')
-                        <p>{{ $message }}</p>
-                    @enderror
-                </div>
 
+                </div>
+                @error('gender')
+                <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">{{$message}}.</p>
+                @enderror
                 <div class="mt-4">
                     <x-jet-label for="address" value="{{ __('Address') }}" />
                     <x-jet-input id="address" class="block mt-1 w-full" type="text" name="address"
                         :value="old('address')" />
                     @error('address')
-                        <p>{{ $message }}</p>
+                    <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">{{$message}}.</p>
                     @enderror
                 </div>
                 @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())

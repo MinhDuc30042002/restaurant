@@ -30,6 +30,11 @@ class ShowEmployeeForm extends Component
     public $staff;
 
     public $manager;
+
+    public $profile_photo_path;
+
+    public $group;
+
     public $created_at;
 
     protected $listeners = ['showUserForm' => 'show'];
@@ -46,6 +51,11 @@ class ShowEmployeeForm extends Component
         $this->address = $user->address;
         $this->staff = $user->is_staff;
         $this->manager = $user->is_manager;
+        $this->profile_photo_path = $user->profile_photo_path;
+
+        $gr = $this->user->groups()->get();
+        $this->group = $gr[0]->name;
+
         $this->created_at = $user->created_at;
         $this->open = true;
     }
