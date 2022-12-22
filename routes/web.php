@@ -60,8 +60,10 @@ Route::prefix('login')->group(function () {
     Route::get('/google/callback', [LoginController::class, 'handleGoogleCallback']);
 });
 
-Route::prefix('setting')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'profile'])->name('setting.profile');
-    Route::get('/orders', [ProfileController::class, 'orders'])->name('setting.orders');
-    Route::get('/order/{id}', [ProfileController::class, 'orderDetail']);
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('setting')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'profile'])->name('setting.profile');
+        Route::get('/orders', [ProfileController::class, 'orders'])->name('setting.orders');
+        Route::get('/order/{id}', [ProfileController::class, 'orderDetail']);
+    });
 });

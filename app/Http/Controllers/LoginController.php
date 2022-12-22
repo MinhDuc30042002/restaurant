@@ -2,23 +2,46 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
-    public function redirectToGoogle(AuthenticatedSessionController $authenticated)
+    // Google login
+    public function redirectToGoogle()
     {
-        return $authenticated->redirectToGoogle();
+        return Socialite::driver('google')->redirect();
     }
 
-    public function handleGoogleCallback(AuthenticatedSessionController $authenticated)
+    // Google callback
+    public function handleGoogleCallback()
     {
-        return $authenticated->handleGoogleCallback();
+        $user = Socialite::driver('google')->user();
+
+        $this->_registerOrLogin($user);
+        // Return home after login success
+        return redirect('/');
     }
 
-    public function _registerOrLogin(AuthenticatedSessionController $authenticated)
+    protected function _registerOrLogin($data)
     {
-        return $authenticated->_registerOrLogin();
+        $user = User::where('email', '=', $data->email)->first();
+
+        if (!$user) {
+            $user = new User();
+            $user->name = $data->name;
+            $user->firstname = $data->user['given_name'];
+            $user->lastname = $data->user['family_name'];
+            $user->profile_photo_path = $data->avatar;
+            $user->email = $data->email;
+            $user->google_id = $data->id;
+            $user->password = Hash::make(Str::random(16));
+            $user->save();
+        }
+
+        Auth::login($user);
     }
 }
