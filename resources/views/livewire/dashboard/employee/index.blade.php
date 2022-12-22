@@ -177,7 +177,7 @@
                                 class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
                                 @if ($emp->profile_photo_path)
                                     <img class="w-10 h-10 rounded-full"
-                                        src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA14FPFo.img?w=600&h=788&m=6&x=227&y=116&s=93&d=93"
+                                        src="{{asset('storage2/'.$emp->profile_photo_path)}}"
                                         alt="">
                                 @else
                                     <div

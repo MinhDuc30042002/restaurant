@@ -29,6 +29,23 @@ class CreateNewUser implements CreatesNewUsers
             'address' => ['required'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+        ],[
+            'firstname.required' => 'Họ không được bỏ trống',
+            'firstname.max' => 'Họ quá dài, tối đa :max kí tự',
+            'lastname.max' => 'Tên quá dài, tối đa :max kí tự',
+            'lastname.required' => 'Tên không được bỏ trống',
+            'gender.required' => 'Giới tính không được bỏ trống',
+            'email.required' => 'Email không được bỏ trống',
+            'email.email' => 'Chưa đúng định dạng email',
+            'email.max' => 'Email quá dài, tối đa :max kí tự',
+            'email.unique' => 'Email đã được sử dụng',
+            'phone_number.required' => 'Số điện thoại không được bỏ trống',
+            'phone_number.numeric' => 'Phải là số',
+            'phone_number.digits' => 'Số điện thoại chỉ được 10 số',
+            'address.required' => 'Địa chỉ không được bỏ trống',
+            'password.required' => 'Mật khẩu không được bỏ trống',
+            'password.confirmed' => 'Mật khẩu xác nhận không trùng khớp',
+
         ])->validate();
 
         return User::create([

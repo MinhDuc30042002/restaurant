@@ -12,12 +12,12 @@
                         <div class="flex flex-row bg-white p-3 border-t-4 border-green-400">
                             <div class="image overflow-hidden w-4/12">
                                 <img class="h-auto w-44 mx-auto rounded-full"
-                                    src="https://th.bing.com/th/id/R.08f0b2b79d9d503856221cb52b782e2c?rik=bpgntW0pAgn8Dg&pid=ImgRaw&r=0"
+                                    src="{{asset('storage2/'.$profile_photo_path)}}"
                                     alt="">
                             </div>
                             <div class="w-8/12">
                                 <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{$name}}</h1>
-                                <h3 class="text-gray-600 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3>
+                                <h3 class="text-gray-600 font-lg text-semibold leading-6">Chức vụ: {{$group}}</h3>
                                 <ul
                                     class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                                     <li class="flex items-center py-3">
