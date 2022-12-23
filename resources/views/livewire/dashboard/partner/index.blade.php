@@ -47,7 +47,7 @@
                     </div>
                 </td> --}}
                 <th scope="row" class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap">
-                    <img class="w-10 h-10 rounded-full" src="{{asset('image/panda.jpg')}}" alt="">
+                    
                     <div class="pl-3">
                         <a href="#" wire:click="showModalDeatail({{$item->id}})"><div class="text-base font-semibold">{{$item->name}}</div></a>
                         <div class="font-normal text-gray-500">{{$item->email}}</div>
