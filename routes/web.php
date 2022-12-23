@@ -1,11 +1,10 @@
 <?php
 
 use App\Http\Controllers\Dashboard\CategoriesController;
-use App\Http\Controllers\Dashboard\ExportInvoiceController;
+
 use App\Http\Controllers\Dashboard\FoodController;
 use App\Http\Controllers\Dashboard\Partner\PartnerController;
 use App\Http\Controllers\Dashboard\TableController;
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,10 +40,11 @@ Route::middleware([
     Route::get('/dashboard/users', function () {
         return 'Page users';
     })->name('users');
+    });
+    Route::get('/dashboard/employees', [App\Http\Controllers\Dashboard\EmployeeController::class, 'index'])->name('employees');
     Route::get('/dashboard/services', function () {
         return 'Page services';
     })->name('services');
     Route::get('/dashboard/foods', function () {
         return 'Page foods';
     })->name('foods');
-});
