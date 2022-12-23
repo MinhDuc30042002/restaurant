@@ -1,0 +1,23 @@
+{
+    "roboto": {
+        "normal": "roboto_normal_fb559668f421c27e90da8bb5375c4b5c"
+    },
+    "helvetica": {
+        "normal": "helvetica_normal_5167f4c433aa33d257f1cdfec9ac6c56",
+        "bold": "C:\\Users\\ASUS\\OneDrive\\M\u00e1y t\u00ednh\\Graduate-Project\\graduation-project-phase-2\\vendor\\dompdf\\dompdf\/lib\/fonts\/Helvetica-Bold",
+        "italic": "C:\\Users\\ASUS\\OneDrive\\M\u00e1y t\u00ednh\\Graduate-Project\\graduation-project-phase-2\\vendor\\dompdf\\dompdf\/lib\/fonts\/Helvetica-Oblique",
+        "bold_italic": "C:\\Users\\ASUS\\OneDrive\\M\u00e1y t\u00ednh\\Graduate-Project\\graduation-project-phase-2\\vendor\\dompdf\\dompdf\/lib\/fonts\/Helvetica-BoldOblique"
+    },
+    "bevietnampro": {
+        "normal": "bevietnampro_normal_9d77d9cd9076533e8ff9d6bce838ccd5",
+        "italic": "C:\\Users\\ASUS\\OneDrive\\M\u00e1y t\u00ednh\\Graduate-Project\\graduation-project-phase-2\\storage\\fonts\/bevietnampro_italic_9d77d9cd9076533e8ff9d6bce838ccd5",
+        "bold": "C:\\Users\\ASUS\\OneDrive\\M\u00e1y t\u00ednh\\Graduate-Project\\graduation-project-phase-2\\storage\\fonts\/bevietnampro_bold_36c4cc121ff20cee908ed227d3ce909c"
+    },
+    "fontawesome": {
+        "normal": "fontawesome_normal_a07c54af815ea54af1b5e5aa13cc5f8b"
+    },
+    "helvetica neue": {
+        "italic": "C:\\Users\\ASUS\\OneDrive\\M\u00e1y t\u00ednh\\Graduate-Project\\graduation-project-phase-2\\storage\\fonts\/helvetica_neue_italic_5167f4c433aa33d257f1cdfec9ac6c56",
+        "bold": "helvetica_neue_bold_38e544a5b4c4245ca0228d44cf82c9a1"
+    }
+}

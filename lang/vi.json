@@ -797,5 +797,19 @@
     "Created_at": "Ngày tạo",
     "Invoice history": "Lịch sử hóa đơn",
     "Detail": "Chi tiết",
-    "Order detail": "Chi tiết đơn hàng"
+    "Order detail": "Chi tiết đơn hàng",
+    "Create Employee" : "Thêm nhân viên",
+    "Male" : "Nam",
+    "Female" : "Nữ",
+    "Food name": "Tên món ăn",
+    "Food price": "Giá",
+    "Quantity": "Số lượng",
+    "Order": "Gọi món",
+    "Update status":"Cập nhật trạng thái",
+    "Table name": "Tên bàn",
+    "State":"Trạng thái",
+    "Date":"Ngày",
+    "Amount":"Tổng",
+    "Print": "In"
+
 }

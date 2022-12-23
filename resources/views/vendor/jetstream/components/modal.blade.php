@@ -15,6 +15,7 @@ $maxWidth = [
     '6xl' => 'sm:max-w-6xl', 
     '7xl' => 'sm:max-w-7xl', 
     'full' => 'sm:max-w-full',
+    '3xl' => 'max-w-screen-xl',
 ][$maxWidth ?? '2xl'];
 @endphp
 

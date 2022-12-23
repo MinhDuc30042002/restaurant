@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Dashboard\Partner;
 
 use App\Http\Controllers\Controller;
+use App\Models\OrderLine;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class PartnerController extends Controller
@@ -14,7 +16,7 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        return view('dashboard.partner.index');
+        return view('dashboard.partner.index',);
     }
 
     /**
@@ -82,4 +84,5 @@ class PartnerController extends Controller
     {
         //
     }
+
 }
