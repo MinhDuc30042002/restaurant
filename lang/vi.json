@@ -810,5 +810,19 @@
     "State":"Trạng thái",
     "Date":"Ngày",
     "Amount":"Tổng",
-    "Print": "In"
+    "Print": "In",
+    "Firstname": "Họ",
+    "Phone Number": "Số điện thoại",
+    "Gender": "Giới tính",
+    "Subtotal": "Tạm tính",
+    "Taxes": "Thuế",
+    "Shipping": "Vận chuyển",
+    "Shipping method": "Phương thức vận chuyển",
+    "Total": "Tổng",
+    "Cart": "Giỏ hàng",
+    "Payment": "Thanh toán",
+    "Information": "Thông tin",
+    "Province": "Tỉnh",
+    "Standard": "Tiêu chuẩn"
+
 }

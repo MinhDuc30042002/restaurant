@@ -10,21 +10,47 @@ class Show extends Component
 {
     public $identify;
 
-    public Food $fillable;
-
     public function render()
     {
-        $this->fillable = Food::findOrFail($this->identify);
-        $list_categories = Category::all();
-
-        return view('livewire.dashboard.food.show', ['data' => $this->fillable, 'list_categories' => $list_categories]);
+        return view('livewire.dashboard.food.show');
     }
 
-    protected $rules = [
-        'fillable.name' => 'required',
-        'fillable.price' => 'required',
-        'fillable.available_quantity' => 'required',
-        'fillable.category' => 'required',
-        'fillable.image' => 'required',
-    ];
+    public function mount()
+    {
+        $this->foodDetail = Food::findOrFail($this->identify);
+        $this->modelData();
+    }
+
+    public function displayDialog()
+    {
+        $this->displayModal = true;
+    }
+
+    public function hiddenDialog()
+    {
+        $this->displayModal = false;
+    }
+
+    public function destroyFood($id)
+    {
+        dd($id);
+    }
+
+    public function updateFood($id)
+    {
+        Food::find($id)->update($this->fillable());
+        $this->action['updated'] = true;
+        session()->flash('success', 'Updated item successfully');
+    }
+
+    public function modelData()
+    {
+        return [
+            $this->food['name'] = $this->foodDetail->name,
+            $this->food['price'] = $this->foodDetail->price,
+            $this->food['image'] = $this->foodDetail->image,
+            $this->food['description'] = $this->foodDetail->description
+        ];
+    }
+
 }

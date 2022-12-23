@@ -18,6 +18,8 @@ class Index extends Component
 
     public $modalUpdate;
 
+    public $modalDelete;
+
     public $name;
 
     public $tempID;
@@ -53,6 +55,7 @@ class Index extends Component
     {
         Category::where('id', '=', $this->tempID)->update(['name' => $this->name]);
         $this->modalDialog = false;
+        $this->dispatchBrowserEvent('alert', ['type' => 'info',  'message' => 'Cập nhật '.$this->name.' thành công']);
         $this->reset();
     }
 
@@ -62,6 +65,7 @@ class Index extends Component
 
         Category::create(['name' => $this->name]);
         $this->modalDialog = false;
+        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Đã thêm thể loại '.$this->name.' thành công']);
         $this->reset();
         $this->action['saved'] = true;
     }
@@ -76,9 +80,17 @@ class Index extends Component
         return redirect(route('food.index').'?categories[0]='.$id);
     }
 
+    public function delete(){
+        Category::destroy($this->tempID);
+        $this->modalDelete = false;
+        $this->dispatchBrowserEvent('alert', ['type' => 'error',  'message' => 'Đã xóa thành công']);
+    }
+
     public function removeCategory($id)
     {
-        Category::destroy($id);
+        $this->modalDelete = true;
+        $this->tempID = $id;
+
     }
 
     protected function rules()

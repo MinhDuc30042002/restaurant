@@ -1,1 +1,1 @@
-<img {{ $attributes }} src="https://ap.poly.edu.vn/images/logo.png" alt="application-logo">
+<img {{ $attributes }} src="https://btec.fpt.edu.vn/wp-content/uploads/2019/04/Logo-FE.png" alt="application-logo">
