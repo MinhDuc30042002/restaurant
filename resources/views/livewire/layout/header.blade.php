@@ -400,8 +400,8 @@
                                                         <button class="group -m-2 p-2 flex items-center"
                                                             type="button">
                                                             <span class="sr-only">Open user menu</span>
-                                                            <img class="w-8 h-8 rounded-full"
-                                                                src="{{ Auth::user()->profile_photo_path }}"
+                                                            <img class="w-8 h-8 rounded-full object-cover"
+                                                                src="{{ asset('profile_photos/' . Auth::user()->profile_photo_path) }}"
                                                                 alt="user photo">
                                                         </button>
                                                     </div>

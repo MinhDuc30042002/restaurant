@@ -1,11 +1,11 @@
 <div class="w-full mx-auto px-4 lg:px-0 flex">
     <div class="mt-6 w-1/5 mx-auto">
-        @if ($account['profile_photo_path'] != Auth::user()->profile_photo_path)
-            <img wire:loading.class='opacity-75' class="rounded-full mx-auto" width="100" height="100"
-                src="{{ $account['profile_photo_path']->temporaryUrl() }}" alt="Avatar">
+        @if (gettype($account['profile_photo_path']) === 'object')
+            <img wire:loading.class='opacity-75' class="rounded-lg mx-auto" width="100" height="100"
+                src="{{ @$account['profile_photo_path']->temporaryUrl() }}" alt="Avatar">
         @else
-            <img wire:loading.class='opacity-75' class="rounded-full mx-auto" width="100" height="100" src="{{ Auth::user()->profile_photo_path }}"
-                alt="Avatar">
+            <img wire:loading.class='opacity-75' class="rounded-lg mx-auto" width="100" height="100"
+                src="{{ asset('profile_photos/' . Auth::user()->profile_photo_path) }}" alt="Avatar">
         @endif
 
         <div class="flex items-center justify-center w-2/3 mx-auto">
@@ -17,7 +17,6 @@
                 <input wire:model='account.profile_photo_path' id="dropzone-file" type="file" class="hidden" />
             </label>
         </div>
-
     </div>
     <div x-data="{ currentTab: 'profile' }" class="mt-6 w-4/5 mx-2">
         <div class="sm:hidden">
@@ -65,7 +64,7 @@
             </div>
         </div>
         <!-- Profile form -->
-        <form x-show="currentTab === 'profile'" wire:submit.prevent="updateProfile"
+        <form wire:loading.class='opacity-75' x-show="currentTab === 'profile'" wire:submit.prevent="updateProfile"
             class="space-y-8 divide-y divide-gray-200">
             <div class="space-y-6 sm:space-y-5">
                 <div class="sm:grid sm:grid-cols-5 sm:gap-5 sm:items-start pt-5">
@@ -93,7 +92,7 @@
                 <div class="sm:grid sm:grid-cols-5 sm:gap-5 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                     <label class="block font-medium text-sm text-gray-700 sm:mt-px sm:pt-2 sm:col-span-2"
                         for="phone">
-                        {{ __('Phone number') }}
+                        {{ __('Phone Number') }}
                     </label>
                     <div class="mt-1 sm:mt-0 sm:col-span-3">
                         <input x-data="" type="text"
@@ -115,6 +114,22 @@
             </div>
             <div class="pt-5">
                 <div class="flex justify-end">
+                    @if (session()->has('updated'))
+                        <div class="mr-2">
+                            <div id="toast-simple"
+                                class="flex items-center p-4 space-x-4 w-full max-w-xs text-gray-500 bg-white rounded-lg divide-x divide-gray-200 shadow dark:text-gray-400 dark:divide-gray-700 space-x dark:bg-gray-800"
+                                role="alert">
+                                <svg aria-hidden="true" class="w-5 h-5 text-blue-600 dark:text-blue-500"
+                                    focusable="false" data-prefix="fas" data-icon="paper-plane" role="img"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path fill="currentColor"
+                                        d="M511.6 36.86l-64 415.1c-1.5 9.734-7.375 18.22-15.97 23.05c-4.844 2.719-10.27 4.097-15.68 4.097c-4.188 0-8.319-.8154-12.29-2.472l-122.6-51.1l-50.86 76.29C226.3 508.5 219.8 512 212.8 512C201.3 512 192 502.7 192 491.2v-96.18c0-7.115 2.372-14.03 6.742-19.64L416 96l-293.7 264.3L19.69 317.5C8.438 312.8 .8125 302.2 .0625 289.1s5.469-23.72 16.06-29.77l448-255.1c10.69-6.109 23.88-5.547 34 1.406S513.5 24.72 511.6 36.86z">
+                                    </path>
+                                </svg>
+                                <div class="pl-4 text-sm font-normal">{{ session('updated') }}</div>
+                            </div>
+                        </div>
+                    @endif
                     <button
                         class="inline-flex items-center justify-center px-4 py-2 text-sm border border-transparent rounded-md font-medium focus:outline-none focus:ring disabled:opacity-25 disabled:cursor-not-allowed transition bg-blue-600 text-white hover:bg-blue-500 focus:border-blue-700 focus:ring-blue-200 active:bg-blue-600 ml-3 text-sm"
                         type="submit">

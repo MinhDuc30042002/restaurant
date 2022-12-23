@@ -63,7 +63,7 @@
                             </div>
                             <div class="ml-4 flex">
                                 <a href="#reviews" class="text-sm font-medium text-blue-600 hover:text-blue-500">
-                                    Xem tất cả 3 đánh giá
+                                    Xem tất cả {{ $count }} đánh giá
                                 </a>
                             </div>
                             <p class="sr-only">5 out of 5 stars</p>
@@ -77,7 +77,6 @@
                             class="flex flex-1 overflow-x-scroll scroll-no-bar scroll-smooth snap-mandatory snap-x w-auto">
                             <div class="snap-center flex-shrink-0 w-full h-full">
                                 <img src="{{ asset('images/products/' . $data->image) }}" alt="Product image">
-
                             </div>
                         </div>
                     </div>
@@ -110,30 +109,7 @@
                             Chi tiết
                         </h2>
                         <div class="mt-4 prose prose-sm max-w-none text-gray-500">
-                            <p>Cơm Gà Lá Sen Đức chiên là món ăn đậm chất hương vị truyền thống Việt Nam, gợi nhớ về
-                                những tinh hoa tốt đẹp của dân tộc. Hạt cơm thơm dẻo quyện cùng hương vị đậm đà của
-                                thịt gà xé phay, cà rốt, đậu ve, hạt sen được gói trong lá sen mang lại hương vị rất
-                                riêng cho món cơm gà lá sen.
-
-                                Món cơm phù hợp cho khách dùng trong các bữa cơm trưa ở văn phòng, công ty, phù hợp
-                                trong các bữa tiệc lớn và nhỏ.</p>
-                            <ul>
-                                <li>
-                                    <p>Rau</p>
-                                </li>
-                                <li>
-                                    <p>TRỨNG GÀ </p>
-                                </li>
-                                <li>
-                                    <p>HẠT SEN </p>
-                                </li>
-                                <li>
-                                    <p>GÀ TA </p>
-                                </li>
-                                <li>
-                                    <p>ĐẬU COVE </p>
-                                </li>
-                            </ul>
+                            <p>{{ $data->description }}</p>
                         </div>
                     </div>
                 </div>
@@ -143,187 +119,102 @@
         <div id="reviews" class="max-w-2xl mx-auto pt-6 px-4 sm:pt-14 sm:px-6 lg:max-w-7xl lg:px-8">
             <h2 class="text-lg font-medium text-gray-900">Những đánh giá gần đây</h2>
             <div class="mt-6 pb-10 border-t border-b border-gray-200 divide-y divide-gray-200 space-y-10">
-                <div class="pt-10 lg:grid lg:grid-cols-12 lg:gap-x-8">
-                    <div
-                        class="lg:col-start-5 lg:col-span-8 xl:col-start-4 xl:col-span-9 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:items-start">
-                        <div class="flex items-center xl:col-span-1">
-                            <div class="flex items-center">
-                                <svg class="h-5 w-5 flex-shrink-0 text-yellow-400" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg> <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg> <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg> <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg> <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
-                            </div>
-                            <p class="ml-3 text-sm text-gray-700">
-                                5
-                                <span class="sr-only"> out of 5 stars</span>
-                            </p>
-                        </div>
-                        <div class="mt-4 lg:mt-6 xl:mt-0 xl:col-span-2">
-                            <h3 class="text-sm font-medium text-gray-900">
-                                Cơm gà lá sen ngon hơn người yêu cũ của bạn
-                            </h3>
-                            <div class="mt-3 space-y-6 text-sm text-gray-500">
-                                <p>
-                                    Quo hic ut deserunt in. Molestias quisquam id occaecati eos sit perspiciatis
-                                    voluptatem. Et velit distinctio rerum officiis accusamus praesentium numquam
-                                    qui. Dolorem recusandae optio fugit omnis ut eveniet amet.
+                @foreach ($comments as $comment)
+                    <div class="pt-10 lg:grid lg:grid-cols-12 lg:gap-x-8">
+                        <div
+                            class="lg:col-start-5 lg:col-span-8 xl:col-start-4 xl:col-span-9 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:items-start">
+                            <div class="flex items-center xl:col-span-1">
+                                <div class="flex items-center">
+                                    <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg> <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg> <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg> <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg> <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                </div>
+                                <p class="ml-3 text-sm text-gray-700">
+                                    5
+                                    <span class="sr-only"> out of 5 stars</span>
                                 </p>
                             </div>
-                        </div>
-                    </div>
-                    <div
-                        class="mt-6 flex items-center text-sm lg:mt-0 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:flex-col lg:items-start xl:col-span-3">
-                        <p class="font-medium text-gray-900">
-                            Minh Đức dấu tên
-                        </p>
-                        <time datetime="2022-12-09T08:00:19Z"
-                            class="ml-4 border-l border-gray-200 pl-4 text-gray-500 lg:ml-0 lg:mt-2 lg:border-0 lg:pl-0">
-                            Dec 9, 2022
-                        </time>
-                    </div>
-                </div>
-                <div class="pt-10 lg:grid lg:grid-cols-12 lg:gap-x-8">
-                    <div
-                        class="lg:col-start-5 lg:col-span-8 xl:col-start-4 xl:col-span-9 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:items-start">
-                        <div class="flex items-center xl:col-span-1">
-                            <div class="flex items-center">
-                                <svg class="h-5 w-5 flex-shrink-0 text-yellow-400" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg> <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg> <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg> <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg> <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
+                            <div class="mt-4 lg:mt-6 xl:mt-0 xl:col-span-2">
+                                <div class="space-y-6 text-sm text-gray-500">
+                                    <p>
+                                        {{ $comment->text }}
+                                    </p>
+                                </div>
                             </div>
-                            <p class="ml-3 text-sm text-gray-700">
-                                5
-                                <span class="sr-only"> out of 5 stars</span>
+                        </div>
+                        <div
+                            class="mt-6 flex items-center text-sm lg:mt-0 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:flex-col lg:items-start xl:col-span-3">
+                            <p class="font-medium text-gray-900">
+                                {{ $comment->user->name }}
                             </p>
-                        </div>
-                        <div class="mt-4 lg:mt-6 xl:mt-0 xl:col-span-2">
-                            <h3 class="text-sm font-medium text-gray-900">
-                                Cơm gà lá sen ngon nhưng không có lá sen
-                            </h3>
-                            <div class="mt-3 space-y-6 text-sm text-gray-500">
-                                <p>
-                                    Quo hic ut deserunt in. Molestias quisquam id occaecati eos sit perspiciatis
-                                    voluptatem. Et velit distinctio rerum officiis accusamus praesentium numquam
-                                    qui. Dolorem recusandae optio fugit omnis ut eveniet amet.
-                                </p>
-                            </div>
+                            <time datetime="2022-12-09T08:00:19Z"
+                                class="ml-4 border-l border-gray-200 pl-4 text-gray-500 lg:ml-0 lg:mt-2 lg:border-0 lg:pl-0">
+                                {{ $comment->created_at }}
+                            </time>
                         </div>
                     </div>
-                    <div
-                        class="mt-6 flex items-center text-sm lg:mt-0 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:flex-col lg:items-start xl:col-span-3">
-                        <p class="font-medium text-gray-900">
-                            Minh Đức dấu tên
-                        </p>
-                        <time datetime="2022-12-09T08:00:19Z"
-                            class="ml-4 border-l border-gray-200 pl-4 text-gray-500 lg:ml-0 lg:mt-2 lg:border-0 lg:pl-0">
-                            Dec 9, 2022
-                        </time>
-                    </div>
-                </div>
-                <div class="pt-10 lg:grid lg:grid-cols-12 lg:gap-x-8">
-                    <div
-                        class="lg:col-start-5 lg:col-span-8 xl:col-start-4 xl:col-span-9 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:items-start">
-                        <div class="flex items-center xl:col-span-1">
-                            <div class="flex items-center">
-                                <svg class="h-5 w-5 flex-shrink-0 text-yellow-400" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg> <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg> <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg> <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg> <svg class="h-5 w-5 flex-shrink-0 text-yellow-400"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
-                            </div>
-                            <p class="ml-3 text-sm text-gray-700">
-                                5
-                                <span class="sr-only"> out of 5 stars</span>
-                            </p>
-                        </div>
-                        <div class="mt-4 lg:mt-6 xl:mt-0 xl:col-span-2">
-                            <h3 class="text-sm font-medium text-gray-900">
-                                Cơm gà lá sen ngon nhưng để ở lá chuối
-                            </h3>
-                            <div class="mt-3 space-y-6 text-sm text-gray-500">
-                                <p>
-                                    Quo hic ut deserunt in. Molestias quisquam id occaecati eos sit perspiciatis
-                                    voluptatem. Et velit distinctio rerum officiis accusamus praesentium numquam
-                                    qui. Dolorem recusandae optio fugit omnis ut eveniet amet.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="mt-6 flex items-center text-sm lg:mt-0 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:flex-col lg:items-start xl:col-span-3">
-                        <p class="font-medium text-gray-900">
-                            Minh Đức dấu tên
-                        </p>
-                        <time datetime="2022-12-09T08:00:19Z"
-                            class="ml-4 border-l border-gray-200 pl-4 text-gray-500 lg:ml-0 lg:mt-2 lg:border-0 lg:pl-0">
-                            Dec 9, 2022
-                        </time>
-                    </div>
-                </div>
+                @endforeach
             </div>
+
+            @if (Auth::check())
+                {{-- Form comment --}}
+                <form wire:submit.prevent="saveComment({{ Auth::user()->id }}, {{ $data->id }})" class="mt-3">
+                    <label for="default-search"
+                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                            </svg>
+                        </div>
+                        <input type="search" wire:model='comment'
+                            class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Nhập bình luận cho món ăn">
+                        <x-jet-button
+                            class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
+                            Bình luận</x-jet-button>
+                    </div>
+                    @error('comment')
+                        <div
+                            class="mt-3 p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg
+                                role="alert">
+                            <span class="font-medium">Chú ý!</span> {{ $message }}
+                        </div>
+                    @enderror
+                </form>
+            @endif
+            <div class="w-full grid content-center">
+                <button wire:click='onScrollLoadMore'
+                    class="mt-4 inline-flex items-center justify-center px-4 py-2 bg-blue-100 border border-transparent rounded-md font-medium sm:text-sm text-blue-700 hover:bg-blue-200 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:bg-blue-300 transition w-1/2 mx-auto md:w-auto text-sm">
+                    Xem thêm
+                </button>
+            </div>
+
         </div>
         <!-- Recently viewed products -->
         <div class="max-w-2xl mx-auto pt-6 px-4 sm:pt-14 pb-24 sm:pb-32 sm:px-6 lg:max-w-7xl lg:px-8">

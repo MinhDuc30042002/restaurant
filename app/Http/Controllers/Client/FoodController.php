@@ -4,15 +4,14 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Food;
-use Illuminate\Http\Request;
 
 class FoodController extends Controller
 {
     public function index($slug)
     {
         $food = Food::where('slug', '=', $slug)->first();
-        $category = $food->categories()->first();
 
+        $category = $food->categories()->first();
         $food_related = $category->foods()
             ->where('category_id', '=', $category->id)
             ->take(5)->get();

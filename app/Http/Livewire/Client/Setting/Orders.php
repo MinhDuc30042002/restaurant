@@ -10,7 +10,7 @@ class Orders extends Component
 {
     private $orders;
     public $limitPerPage = 5;
-
+    
     public function onScrollLoadMore()
     {
         $this->limitPerPage = $this->limitPerPage + 5;
