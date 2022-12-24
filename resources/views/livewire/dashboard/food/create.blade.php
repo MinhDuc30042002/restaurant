@@ -55,9 +55,9 @@
                 <span class="text-red-500">{{ __($message) }}</span>
             @enderror
         </div>
-        <div class="form-group mb-5">
+        <div class="form-group mb-5" wire:ignore>
             <x-jet-label class="mb-2">{{ __('Description') }}</x-jet-label>
-            <textarea wire:model="fillable.description" rows="4"
+            <textarea wire:model="fillable.description" rows="4" id="description"
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Write your thoughts here..."></textarea>
         </div>
@@ -103,4 +103,23 @@
             <x-jet-button>{{ __('Create') }}</x-jet-button>
         </div>
     </form>
+    @push('css')
+        <!-- CK Editor -->
+        <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+    @endpush
+
+    @push('scripts')
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#description'))
+            .then(editor => {
+                editor.model.document.on('change:data', () => {
+                @this.set('fillable.description', editor.getData());
+                })
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+    @endpush
 </div>

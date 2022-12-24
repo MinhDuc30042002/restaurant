@@ -19,6 +19,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
 </head>
 
 <body>
@@ -94,7 +96,7 @@
         }
     </style>
 
-    <div x-data="setup()" :class="{ 'dark': isDark }">
+    <div x-data="setup()"">
         <!--  -->
         <div class="flex h-screen antialiased text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
 
@@ -210,8 +212,8 @@
                                 </svg>
                             </button>
                             <div class="mx-3.5">
-                                <p class=" uppercase text-slate-500 hover:text-blue-600">{{Auth::user()->name}}</p>
-                             </div>
+                                <p class=" uppercase text-slate-500 hover:text-blue-600">{{ Auth::user()->name }}</p>
+                            </div>
                             <!-- User avatar button -->
                             <div class="relative" x-data="{ open: false }">
                                 <button @click="open = !open; $nextTick(() => { if(open){ $refs.userMenu.focus() } })"
@@ -219,9 +221,15 @@
                                     class="transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
                                     <span class="sr-only">User menu</span>
                                     @if (Auth::user()->profile_photo_path)
-                                    <img class="w-10 h-10 rounded-full" src="{{asset(Auth::user()->profile_photo_path) }}"/>
+                                        <img class="w-10 h-10 rounded-full"
+                                            src="{{ asset(Auth::user()->profile_photo_path) }}" />
                                     @else
-                                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                        <svg class="w-10 h-10" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
+                                            </path>
+                                        </svg>
                                     @endif
                                 </button>
 
@@ -237,19 +245,18 @@
                                     class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark focus:outline-none"
                                     tabindex="-1" role="menu" aria-orientation="vertical"
                                     aria-label="User menu">
-                                    <a  href="{{route('profile.show')}}" role="menuitem"
+                                    <a href="{{ route('profile.show') }}" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-blue-600">
-                                        {{__('Your Profile')}}
+                                        {{ __('Your Profile') }}
                                     </a>
-                                    <form method="POST"
-                                    action="{{ route('logout') }}" x-data>
-                                    @csrf
-                                    <a href="{{ route('logout') }}"
-                                    @click.prevent="$root.submit();"" role="menuitem"
-                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-blue-600">
-                                        {{ __('Log Out') }}
-                                    </a>
-                                </form>
+                                    <form method="POST" action="{{ route('logout') }}" x-data>
+                                        @csrf
+                                        <a href="{{ route('logout') }}" @click.prevent="$root.submit();""
+                                            role="menuitem"
+                                            class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-blue-600">
+                                            {{ __('Log Out') }}
+                                        </a>
+                                    </form>
                                 </div>
                             </div>
                         </nav>
@@ -518,8 +525,8 @@
             <div x-transition:enter="transition duration-300 ease-in-out" x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100" x-transition:leave="transition duration-300 ease-in-out"
                 x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-show="isSearchPanelOpen"
-                @click="isSearchPanelOpen = false" class="fixed inset-0 z-10  bg-opacity-25"
-                style="opacity: .5;" aria-hidden="ture">
+                @click="isSearchPanelOpen = false" class="fixed inset-0 z-10  bg-opacity-25" style="opacity: .5;"
+                aria-hidden="ture">
             </div>
             <!-- Panel -->
             <section x-cloak x-transition:enter="transition duration-300 ease-in-out transform sm:duration-500"
@@ -628,18 +635,7 @@
     </div>
     <script>
         const setup = () => {
-            const setTheme = (value) => {
-                window.localStorage.setItem('dark', value)
-            }
-
             return {
-                isSettingsPanelOpen: false,
-                openSettingsPanel() {
-                    this.isSettingsPanelOpen = true
-                    this.$nextTick(() => {
-                        this.$refs.settingsPanel.focus()
-                    })
-                },
                 isNotificationsPanelOpen: false,
                 openNotificationsPanel() {
                     this.isNotificationsPanelOpen = true
@@ -658,7 +654,6 @@
         }
     </script>
     @stack('modals')
-
     @livewireScripts
     @stack('scripts')
     <script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
@@ -671,6 +666,7 @@
             }
         });
     </script>
+
 </body>
 
 </html>

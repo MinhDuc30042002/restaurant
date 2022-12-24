@@ -43,11 +43,10 @@ class Show extends Component
         dd($id);
     }
 
-    public function updateFood($id)
+    public function updateFood()
     {
-        Food::find($id)->update($this->fillable());
-        $this->action['updated'] = true;
-        session()->flash('success', 'Updated item successfully');
+        Food::find($this->identify)->update($this->fillable);
+        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Cập nhật thành công']);
     }
 
     public function modelData()

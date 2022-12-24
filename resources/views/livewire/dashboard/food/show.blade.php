@@ -5,15 +5,15 @@
         </div>
         <!-- Create Modal -->
         <div class="mt-4 flex md:mt-0 md:ml-4">
-                <button
-                    class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-medium text-white hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-600 transition sm:text-sm">
-                    <a href="{{route('food.index')}}">{{ __('Danh sách') }}</a>
-                </button>
+            <button
+                class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-medium text-white hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-600 transition sm:text-sm">
+                <a href="{{ route('food.index') }}">{{ __('Danh sách') }}</a>
+            </button>
         </div>
         <!-- End Create -->
     </div>
     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4">
-        <form wire:submit.prevent="saveFood">
+        <form wire:submit.prevent="updateFood">
             <div class="grid gap-6 mb-5 md:grid-cols-3">
                 <div class="form-group">
                     <x-jet-label class="mb-2">{{ __('Name') }}</x-jet-label>
@@ -50,11 +50,12 @@
                     <span class="text-red-500">{{ __($message) }}</span>
                 @enderror
             </div>
-            <div class="form-group mb-5">
-                <x-jet-label class="mb-2">{{ __('Description') }}</x-jet-label>
-                <textarea wire:model="fillable.description" rows="4"
+            <div class="form-group mb-5" wire:ignore>
+                <x-jet-label class="mb-2">{{ __('Description') }}
+                </x-jet-label>
+                <textarea wire:model="fillable.description" rows="10" id="description"
                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Write your thoughts here..."></textarea>
+                    placeholder="Nhập mô tả món ăn">{{ $fillable['description'] }}</textarea>
             </div>
             <div class="form-group mb-5">
                 <x-jet-label class="mb-2">{{ __('Select A New Photo') }}</x-jet-label>
@@ -68,7 +69,8 @@
                             <input wire:model="fillable.image" id="dropzone-file" type="file" class="hidden" />
                         </label>
                     </div>
-                    <img class="object-contain h-60 w-full mt-2" src="{{ asset('storage/upload') . '/' . $fillable['image']  }}">
+                    <img class="object-contain h-60 w-full mt-2"
+                        src="{{ asset('storage/upload') . '/' . $fillable['image'] }}">
                 @else
                     <div class="flex items-center justify-center w-full">
                         <label for="dropzone-file"
@@ -80,7 +82,8 @@
                                         d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
                                     </path>
                                 </svg>
-                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click
+                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                                        class="font-semibold">Click
                                         to upload</span> or drag and drop</p>
                                 </p>
                             </div>
@@ -95,8 +98,28 @@
 
             </div>
             <div class="form-group mb-5">
-                <x-jet-button>{{ __('Create') }}</x-jet-button>
+                <x-jet-button wire:click="updateFood">{{ __('Update') }}</x-jet-button>
             </div>
         </form>
     </div>
+    @push('css')
+        <!-- CK Editor -->
+        <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+    @endpush
+
+    @push('scripts')
+        <!-- CK Editor -->
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#description'))
+                .then(editor => {
+                    editor.model.document.on('change:data', () => {
+                    @this.set('fillable.description', editor.getData());
+                    })
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+    @endpush
 </div>

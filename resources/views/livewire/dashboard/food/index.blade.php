@@ -102,7 +102,7 @@
                                 <td class="py-4 px-6">
                                     <!-- Button delete -->
                                     <button
-                                        {{-- wire:click="removeCategory({{ $category->id }})"  --}}
+                                        wire:click="showModalDelete({{$food->id}})"
                                         type="button"
                                         class="text-gray-600 hover:text-red-700">
                                         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -225,5 +225,25 @@
             </x-slot>
         </x-jet-dialog-modal>
     </div>
+
+    <x-jet-confirmation-modal wire:model="open">
+        <x-slot name="title">
+            Xóa sản phẩm
+        </x-slot>
+
+        <x-slot name="content">
+            Bạn có chắc rằng bạn muốn xóa sản phẩm này? Khi bị xóa, tất cả các tài nguyên và dữ liệu của nó sẽ bị xóa vĩnh viễn.
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$set('open', false)" wire:loading.attr="disabled">
+                {{ __('Cancel') }}
+            </x-jet-secondary-button>
+            <x-jet-danger-button class="ml-3" wire:click="delete" wire:loading.attr="disabled">
+                {{ __('Delete Item') }}
+            </x-jet-danger-button>
+        </x-slot>
+    </x-jet-confirmation-modal>
+
 
 </div>
