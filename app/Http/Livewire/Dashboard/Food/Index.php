@@ -5,10 +5,14 @@ namespace App\Http\Livewire\Dashboard\Food;
 use App\Models\Category;
 use App\Models\Food;
 use Livewire\Component;
-
+use Livewire\WithPagination;
 class Index extends Component
 {
+    use WithPagination;
+
     public $search;
+
+    public $loadMore = 5;
 
     public $selectedCategories = [];
 
@@ -38,7 +42,11 @@ class Index extends Component
             });
         }
 
-        return $foods->paginate(10);
+        return $foods->paginate($this->loadMore);
+    }
+
+    public function loadMoreFoods(){
+        $this->loadMore = $this->loadMore + 5;
     }
 
     public function showCreateModal()

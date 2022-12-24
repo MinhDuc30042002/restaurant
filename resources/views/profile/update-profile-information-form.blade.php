@@ -29,7 +29,7 @@
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
                     @if (Auth::user()->profile_photo_path)
-                    <img src="{{asset('storage2/'.Auth::user()->profile_photo_path) }}" alt="{{ Auth::user()->name }}" class="rounded-full h-20 w-20 object-cover">
+                    <img src="{{asset(Auth::user()->profile_photo_path) }}" alt="{{ Auth::user()->name }}" class="rounded-full h-20 w-20 object-cover">
                     @else
                     <img src="{{Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" class="rounded-full h-20 w-20 object-cover">
                     @endif

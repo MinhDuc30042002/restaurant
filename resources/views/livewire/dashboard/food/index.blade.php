@@ -1,8 +1,8 @@
-<div>
+<div class="mb-5">
     <div>
         <div class="md:flex md:items-center md:justify-between py-8 p-4">
             <div class="flex-1 min-w-0">
-                <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Thể loại món ăn</h2>
+                <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Danh sách món ăn</h2>
             </div>
             <!-- Create Modal -->
             <div class="mt-4 flex md:mt-0 md:ml-4">
@@ -16,59 +16,130 @@
             <!-- End Create -->
         </div>
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-            <div class="p-4 grid gap-6 mb-6 md:grid-cols-2">
-                <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                    @foreach ($list_categories as $category)
-                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                        <div class="flex items-center pl-3">
-                            <input wire:model='selectedCategories' value="{{$category->id}}" id="cate-{{$category->name}}" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                            <label for="cate-{{$category->name}}" class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300">{{ $category->name }}</label>
-                        </div>
-                    </li>
-                    @endforeach
-                </ul>
-                <form class="flex justify-end">
-                    <label for="simple-search" class="sr-only">{{ __('Search') }}</label>
-                    <div class="relative w-1/2">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </div>
-                        <input wire:model="search" type="text" id="simple-search"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search" required>
+            <form class="flex justify-end w-full m-2">
+                <label for="simple-search" class="sr-only">{{ __('Search') }}</label>
+                <div class="relative w-1/2">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
+                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                clip-rule="evenodd"></path>
+                        </svg>
                     </div>
-                </form>
+                    <input wire:model="search" type="text" id="simple-search"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Search" required>
+                </div>
+            </form>
+            <hr class="border-t border-gray-200 my-5">
+            <div class="flex flex-wrap ml-2">
+                @foreach ($list_categories as $category)
+                    <div class="flex items-center mr-4 mt-2 rounded border border-gray-200 p-2">
+                        <input wire:model='selectedCategories' value="{{ $category->id }}"
+                            id="cate-{{ $category->name }}" type="checkbox"
+                            class="w-4 h-4  text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="cate-{{ $category->name }}"
+                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $category->name }}
+                        </label>
+                    </div>
+                @endforeach
             </div>
 
             <hr class="border-t border-gray-200 my-5">
 
-            <div class="grid grid-cols-4 gap-4 p-4">
-                @foreach ($data as $food)
-                    <div wire:loading.class="opacity-50"
-                        class="max-w-sm bg-white rounded-lg shadow-md hover:border-red-600">
-                        <a href="{{ route('food.show', $food->id) }}">
-                            <img class="rounded-t-lg h-40 object-contain w-full" src="{{ asset('storage/upload/' . $food->image) }}"
-                                onerror="this.src='https://dashboard-api.flyfood.vn/system/product_images/4014/image.jpg'"
-                                alt="Image" />
-                        </a>
 
-                        <div class="p-5 align-bottom">
-                            <a href="#">
-                                <p class="mb-2 text-gray-900 truncate">
-                                    {{ $food->name }}
-                                </p>
-                                <p class="mb-2 text-gray-900">
+            <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 p-4">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="py-3 px-6">
+                                STT
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                Tên sản phẩm
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                Hình ảnh
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                Giá
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                Số lượng
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                Hành động
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $food)
+                            <tr
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="py-4 px-6 font-semibold text-gray-900 dark:text-white">
+                                    {{ $loop->iteration }}
+                                </td>
+                                <td class="py-4 px-6 font-semibold text-gray-900 dark:text-white">
+                                    <a href="{{ route('food.show', $food->id) }}">
+                                        {{ $food->name }}
+                                    </a>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <a href="{{ route('food.show', $food->id) }}">
+                                        <img class="h-20 w-20 rounded object-center object-cover"
+                                            src="{{ asset('storage/upload/' . $food->image) }}"
+                                            onerror="this.src='https://dashboard-api.flyfood.vn/system/product_images/4014/image.jpg'"
+                                            alt="Image" />
+                                    </a>
+                                </td>
+                                <td class="py-4 px-6 font-semibold text-gray-900 dark:text-white">
                                     {{ number_format($food->price, 0, '', '.') }} đ
-                                </p>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
+                                </td>
+                                <td class="py-4 px-6 font-semibold text-gray-900 dark:text-white">
+                                    {{ $food->available_quantity }}
+                                </td>
+                                <td class="py-4 px-6">
+                                    <!-- Button delete -->
+                                    <button
+                                        {{-- wire:click="removeCategory({{ $category->id }})"  --}}
+                                        type="button"
+                                        class="text-gray-600 hover:text-red-700">
+                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                            aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                    <!-- End Button delete -->
+                                    <!-- Button show -->
+                                    <a href="{{ route('food.show', $food->id) }}">
+                                    <button class="text-gray-600 hover:text-blue-700"
+                                        {{-- wire:click="$emitTo('forms.update-employee-form', 'showUpdateUserForm', {{ $emp->id }})" --}}
+                                        >
+                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                            aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                    </a>
+                                    <!-- End Button show -->
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="grid justify-items-center">
+                <button wire:click="loadMoreFoods"
+                    class="text-blue-500 w-2/12 my-4 flex-center py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                    Xem thêm >>
+                </button>
             </div>
         </div>
 
@@ -156,4 +227,3 @@
     </div>
 
 </div>
-

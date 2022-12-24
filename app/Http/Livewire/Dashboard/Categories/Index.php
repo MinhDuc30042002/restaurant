@@ -40,6 +40,7 @@ class Index extends Component
 
     public function showModal()
     {
+        $this->reset();
         $this->modalDialog = true;
     }
 
