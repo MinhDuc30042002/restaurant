@@ -7,6 +7,8 @@ use App\Http\Controllers\Client\FoodController as ClientFoodController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProfileController;
 use App\Http\Controllers\Dashboard\CategoriesController;
+use App\Http\Controllers\Dashboard\Partner\PartnerController;
+use App\Http\Controllers\Dashboard\TableController;
 use App\Http\Controllers\Dashboard\FoodController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -36,9 +38,14 @@ Route::middleware([
     Route::prefix('dashboard')->group(function () {
         Route::resource('categories', CategoriesController::class);
         Route::resource('food', FoodController::class);
+        Route::get('partners', [PartnerController::class, 'index'])->name('partners');
+        Route::get('tables',[TableController::class, 'index'])->name('tables');
     });
-
     Route::get('/dashboard/employees', [App\Http\Controllers\Dashboard\EmployeeController::class, 'index'])->name('employees');
+    Route::get('/dashboard/users', function () {
+        return 'Page users';
+    })->name('users');
+    });
     Route::resource('/dashboard/groups', App\Http\Controllers\Dashboard\GroupController::class);
     Route::get('/dashboard/services', function () {
         return 'Page services';
@@ -46,8 +53,6 @@ Route::middleware([
     Route::get('/dashboard/foods', function () {
         return 'Page foods';
     })->name('foods');
-});
-
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/mon-an/{slug}', [ClientFoodController::class, 'index']);
 Route::resource('the-loai', CategoryController::class);

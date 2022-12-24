@@ -18,10 +18,6 @@ return new class extends Migration
             $table->id();
             $table->string('state');
             $table->timestamps();
-            //
-            $table->foreignId('staff_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('order_id')->nullable()->constrained('orders')->cascadeOnUpdate()->nullOnDelete();
-            $table->foreignId('partner_id')->nullable()->constrained('partners')->cascadeOnUpdate()->nullOnDelete();
         });
         Permission::crud('tables');
     }

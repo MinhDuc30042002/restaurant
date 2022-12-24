@@ -432,7 +432,7 @@
                                                                             sơ cá nhân</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="{{ route('setting.orders') }}"
+                                                                        <a href="{{ route('partners') }}"
                                                                             class="block py-2 px-4 hover:bg-gray-100">Lịch
                                                                             sử đơn hàng</a>
                                                                     </li>
