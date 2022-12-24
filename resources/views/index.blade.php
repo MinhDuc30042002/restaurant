@@ -54,9 +54,9 @@
                                         Khám phá
                                     </p>
                                     <h3 class="mt-1 font-semibold text-white">
-                                        <a href="/collections/womens">
+                                        <a href="/the-loai/mon-lau">
                                             <span class="absolute inset-0"></span>
-                                            Món ngon mỗi ngày
+                                            Các món lẩu
                                         </a>
                                     </h3>
                                 </div>
@@ -80,7 +80,7 @@
                                         Khám phá
                                     </p>
                                     <h3 class="mt-1 font-semibold text-white">
-                                        <a href="/collections/mens">
+                                        <a href="/the-loai/mon-ga">
                                             <span class="absolute inset-0"></span>
                                             Các món gà
                                         </a>
@@ -106,9 +106,9 @@
                                         Khám phá
                                     </p>
                                     <h3 class="mt-1 font-semibold text-white">
-                                        <a href="/collections/accessories">
+                                        <a href="/the-loai/mon-ca-tom">
                                             <span class="absolute inset-0"></span>
-                                            Các món ăn cá và tôm
+                                            Các món ăn cá, tôm
                                         </a>
                                     </h3>
                                 </div>
@@ -120,7 +120,7 @@
                         <div>
                             <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                                 <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                                    <img src="https://dashboard-api.flyfood.vn/system/product_images/3745/image.jpg"
+                                    <img src="https://dashboard-api.flyfood.vn/system/product_images/3654/image.jpg"
                                         alt="Accessories" class="w-full h-full object-center object-cover">
                                 </div>
                                 <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50">
@@ -132,9 +132,9 @@
                                         Khám phá
                                     </p>
                                     <h3 class="mt-1 font-semibold text-white">
-                                        <a href="/collections/accessories">
+                                        <a href="/the-loai/mon-goi">
                                             <span class="absolute inset-0"></span>
-                                            Các món ăn cá và tôm
+                                            Các món gỏi
                                         </a>
                                     </h3>
                                 </div>
@@ -146,7 +146,7 @@
                         <div>
                             <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                                 <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                                    <img src="https://dashboard-api.flyfood.vn/system/product_images/3745/image.jpg"
+                                    <img src="https://dashboard-api.flyfood.vn/system/product_images/3822/image.jpg"
                                         alt="Accessories" class="w-full h-full object-center object-cover">
                                 </div>
                                 <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50">
@@ -158,9 +158,9 @@
                                         Khám phá
                                     </p>
                                     <h3 class="mt-1 font-semibold text-white">
-                                        <a href="/collections/accessories">
+                                        <a href="/the-loai/mon-com-sup">
                                             <span class="absolute inset-0"></span>
-                                            Các món ăn cá và tôm
+                                            Các món cơm
                                         </a>
                                     </h3>
                                 </div>
@@ -235,12 +235,12 @@
                             </div>
                             <div class="mt-6 md:mt-0 md:ml-4 lg:mt-6 lg:ml-0">
                                 <h3 class="text-sm font-semibold tracking-wide text-gray-900">
-                                    Free delivery
+                                    Dịch vụ
                                 </h3>
                                 <p class="mt-3 text-sm text-gray-500">
-                                    Order now and you&#039;ll get delivery absolutely free. Well, it&#039;s not
-                                    actually free, we just price it into the products. Someone&#039;s paying for it,
-                                    and it&#039;s not us.
+                                    Đặt hàng qua điện thoại và đặt hàng online quý khách vui lòng đặt hàng trước 60 –
+                                    120 phút vào ngày thường. Vào cuối tuần quý khách đặt trước ít nhất 2 - 3 tiếng để
+                                    được phục vụ tốt nhất.
                                 </p>
                             </div>
                         </div>
@@ -254,11 +254,11 @@
                             </div>
                             <div class="mt-6 md:mt-0 md:ml-4 lg:mt-6 lg:ml-0">
                                 <h3 class="text-sm font-semibold tracking-wide text-gray-900">
-                                    10-year warranty
+                                    Bảo mật thông tin
                                 </h3>
                                 <p class="mt-3 text-sm text-gray-500">
-                                    We have a 10 year warranty with every product that you purchase, whether thats a
-                                    new pen or organizer, you can be sure we&#039;ll stand behind it.
+                                    Thông tin Quý khách cung cấp cho chúng tôi: Chúng tôi thu thập thông tin cá nhân
+                                    được cung cấp bởi người sử dụng website. "Thông tin cá nhân" sẽ hoàn toàn bảo mật
                                 </p>
                             </div>
                         </div>
@@ -272,11 +272,11 @@
                             </div>
                             <div class="mt-6 md:mt-0 md:ml-4 lg:mt-6 lg:ml-0">
                                 <h3 class="text-sm font-semibold tracking-wide text-gray-900">
-                                    Exchanges
+                                    Chính sách đổi trả
                                 </h3>
                                 <p class="mt-3 text-sm text-gray-500">
-                                    We understand that when your product arrives you might not particularly like it,
-                                    or you ordered the wrong thing. Conditions apply here.
+                                    Chúng tôi hiểu rằng khi sản phẩm đến tay bạn, bạn có thể không đặc biệt thích nó
+                                    hoặc bạn đã đặt nhầm hàng. Chúng tôi sẽ hỗ trợ 1 đổi 1
                                 </p>
                             </div>
                         </div>
@@ -290,11 +290,10 @@
                             </div>
                             <div class="mt-6 md:mt-0 md:ml-4 lg:mt-6 lg:ml-0">
                                 <h3 class="text-sm font-semibold tracking-wide text-gray-900">
-                                    For the planet
+                                    Tốc độ giao hàng
                                 </h3>
                                 <p class="mt-3 text-sm text-gray-500">
-                                    Like you, we love the planet, and so we&#039;ve pledged 1% of all sales to the
-                                    preservation and restoration of the natural environment.
+                                    Luôn đảm bảo sản phẩm chất lượng, cam kết bình ổn giá.
                                 </p>
                             </div>
                         </div>
