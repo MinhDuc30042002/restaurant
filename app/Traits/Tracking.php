@@ -27,7 +27,10 @@ trait Tracking
             foreach ($model->tracking() as $key) {
                 if ($model->wasChanged($key)) {
                     $activity->messages()->create([
-                        'body' => $model->getOriginal($key).' to '.$model[$key],
+                        'field' => $key,
+                        'origin' => $model->getOriginal($key),
+                        'new' => $model[$key],
+                        'body' => '',
                         'user_id' => Auth::user()->id,
                     ]);
                 }

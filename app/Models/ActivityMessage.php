@@ -11,5 +11,6 @@ class ActivityMessage extends Model
 
     protected $fillable = [
         'body', 'activity_id', 'user_id',
+        'field', 'origin', 'new',
     ];
 }
