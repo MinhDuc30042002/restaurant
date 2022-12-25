@@ -48,7 +48,7 @@ class PartnerController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('dashboard.partner.show',['id' => $id]);
     }
 
     /**

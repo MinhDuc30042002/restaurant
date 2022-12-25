@@ -38,8 +38,7 @@ Route::middleware([
     Route::prefix('dashboard')->group(function () {
         Route::resource('categories', CategoriesController::class);
         Route::resource('food', FoodController::class);
-        Route::get('partners', [PartnerController::class, 'index'])->name('partners');
-        Route::get('tables',[TableController::class, 'index'])->name('tables');
+        Route::resource('partners', PartnerController::class);
     });
     Route::get('/dashboard/employees', [App\Http\Controllers\Dashboard\EmployeeController::class, 'index'])->name('employees');
     Route::get('/dashboard/users', function () {

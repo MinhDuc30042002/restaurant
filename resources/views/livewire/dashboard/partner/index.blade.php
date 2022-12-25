@@ -133,9 +133,11 @@
                         </div>
                     </td>
                        <td class="py-4 px-6">
-                           <x-jet-secondary-button wire:click="detail({{$item->id}})">
+
+                           <a href="{{route('partners.show',$item->id)}}"><x-jet-secondary-button wire:click="">
                                {{ __('Detail')}}
                            </x-jet-secondary-button>
+                        </a>
                            <x-jet-secondary-button wire:click="showUpdateState({{$item->id}})">
                             {{ __('Update')}}
                         </x-jet-secondary-button>
@@ -144,9 +146,6 @@
                             {{ __('Delete')}}
                         </x-jet-danger-button>
                         @elseif($item->state == 'Đã thanh toán')
-                        <x-jet-secondary-button class="bg-green-600 text-white" wire:click="generatepdf({{$item->id}})">
-                            {{ __('Print')}}
-                        </x-jet-secondary-button>
                         @endif
                         <x-jet-dialog-modal wire:model="modalConfirmDeleteVisible">
                             <x-slot name="title">
@@ -178,7 +177,7 @@
         </x-slot>
     </x-jet-dialog-modal>
     
-    <x-jet-dialog-modal wire:model="order_detail" maxWidth="4xl">
+    {{-- <x-jet-dialog-modal wire:model="order_detail" maxWidth="4xl">
         <x-slot name="title">
             {{ __('Order detail')}}
             @if(isset($this->modelId_detail))
@@ -234,95 +233,13 @@
                    @endif
                 </tbody>
             </table>
-            {{-- <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
-                <div class="flex justify-between items-center pb-4 border-b border-gray-200 dark:border-gray-700 mb-3">
-                  <div class="flex flex-col">
-                    <div class="text-3xl font-bold mb-1">
-                      <img class="inline-block w-13 h-auto ltr:mr-2 rtl:ml-2" src="https://ap.poly.edu.vn/images/logo.png">
-                    </div>
-                    <p class="text-sm">Toà nhà Innovation, lô 24,<br> Công viên phần mềm Quang Trung, Quận 12, Hồ Chí Minh</p>
-                  </div>
-                  <div class="text-4xl text-center uppercase font-bold">{{ __('Invoice')}}</div>
-                </div>
-                <div class="flex flex-row justify-between py-3">
-                  <div class="flex-1">
-                    <p><strong>Người nhận:</strong><br>
-                        Andreas-Doe<br>
-                    Andreas-Doe@domain.com<br>
-                    +123 456 7890</p>
-                  </div>
-                  @if(isset($this->modelId_detail))
-            @foreach ($detailOrder as $item)
-                  <div class="flex-1">
-                    <div class="flex justify-between mb-2">
-                      <div class="flex-1 font-semibold">ID Hóa đơn:</div><div class="flex-1 ltr:text-right rtl:text-left">#{{$item->id}}</div>
-                    </div>
-                    <div class="flex justify-between mb-2">
-                      <div class="flex-1 font-semibold">Ngày tạo:</div><div class="flex-1 ltr:text-right rtl:text-left">{{$item->created_at->format('d/m/Y')}}</div>
-                    </div>
-                    <div class="flex justify-between mb-2">
-                        @foreach($order2 as $order2)
-                      <div class="flex-1 font-semibold">Trạng thái:</div><div class="flex-1 ltr:text-right rtl:text-left">{{$order2->state}}</div>
-                      @endforeach
-                    </div>
-                  </div>
-            
-                </div>
-                <div class="py-4">
-                  <table class="table-bordered w-full ltr:text-left rtl:text-right text-gray-600">
-                    <thead class="border-b dark:border-gray-700">
-                      <tr class="bg-gray-100 dark:bg-gray-900 dark:bg-opacity-20">
-                        <th>{{ __('Food name')}}</th>
-                        <th class="text-center">{{ __('Quantity')}}</th>
-                        <th class="text-center">{{ __('Food price')}}</th>
-                        <th class="text-center">{{ __('Amount')}}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="flex flex-wrap flex-row items-center">
-                            <div class="self-center"><img class="h-8 w-8" src="../src/img/products/product1.jpg"></div>
-                            <div class="leading-5 dark:text-gray-300 flex-1 ltr:ml-2 rtl:mr-2 mb-1">  
-                              {{$item->food_name}}
-                            </div>
-                          </div>
-                        </td>
-                        <td class="text-center">{{$item->quantity}}</td>
-                        <td class="text-center">{{$item->food_price}}</td>
-                        <td class="text-center">{{$item->amount}}</td>
-                      </tr>
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <td colspan="2"></td>
-                        <td class="text-center"><b>Tổng tạm</b></td>
-                        
-                        <td class="text-center">{{$sub_total}}</td>
-                      </tr>
-                      <tr>
-                        <td colspan="2"></td>
-                        <td class="text-center"><b>Thuế</b></td>
-                        <td class="text-center">10%</td>
-                      </tr>
-                      <tr>
-                        <td colspan="2"></td>
-                        <td class="text-center"><b>Tổng</b></td>
-                        <td class="text-center font-bold">{{$total}}Đ</td>
-                      </tr>
-                    </tfoot>
-                  </table>
-                </div>
-              </div>
-              @endforeach
-              @endif --}}
         </x-slot>
         <x-slot name="footer">
             <x-jet-secondary-button wire:click="$toggle('order_detail')" wire:loading.attr="disabled">
                 {{ __('Cancel') }}
             </x-jet-secondary-button>
         </x-slot>
-    </x-jet-dialog-modal>
+    </x-jet-dialog-modal> --}}
     <x-jet-dialog-modal wire:model="showState" maxWidth="2xl">
         <x-slot name="title">
             {{ __('Cập nhật trạng thái đơn hàng')}}

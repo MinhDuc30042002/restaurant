@@ -10,9 +10,9 @@
         @font-face {
             font-family: 'BeVietnamPro';
             font-weight: normal;
-            font-style: normal;
+            font-style: italic;
             font-variant: normal;
-            src: url({{ storage_path('fonts/Roboto-Light.ttf') }});
+            src: url({{ storage_path('fonts/BeVietnamPro-Italic.ttf') }});
         }
 
         @font-face {
@@ -20,7 +20,7 @@
             font-weight: normal;
             font-style: Bold;
             font-variant: normal;
-            src: url({{ storage_path('fonts/Roboto-Regular.ttf') }});
+            src: url({{ storage_path('fonts/BeVietnamPro-Bold.ttf') }});
         }
 
         .clearfix:after {
@@ -32,7 +32,6 @@
         a {
             color: #5D6975;
             text-decoration: underline;
-            font-family: 'BeVietnamPro';
         }
 
         body {
@@ -42,8 +41,8 @@
             margin: 0 auto;
             color: #001028;
             background: #FFFFFF;
-            font-size: 15px;
             font-family: 'BeVietnamPro';
+            font-size: 12px;
             width: 100%;
         }
 
@@ -69,9 +68,8 @@
             line-height: 1.4em;
             font-weight: normal;
             text-align: center;
-            margin-top: 10px;
-            font-style: Bold;
-
+            margin: 0 0 20px 0;
+            background: url(dimension.png);
         }
 
         #project {
@@ -80,7 +78,7 @@
 
         #project span {
             color: #5D6975;
-            text-align: left;
+            text-align: right;
             width: 52px;
             margin-right: 10px;
             display: inline-block;
@@ -115,11 +113,10 @@
 
         table th {
             padding: 5px 20px;
-            color: #0c0c0c;
+            color: #5D6975;
             border-bottom: 1px solid #C1CED9;
             white-space: nowrap;
             font-weight: normal;
-            font-style: Bold;
         }
 
         table .service,
@@ -141,6 +138,7 @@
         table td.qty,
         table td.total {
             font-size: 1.2em;
+            text-align: center;
         }
 
         table td.grand {
@@ -171,22 +169,23 @@
     <body>
         <header class="clearfix">
             <div id="logo">
-                <img src="https://ap.poly.edu.vn/images/logo.png" style="width:200px;">
+                <img src="https://ap.poly.edu.vn/images/logo.png">
             </div>
-            @foreach($order2 as $order2)
-            <h1>Hóa đơn #{{$order2->id}}</h1>
-            @endforeach
+
+            <h1>Hóa đơn #{{ $order1->id }}</h1>
+
             <div id="company" class="clearfix">
-                @foreach($partner2 as $partner)
-                <div><strong>Bill to:</strong></div>
-                <div>{{$partner->name}}</div>
-                <div>{{$partner->phone}}</div>
-                <div>{{$partner->email}}</div>
+                @foreach ($partner2 as $partner)
+                    <div><strong>Bill to:</strong></div>
+                    <div>{{ $partner->name }}</div>
+                    <div>{{ $partner->phone }}</div>
+                    <div>{{ $partner->email }}</div>
                 @endforeach
             </div>
             <div id="project">
                 <div><span>Nhà hàng:</span> Fpoly Restaurant</div>
-                <div><span>Địa chỉ</span> Toà nhà Innovation, lô 24, <br />&emsp;&emsp;&emsp;&emsp;Công viên phần mềm Quang Trung, <br />&emsp;&emsp;&emsp;&emsp;Quận 12, Hồ Chí Minh</div>
+                <div><span>Địa chỉ</span> Toà nhà Innovation, lô 24, <br />&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;Công viên phần mềm
+                    Quang Trung, <br />&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;Quận 12, Hồ Chí Minh</div>
                 <div><span>Email</span> <a href="mailto:CSKH.hcm@gmail.com">CSKH.hcm@gmail.com</a></div>
             </div>
         </header>
@@ -202,26 +201,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($detaiOrder as $detail)
-                    <tr>
-                        <td class="service">{{$detail->id}}</td>
-                        <td class="desc">{{$detail->food_name}}</td>
-                        <td class="unit">{{$detail->food_price}}</td>
-                        <td class="qty">{{$detail->quantity}}</td>
-                        <td class="total">{{$detail->amount}}</td>
-                    </tr>
+                    @foreach ($detaiOrder as $detail)
+                        <tr>
+                            <td class="service">{{ $detail->id }}</td>
+                            <td class="desc">{{ $detail->food_name }}</td>
+                            <td class="unit">{{ $detail->food_price }}</td>
+                            <td class="qty">{{ $detail->quantity }}</td>
+                            <td class="total">{{ $detail->amount }}</td>
+                        </tr>
                     @endforeach
                     <tr>
                         <td colspan="4">Tổng tạm:</td>
-                        <td class="total">{{$sub_total}}</td>
+                        <td class="total">{{ $sub_total }}</td>
                     </tr>
                     <tr>
-                        <td colspan="4">Thuế</td>
+                        <td colspan="4">Thuế:</td>
                         <td class="total">10%</td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="grand total">Tổng tất cả</td>
-                        <td class="grand total">{{$total}}</td>
+                        <td colspan="4" class="grand total" style="text-align: right">Tổng tất cả:</td>
+                        <td class="grand total">{{ $total }}</td>
                     </tr>
                 </tbody>
             </table>
