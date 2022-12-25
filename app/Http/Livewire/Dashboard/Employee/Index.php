@@ -24,7 +24,13 @@ class Index extends Component
 
     public $filteredGroup;
 
+    public $showMore = 10;
+
     protected $listeners = ['resetPage' => 'resetPage'];
+
+    public function buttonShowMore(){
+        $this->showMore = $this->showMore + 5;
+    }
 
     public function resetAll(){
         $this->reset();
@@ -64,7 +70,7 @@ class Index extends Component
             });
             $this->reset(['filteredRole', 'filteredGroup']);
         }
-        return $users->paginate(10);
+        return $users->paginate($this->showMore);
     }
 
     public function render()

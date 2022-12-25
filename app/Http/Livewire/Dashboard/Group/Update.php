@@ -33,7 +33,6 @@ class Update extends Component
             $data = [
                 'name'  => $this->name,
             ];
-
            $group = Group::where('id', $this->modelId)->update($data);
 
             if (!empty($this->permission)){
@@ -41,13 +40,14 @@ class Update extends Component
                 Group::find($this->modelId)->permissions()->sync($permissionId);
             }
         }
+        $this->reset();
         $this->open = false;
         $this->emitTo('dashboard.group.index', 'resetPage');
     }
 
     public function show(Group $group){
+        $this->reset();
         $this->modelId = $group->id;
-
         $model = Group::find($this->modelId);
         $this->name         = $model->name;
         $this->permission        = $model->permissions->pluck('id');

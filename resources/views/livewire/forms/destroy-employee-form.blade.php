@@ -12,7 +12,7 @@
             {{ __('Cancel') }}
         </x-jet-secondary-button>
         <x-jet-danger-button class="ml-3" wire:click="submit" wire:loading.attr="disabled">
-            {{ __('Delete Item') }}
+            {{ __('Delete') }}
         </x-jet-danger-button>
     </x-slot>
 </x-jet-confirmation-modal>

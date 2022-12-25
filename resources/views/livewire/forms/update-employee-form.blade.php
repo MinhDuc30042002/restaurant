@@ -1,6 +1,6 @@
 <x-jet-dialog-modal wire:model="open">
     <x-slot name="title">
-        {{ __('Update User') }}
+       Cập nhật <strong class="upercase">{{$name}}</strong>
     </x-slot>
     <x-slot name="content">
         <form>
