@@ -1,4 +1,4 @@
-<div class="mb-5">
+<div class="mb-10">
     <div>
         <div class="md:flex md:items-center md:justify-between py-8 p-4">
             <div class="flex-1 min-w-0">
@@ -9,7 +9,7 @@
                 @can('create', \App\Models\User::class)
                     <button wire:click="showCreateModal"
                         class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-medium text-white hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-600 transition sm:text-sm">
-                        {{ __('Create') }}
+                        Thêm món mới
                     </button>
                 @endcan
             </div>
@@ -17,7 +17,7 @@
         </div>
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
             <form class="flex justify-end w-full m-2">
-                <label for="simple-search" class="sr-only">{{ __('Search') }}</label>
+                <label for="simple-search" class="sr-only">Tìm kiếm</label>
                 <div class="relative w-1/2">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
@@ -29,7 +29,7 @@
                     </div>
                     <input wire:model="search" type="text" id="simple-search"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Search" required>
+                        placeholder="Tìm kiếm" required>
                 </div>
             </form>
             <hr class="border-t border-gray-200 my-5">
@@ -73,7 +73,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody wire:loading.class="opacity-50">
                         @foreach ($data as $food)
                             <tr
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -101,9 +101,7 @@
                                 </td>
                                 <td class="py-4 px-6">
                                     <!-- Button delete -->
-                                    <button
-                                        wire:click="showModalDelete({{$food->id}})"
-                                        type="button"
+                                    <button wire:click="showModalDelete({{ $food->id }})" type="button"
                                         class="text-gray-600 hover:text-red-700">
                                         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -116,17 +114,15 @@
                                     <!-- End Button delete -->
                                     <!-- Button show -->
                                     <a href="{{ route('food.show', $food->id) }}">
-                                    <button class="text-gray-600 hover:text-blue-700"
-                                        {{-- wire:click="$emitTo('forms.update-employee-form', 'showUpdateUserForm', {{ $emp->id }})" --}}
-                                        >
-                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                            aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                                            </path>
-                                        </svg>
-                                    </button>
+                                        <button class="text-gray-600 hover:text-blue-700" {{-- wire:click="$emitTo('forms.update-employee-form', 'showUpdateUserForm', {{ $emp->id }})" --}}>
+                                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                aria-hidden="true">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                </path>
+                                            </svg>
+                                        </button>
                                     </a>
                                     <!-- End Button show -->
                                 </td>
@@ -135,12 +131,14 @@
                     </tbody>
                 </table>
             </div>
-            <div class="grid justify-items-center">
-                <button wire:click="loadMoreFoods"
-                    class="text-blue-500 w-2/12 my-4 flex-center py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                    Xem thêm >>
-                </button>
-            </div>
+            @if (count($data) >= 10)
+                <div class="flex space-x-2 justify-center my-4">
+                    <button wire:click="loadMoreFoods" type="button"
+                        class="inline-block px-6 py-2.5 bg-white-600 text-blue font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+                        Xem thêm >>
+                    </button>
+                </div>
+            @endif
         </div>
 
     </div>
@@ -228,11 +226,12 @@
 
     <x-jet-confirmation-modal wire:model="open">
         <x-slot name="title">
-            Xóa sản phẩm
+
         </x-slot>
 
         <x-slot name="content">
-            Bạn có chắc rằng bạn muốn xóa sản phẩm này? Khi bị xóa, tất cả các tài nguyên và dữ liệu của nó sẽ bị xóa vĩnh viễn.
+            Bạn có chắc rằng bạn muốn xóa sản phẩm này? Khi bị xóa, tất cả các tài nguyên và dữ liệu của nó sẽ bị xóa
+            vĩnh viễn.
         </x-slot>
 
         <x-slot name="footer">
@@ -240,7 +239,7 @@
                 {{ __('Cancel') }}
             </x-jet-secondary-button>
             <x-jet-danger-button class="ml-3" wire:click="delete" wire:loading.attr="disabled">
-                {{ __('Delete Item') }}
+                {{ __('Delete') }}
             </x-jet-danger-button>
         </x-slot>
     </x-jet-confirmation-modal>

@@ -12,7 +12,7 @@ class Index extends Component
 
     public $search;
 
-    public $loadMore = 5;
+    public $loadMore = 10;
 
     public $selectedCategories = [];
 

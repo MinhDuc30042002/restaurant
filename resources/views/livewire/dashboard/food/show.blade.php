@@ -23,14 +23,14 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <x-jet-label class="mb-2">{{ __('Price') }}</x-jet-label>
+                    <x-jet-label class="mb-2">Giá</x-jet-label>
                     <x-jet-input wire:model="fillable.price" class="w-full p-2 border border-gray-600" />
                     @error('fillable.price')
                         <span class="text-red-500">{{ __($message) }}</span>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <x-jet-label class="mb-2">{{ __('Available quantity') }}</x-jet-label>
+                    <x-jet-label class="mb-2">Số lượng có sẵn</x-jet-label>
                     <x-jet-input wire:model="fillable.available_quantity" class="w-full p-2 border border-gray-600" />
                     @error('fillable.available_quantity')
                         <span class="text-red-500">{{ __($message) }}</span>
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="form-group mb-5">
-                <x-jet-label class="mb-2">{{ __('Category') }}</x-jet-label>
+                <x-jet-label class="mb-2">Thể loại</x-jet-label>
                 <select wire:model="fillable.category"
                     class="w-full mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
                     <option value="0">{{ __('Lens') }}</option>
@@ -51,20 +51,20 @@
                 @enderror
             </div>
             <div class="form-group mb-5" wire:ignore>
-                <x-jet-label class="mb-2">{{ __('Description') }}
+                <x-jet-label class="mb-2">Mô tả
                 </x-jet-label>
                 <textarea wire:model="fillable.description" rows="10" id="description"
                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Nhập mô tả món ăn">{{ $fillable['description'] }}</textarea>
             </div>
             <div class="form-group mb-5">
-                <x-jet-label class="mb-2">{{ __('Select A New Photo') }}</x-jet-label>
+                <x-jet-label class="mb-2">Chọn ảnh mới</x-jet-label>
                 @if (isset($fillable['image']))
                     <div class="flex items-center justify-center w-full">
                         <label for="dropzone-file"
                             class="flex flex-col items-center justify-center w-full h-12 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                <p>Other images</p>
+                                <p>Chọn ảnh khác</p>
                             </div>
                             <input wire:model="fillable.image" id="dropzone-file" type="file" class="hidden" />
                         </label>
@@ -83,8 +83,8 @@
                                     </path>
                                 </svg>
                                 <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                        class="font-semibold">Click
-                                        to upload</span> or drag and drop</p>
+                                        class="font-semibold">Chọn ảnh
+                                        </span>hoặc kéo thả</p>
                                 </p>
                             </div>
                             <input wire:model="fillable.image" id="dropzone-file" type="file" class="hidden" />

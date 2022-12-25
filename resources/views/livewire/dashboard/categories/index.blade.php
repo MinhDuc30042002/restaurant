@@ -8,7 +8,7 @@
             @can('create', \App\Models\User::class)
                 <button wire:click="showModal"
                     class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-medium text-white hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-600 transition sm:text-sm">
-                    {{ __('New category') }}
+                    Thêm thể loại mới
                 </button>
             @endcan
         </div>
@@ -34,7 +34,7 @@
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody wire:loading.class="opacity-50">
                     @foreach ($data as $category)
                         <tr class="bg-white border-b text-center">
                             <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap ">
@@ -42,33 +42,33 @@
                             </th>
                             <td class="py-4 px-6">
                                 <span class="text-base font-semibold">
-                                {{ $category->name }}
+                                    {{ $category->name }}
                                 </span>
                             </td>
                             <td class="py-4 px-6">
-                                <button class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" wire:click="showFood({{ $category->id }})">{{ $category->foods_count }}
+                                <button
+                                    class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                                    wire:click="showFood({{ $category->id }})">{{ $category->foods_count }}
                                 </button>
                             </td>
                             <td class="py-4 px-6">
                                 <button wire:click="showModalUpdate({{ $category->id }})" type="button"
                                     class="text-gray-600 hover:text-red-700">
                                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                                aria-hidden="true">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                                                </path>
-                                            </svg>
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                        </path>
+                                    </svg>
                                 </button>
                                 <button wire:click="removeCategory({{ $category->id }})" type="button"
                                     class="text-gray-600 hover:text-red-700">
                                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                                aria-hidden="true">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                                                </path>
-                                            </svg>
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                        </path>
+                                    </svg>
                                 </button>
                             </td>
                         </tr>
@@ -85,7 +85,7 @@
     <div>
         <x-jet-dialog-modal wire:model="modalDialog">
             <x-slot name="title">
-                {{ __('Create new category') }}
+                Tạo mới thể loại
             </x-slot>
 
             <x-slot name="content" class="p-2">
@@ -98,7 +98,7 @@
 
             <x-slot name="footer">
                 <x-jet-button wire:click="storeCategory">
-                    {{ __('Create new category') }}
+                    {{ __('Create') }}
                 </x-jet-button>
             </x-slot>
         </x-jet-dialog-modal>
@@ -107,12 +107,15 @@
     <div>
         <x-jet-dialog-modal wire:model="modalUpdate">
             <x-slot name="title">
-               Sửa thể loại <label class="font-semibold text-gray">{{$name}}</label>
+                Sửa thể loại <label class="font-semibold text-gray">{{ $name }}</label>
             </x-slot>
 
             <x-slot name="content" class="p-2">
                 <x-jet-label class="mb-2">Tên thể loại</x-jet-label>
                 <x-jet-input wire:model="name" value="{{ $name }}" class="w-full p-2 border border-gray-600" />
+                @error('name')
+                    <span class="text-red-500">{{ $message }}</span>
+                @enderror
             </x-slot>
 
             <x-slot name="footer">
@@ -129,11 +132,10 @@
     <div>
         <x-jet-confirmation-modal wire:model="modalDelete">
             <x-slot name="title">
-                Xóa
             </x-slot>
 
             <x-slot name="content">
-                Bạn có chắc rằng bạn muốn xóa? Khi  bị xóa, tất cả các tài nguyên và dữ liệu của nó sẽ bị xóa vĩnh viễn.
+                Bạn có chắc rằng bạn muốn xóa? Khi bị xóa, tất cả các tài nguyên và dữ liệu của nó sẽ bị xóa vĩnh viễn.
             </x-slot>
 
             <x-slot name="footer">

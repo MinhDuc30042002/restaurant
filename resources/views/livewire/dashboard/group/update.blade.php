@@ -1,7 +1,7 @@
 <div>
     <x-jet-dialog-modal wire:model="open" :maxWidth="$maxWidth">
         <x-slot name="title">
-            {{ __('Update Group') }}
+            Cập nhật nhóm <strong>{{$name}}</strong>
         </x-slot>
 
         <x-slot name="content" class="p-2">
@@ -29,7 +29,6 @@
             </div>
             <div class="relative z-0 mb-6 w-full group">
                 <div wire:ignore>
-                    <label for="">select group</label>
                     <select wire:model="permission" class="select2" multiple="multiple" class="selectpicker"
                         style="width: 75%">
                         @foreach ($list_permission as $key => $value)
@@ -38,7 +37,6 @@
                     </select>
                 </div>
             </div>
-            @dump($permission)
         </x-slot>
 
         <x-slot name="footer">
@@ -56,8 +54,13 @@
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
         <script>
             $(document).ready(function() {
-                $('.select2').select2().on('change', function() {
+                $('.select2').select2({
+                    dropdownCssClass: 'h-text-gray-900 dark:text-gray-600 font-family-is', // you can add name font
+                    selectionCssClass: 'text-gray-900 dark:text-gray-600 font-family-is',
+                    placeholder: "{{ __('Select Permissions') }}",
+                }).on('change', function() {
                     @this.set('permission', $(this).val());
+
                 });
             });
         </script>

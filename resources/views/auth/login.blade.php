@@ -23,30 +23,31 @@
                     <x-jet-input id="email"
                         class="shadow-sm border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md block mt-1 w-full sm:text-sm"
                         type="email" name="email" :value="old('email')" autofocus />
-                        @error('email')
-                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span class="font-medium">Đã xảy ra lỗi!</span> {{$message}}</p>
-                        @enderror
-                    </div>
+                    @error('email')
+                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span
+                                class="font-medium">Đã xảy ra lỗi!</span> {{ $message }}</p>
+                    @enderror
+                </div>
 
                 <div class="mt-4">
                     <div class="flex items-center justify-between">
                         <x-jet-label class="block font-medium text-sm text-gray-700" for="password"
                             value="{{ __('Password') }}" />
-
-                        @if (Route::has('password.request'))
-                            <a class="underline text-sm text-gray-600 hover:text-gray-900"
-                                href="{{ route('password.request') }}">
-                                {{ __('Forgot your password?') }}
-                            </a>
-                        @endif
                     </div>
 
                     <x-jet-input id="password"
                         class="shadow-sm border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md block mt-1 w-full sm:text-sm"
                         type="password" name="password" autocomplete="current-password" />
-                        @error('password')
-                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span class="font-medium">Đã xảy ra lỗi!</span> {{$message}}</p>
-                        @enderror
+                    @error('password')
+                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span
+                                class="font-medium">Đã xảy ra lỗi!</span> {{ $message }}</p>
+                    @enderror
+                    @if (Route::has('password.request'))
+                            <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                                href="{{ route('password.request') }}">
+                                {{ __('Forgot your password?') }}
+                            </a>
+                        @endif
                 </div>
 
                 <div class="block mt-4">

@@ -54,7 +54,8 @@ class Index extends Component
 
     public function updateCategory()
     {
-        Category::where('id', '=', $this->tempID)->update(['name' => $this->name]);
+        $validatedData = $this->validate();
+        Category::where('id', '=', $this->tempID)->update($validatedData);
         $this->modalDialog = false;
         $this->dispatchBrowserEvent('alert', ['type' => 'info',  'message' => 'Cập nhật '.$this->name.' thành công']);
         $this->reset();
@@ -97,21 +98,20 @@ class Index extends Component
     protected function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:50|min:3',
         ];
     }
 
     protected function messages()
     {
         return [
-            'name.required' => 'The :attribute cannot be empty.',
+            'name.required' => ':attribute không được bỏ trống',
+            'name.max' => ':attribute quá dài tối đa :max kí tự',
+            'name.min' => ':attribute quá ngắn',
         ];
     }
 
-    protected function attributes()
-    {
-        return [
-            'name' => 'Địa chỉ email',
-        ];
-    }
+    protected $validationAttributes = [
+        'name' => 'Tên thể loại',
+    ];
 }
