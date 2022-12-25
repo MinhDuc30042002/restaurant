@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Tracking;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -17,6 +18,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use Tracking;
 
     /**
      * The attributes that are mass assignable.
@@ -65,6 +67,22 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function tracking(): array
+    {
+        return [
+            'name',
+            'firstname',
+            'lastname',
+            'gender',
+            'email',
+            'phone_number',
+            'address',
+            'password',
+            'is_staff',
+            'is_manager',
+        ];
+    }
 
     /*
     |--------------------------------------------------------------------------

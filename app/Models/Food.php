@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Tracking;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -9,12 +10,20 @@ use Illuminate\Support\Str;
 class Food extends Model
 {
     use HasFactory;
+    use Tracking;
 
     protected $fillable = [
         'name', 'price', 'image', 'description', 'available_quantity', 'slug',
     ];
 
     protected $table = 'foods';
+
+    public function tracking(): array
+    {
+        return [
+            'name', 'price', 'image', 'description', 'available_quantity',
+        ];
+    }
 
     /*
     |--------------------------------------------------------------------------

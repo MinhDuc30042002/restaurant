@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('food_image')->nullable();
             $table->float('food_price')->nullable();
             $table->integer('quantity')->default(1);
-            $table->float('amount',12)->nullable();
+            $table->float('amount', 12)->nullable();
             $table->foreignId('order_id')->constrained('orders')->cascadeOnUpdate()->cascadeOnDelete();
         });
         Permission::crud('order_lines');

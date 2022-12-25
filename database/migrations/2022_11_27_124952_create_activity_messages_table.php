@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('body');
             //
             $table->foreignId('activity_id')->constrained('activities')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
         });
         Permission::crud('activity_messages');
     }

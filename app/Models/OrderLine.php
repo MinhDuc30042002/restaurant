@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Food;
 
 class OrderLine extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'food_id', 'quantity', 'order_id', 'food_price', 'food_name' , 'amount' ,'food_image'
+        'food_id', 'quantity', 'order_id', 'food_price', 'food_name', 'amount', 'food_image',
     ];
 
     protected static function booted()
