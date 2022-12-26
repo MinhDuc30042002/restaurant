@@ -8,7 +8,7 @@ use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProfileController;
 use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\Partner\PartnerController;
-use App\Http\Controllers\Dashboard\TableController;
+// use App\Http\Controllers\Dashboard\TableController;
 use App\Http\Controllers\Dashboard\FoodController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -39,7 +39,7 @@ Route::middleware([
         Route::resource('categories', CategoriesController::class);
         Route::resource('food', FoodController::class);
         Route::get('partners', [PartnerController::class, 'index'])->name('partners');
-        Route::get('tables',[TableController::class, 'index'])->name('tables');
+        // Route::get('tables',[TableController::class, 'index'])->name('tables');
     });
     Route::get('/dashboard/employees', [App\Http\Controllers\Dashboard\EmployeeController::class, 'index'])->name('employees');
     Route::get('/dashboard/users', function () {

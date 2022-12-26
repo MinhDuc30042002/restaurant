@@ -7,7 +7,7 @@
                 <div class="flex-1 relative w-full bg-gray-800">
                     <div class="absolute inset-0 overflow-hidden">
                         <img src="https://xinhevent.com/wp-content/uploads/2020/06/M%E1%BA%ABu-b%C4%83ng-r%C3%B4n-%C4%91%E1%BA%B9p-khuy%E1%BA%BFn-m%C3%A3i.jpg"
-                            alt="Mid-Season Sale" class="w-full  object-center object-contain">
+                            alt="Mid-Season Sale" class="w-full object-center object-contain">
                     </div>
                     <div class="absolute inset-0 bg-gray-900 opacity-50"></div>
                 </div>
@@ -19,7 +19,7 @@
                 <div aria-hidden="true" class="absolute inset-0 flex flex-col sm:hidden">
                     <div class="flex-1 relative w-full bg-gray-800">
                         <div class="absolute inset-0 overflow-hidden">
-                            <img src="https://dashboard-api.flyfood.vn/system/banners/18/file.jpg" alt="Mid-Season Sale"
+                            <img src="https://xinhevent.com/wp-content/uploads/2020/06/M%E1%BA%ABu-b%C4%83ng-r%C3%B4n-%C4%91%E1%BA%B9p-khuy%E1%BA%BFn-m%C3%A3i.jpg" alt="Mid-Season Sale"
                                 class="w-full h-full object-center object-cover">
                         </div>
                         <div class="absolute inset-0 bg-gray-900 opacity-50"></div>
@@ -36,7 +36,7 @@
                     Collections
                 </h2>
                 <div
-                    class="max-w-md mx-auto grid grid-cols-5 gap-y-6 px-4 sm:max-w-7xl sm:px-6 sm:grid-cols-5 sm:gap-y-0 sm:gap-x-6 lg:px-8 lg:gap-x-8">
+                    class="max-w-md mx-auto grid grid-cols-1 gap-y-6 px-4 sm:max-w-7xl sm:px-6 sm:grid-cols-5 sm:gap-y-0 sm:gap-x-6 lg:px-8 lg:gap-x-8">
                     <div
                         class="group relative h-96 bg-white rounded-lg shadow-xl sm:h-auto sm:aspect-w-4 sm:aspect-h-5">
                         <div>
@@ -185,7 +185,7 @@
                         </a>
                     </div>
 
-                    <div class="mt-6 grid grid-cols-5 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-5 md:gap-8">
+                    <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-5 sm:gap-x-6 md:grid-cols-2 md:gap-8 xl:grid-cols-5">
                         @foreach ($item->foods()->get() as $food)
                             <div class="group relative">
                                 <div class="rounded-md overflow-hidden group-hover:opacity-75">
@@ -208,12 +208,10 @@
                             </div>
                         @endforeach
 
-
                     </div>
-
                     <div class="mt-8 text-sm md:hidden">
-                        <a href="#" class="font-medium text-blue-600 hover:text-blue-500">
-                            Shop the collection<span aria-hidden="true"> &rarr;</span>
+                        <a href="/the-loai/{{ $item->slug }}" class="font-medium text-blue-600 hover:text-blue-500">
+                            Xem thêm<span aria-hidden="true"> &rarr;</span>
                         </a>
                     </div>
                 </div>

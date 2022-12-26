@@ -1,9 +1,10 @@
-<div class="max-w-6xl mx-auto py-16 px-4 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
+<div class="max-w-6xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
     <div class="lg:col-start-2">
-        <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">Thanks for shopping with us!</h1>
-        <p class="mt-2 text-base text-gray-500">We appreciate your order, we’re currently processing it. So hang tight,
-            and we’ll send you confirmation very soon!</p>
-        <div class="mt-16 grid grid-cols-1 sm:grid-cols-4 gap-6">
+        <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">Cảm ơn bạn đã đặt hàng tại FPoly !
+        </h1>
+        <p class="mt-2 text-base text-gray-500">
+            Chúng tôi đánh giá cao đơn đặt hàng của bạn, chúng tôi hiện đang xử lý nó. Vì vậy,chúng tôi sẽ gửi cho bạn phản hồi xác nhận sớm nhất!</p>
+        <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6">
             <dl class="text-sm font-medium">
                 <dt class="text-gray-900">Số thứ tự</dt>
                 <dd class="mt-2 text-blue-600">{{ $identify }}</dd>
@@ -111,7 +112,7 @@
 
         <div class="mt-16 border-t border-gray-200 py-6 text-right">
             <a href="/" class="text-sm font-medium text-blue-600 hover:text-blue-500">
-                Continue Shopping<span aria-hidden="true"> →</span>
+                Tiếp tục <span aria-hidden="true"> →</span>
             </a>
         </div>
     </div>

@@ -1,20 +1,4 @@
 <div>
-    @if (session()->has('message'))
-        <div x-data={show:true} x-show="show" x-init="setTimeout(() => show = false, 2000)"
-            class="fade-out-in flex items-center bg-white backdrop-blur-xl z-50 max-w-md absolute right-5 top-5 rounded-lg p-6 shadow">
-            <div
-                class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-green-600 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
-                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"></path>
-                </svg>
-                <span class="sr-only">Check icon</span>
-            </div>
-            <h1 class="ml-3 text-sm text-slate-700 font-medium">{{ session('message') }}</h1>
-        </div>
-    @endif
     <div class="bg-white">
         <!-- Product details -->
         <div class="max-w-2xl mx-auto mt-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -221,7 +205,7 @@
             <div class="flex items-center justify-between space-x-4">
                 <h2 class="text-lg font-medium text-gray-900">Những món ăn liên quan</h2>
             </div>
-            <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-5 sm:gap-y-10 lg:grid-cols-5">
+            <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-3 xl:grid-cols-5 sm:gap-y-10 lg:grid-cols-5">
                 @foreach ($related_item as $item)
                     <div class="relative group flex flex-col">
                         <div class="aspect-w-8 aspect-h-9 rounded-lg overflow-hidden bg-slate-100">

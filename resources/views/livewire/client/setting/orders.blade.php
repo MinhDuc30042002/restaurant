@@ -15,7 +15,7 @@
                         <option :selected="currentTab === 'pending'" value="pending">
                             Chờ xác nhận
                         </option>
-                        <option :selected="currentTab === 'handle'" value="pending">
+                        <option :selected="currentTab === 'handle'" value="handle">
                             Đã xác nhận
                         </option>
                     </select>
@@ -116,9 +116,10 @@
                                                     alt="{{ $item->food_image }}"
                                                     class="flex-none w-28 h-28 bg-gray-100 rounded-md object-center object-cover sm:w-32 sm:h-32">
                                                 <div class="flex-auto flex flex-col space-y-1">
-                                                    <h3 class="text-gray-700 hover:text-gray-800">
-                                                        <p>
-                                                            {{ $item->food_name }}</p>
+                                                    <h3 class="text-gray-700 hover:text-gray-800 whitespace-normal">
+                                                        <a href="">
+                                                            {{ $item->food_name }}
+                                                        </a>
                                                     </h3>
                                                     <div class="mt-6 flex-1 flex items-end">
                                                         <dl

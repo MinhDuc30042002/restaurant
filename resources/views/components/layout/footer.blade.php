@@ -2,7 +2,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="border-t border-slate-200">
             <div class="pt-16 pb-20">
-                <div class="mt-16 max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 gap-8">
+                <div class="mt-16 max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
                     <div>
                         <h3 class="text-sm font-medium text-gray-900">
                             Chi nhánh TPHCM

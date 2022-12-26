@@ -20,6 +20,7 @@ class Index extends Component
         $cart->remove($rowId);
         $this->reset();
         $this->emit('cart_updated');
+        $this->dispatchBrowserEvent('alert', ['type' => 'error',  'message' => 'Đã xóa thành món hàng']);
     }
 
     public function increaseQty($rowId, $qty, Cart $cart)
@@ -27,6 +28,7 @@ class Index extends Component
         $quantity = $qty + 1;
         $cart->update($rowId, $quantity);
         $this->emit('cart_updated');
+        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Cập nhật giỏ hàng thành công']);
     }
 
     public function decreaseQty($rowId, $qty, Cart $cart)
@@ -34,5 +36,6 @@ class Index extends Component
         $quantity = $qty <= 1 ? 1 : $qty - 1;
         $cart->update($rowId, $quantity);
         $this->emit('cart_updated');
+        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Cập nhật giỏ hàng thành công']);
     }
 }

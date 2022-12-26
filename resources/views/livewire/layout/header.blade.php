@@ -22,10 +22,40 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                             </svg> </button>
                     </div>
+                    <div class="mt-2">
+                        <ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+                            <li class="pb-3 sm:pb-4">
+                                <a href="/"
+                                    class="w-full inline-flex justify-center items-center p-5 text-base font-medium text-gray-500 bg-gray-50 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+                                    <span class="w-full">Trang chủ</span>
+                                    <svg aria-hidden="true" class="ml-3 w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                            @foreach ($categories as $category)
+                                <li class="pb-3 sm:pb-4">
+                                    <a href="/the-loai/{{ $category->slug }}"
+                                        class="w-full inline-flex justify-center items-center p-5 text-base font-medium text-gray-500 bg-gray-50 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+                                        <span class="w-full">{{ $category->name }}</span>
+                                        <svg aria-hidden="true" class="ml-3 w-6 h-6" fill="currentColor"
+                                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
 
 
                     <!-- Links -->
-                    <div x-data="{ selectedId: null, init() { this.$nextTick(() => this.select(this.$id('tabs-1-tab', 1))) }, select(id) { this.selectedId = id }, isSelected(id) { return this.selectedId === id }, whichChild(el, parent) { return Array.from(parent.children).indexOf(el) + 1 } }" x-id="['tabs-1-tab']" class="mt-2">
+                    {{-- <div x-data="{ selectedId: null, init() { this.$nextTick(() => this.select(this.$id('tabs-1-tab', 1))) }, select(id) { this.selectedId = id }, isSelected(id) { return this.selectedId === id }, whichChild(el, parent) { return Array.from(parent.children).indexOf(el) + 1 } }" x-id="['tabs-1-tab']" class="mt-2">
 
                         <ul x-ref="tablist" class="border-b border-gray-200 -mb-px flex px-4 space-x-8">
                             <li>
@@ -254,7 +284,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="border-t border-gray-200 py-6 px-4 space-y-6">
                     </div>
@@ -386,7 +416,7 @@
                                 <!-- Logo (lg-) -->
                                 <a href="/" class="lg:hidden">
                                     <span class="sr-only">Cartify</span>
-                                    <img src="https://demo.cartify.dev/img/favicon.png" alt="Cartify"
+                                    <img src="https://ap.poly.edu.vn/images/logo.png" alt="Fpoly"
                                         class="h-10 w-auto">
                                 </a>
 
@@ -432,7 +462,7 @@
                                                                             sơ cá nhân</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="{{ route('partners') }}"
+                                                                        <a href="/setting/orders"
                                                                             class="block py-2 px-4 hover:bg-gray-100">Lịch
                                                                             sử đơn hàng</a>
                                                                     </li>
@@ -451,20 +481,21 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        @else
+                                            <!-- Account menu for mobile -->
+                                            <a href="/login"
+                                                class="sm:hidden -m-2 p-2 text-gray-400 hover:text-gray-500">
+                                                <span class="sr-only">Account</span>
+                                                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                                </svg> </a>
+                                            <span class="sm:hidden mx-4 h-6 w-px bg-gray-200 lg:mx-6"
+                                                aria-hidden="true"></span>
                                         @endif
 
-                                        <!-- Account menu for mobile -->
-                                        <a href="https://demo.cartify.dev/login"
-                                            class="sm:hidden -m-2 p-2 text-gray-400 hover:text-gray-500">
-                                            <span class="sr-only">Account</span>
-                                            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                                aria-hidden="true">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                            </svg> </a>
-                                        <span class="sm:hidden mx-4 h-6 w-px bg-gray-200 lg:mx-6"
-                                            aria-hidden="true"></span>
                                         <!-- Cart -->
                                         <div class="flow-root text-sm">
                                             <div class="relative" x-data="{ open: false }">

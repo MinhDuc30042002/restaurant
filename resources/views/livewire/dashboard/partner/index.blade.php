@@ -51,7 +51,15 @@
                     <div class="pl-3">
                         <a href="#" wire:click="showModalDeatail({{$item->id}})"><div class="text-base font-semibold">{{$item->name}}</div></a>
                         <div class="font-normal text-gray-500">{{$item->email}}</div>
+                            </div>
                     </div>  
+                            </div>
+                    </div>  
+                            </div>
+                    </div>  
+                            </div>
+                    </div>  
+                            </div>
                 </th>
                 <td class="py-4 px-6">
                     <div class="flex items-center">
@@ -108,133 +116,223 @@
                    @foreach ($order as $item)
                    <tr class="bg-white border-b">
 
-                       <td class="py-4 px-6">
-                           <div class="flex items-center">
-                              {{$item->id}}
-                           </div>
-                       </td>
-                       <td class="py-4 px-6">
-                        {{$item->created_at->format('d-m-Y')}}
-                    </td>
-                       <td class="py-4 px-9">
-                           <div class="flex items-center">
-                              {{$item->amount}}
-                           </div>
-                       </td>
-                       <td class="py-4 px-6">
-                        <div class="flex items-center">
-                            @if($item->state == 'Đã hủy')
-                            <span class="bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">{{$item->state}}</span>
-                            @elseif($item->state == 'Chờ thanh toán')
-                            <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-900">{{$item->state}}</span>
-                            @elseif($item->state == 'Đã thanh toán')
-                            <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">{{$item->state}}</span>
-                           @endif
-                        </div>
-                    </td>
-                       <td class="py-4 px-6">
-                           <x-jet-secondary-button wire:click="detail({{$item->id}})">
-                               {{ __('Detail')}}
-                           </x-jet-secondary-button>
-                           <x-jet-secondary-button wire:click="showUpdateState({{$item->id}})">
-                            {{ __('Update')}}
-                        </x-jet-secondary-button>
-                        @if($item->state == 'Đã hủy')
-                        <x-jet-danger-button wire:click="deleteInvoice({{$item->id}})">
-                            {{ __('Delete')}}
-                        </x-jet-danger-button>
-                        @elseif($item->state == 'Đã thanh toán')
-                        <x-jet-secondary-button class="bg-green-600 text-white" wire:click="generatepdf({{$item->id}})">
-                            {{ __('Print')}}
-                        </x-jet-secondary-button>
-                        @endif
-                        <x-jet-dialog-modal wire:model="modalConfirmDeleteVisible">
-                            <x-slot name="title">
-                                {{ __('Delete')}}
+                                    <td class="py-4 px-6">
+                                        <div class="flex items-center">
+                                            {{ $item->id }}
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        {{ $item->created_at->format('d-m-Y') }}
+                                    </td>
+                                    <td class="py-4 px-9">
+                                        <div class="flex items-center">
+                                            {{ $item->amount }}
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="flex items-center">
+                                            @if ($item->state == 'Đã hủy')
+                                                <span
+                                                    class="bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">{{ $item->state }}</span>
+                                            @elseif($item->state == 'Chờ thanh toán')
+                                                <span
+                                                    class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-900">{{ $item->state }}</span>
+                                            @elseif($item->state == 'Đã thanh toán')
+                                                <span
+                                                    class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">{{ $item->state }}</span>
+                                            @endif
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <x-jet-secondary-button wire:click="detail({{ $item->id }})">
+                                            {{ __('Detail') }}
+                                        </x-jet-secondary-button>
+                                        <x-jet-secondary-button wire:click="showUpdateState({{ $item->id }})">
+                                            {{ __('Update') }}
+                                        </x-jet-secondary-button>
+                                        @if ($item->state == 'Đã hủy')
+                                            <x-jet-danger-button wire:click="deleteInvoice({{ $item->id }})">
+                                                {{ __('Delete') }}
+                                            </x-jet-danger-button>
+                                        @elseif($item->state == 'Đã thanh toán')
+                                            <x-jet-secondary-button class="bg-green-600 text-white"
+                                                wire:click="generatepdf({{ $item->id }})">
+                                                {{ __('Print') }}
+                                            </x-jet-secondary-button>
+                                        @endif
+                                        <x-jet-dialog-modal wire:model="modalConfirmDeleteVisible">
+                                            <x-slot name="title">
+                                                {{ __('Delete') }}
+                                            </x-slot>
                             </x-slot>   
-                            <x-slot name="content">
-                                {{ __('Are you sure you want to delete ?')}}
-                            </x-slot>
-                            <x-slot name="footer">
-                                <x-jet-danger-button class="ml-3 mx-4" wire:click="deleteInvoice({{$item->id}})" wire:loading.attr="disabled">
-                                    {{ __('Delete') }}
-                                </x-jet-danger-button>
-                                    <x-jet-secondary-button wire:click="$toggle('modalConfirmDeleteVisible')" wire:loading.attr="disabled">
-                                        {{ __('Cancel') }}
-                                    </x-jet-secondary-button>
-                            </x-slot>
-                        </x-jet-dialog-modal>
-                        
-                       </td>
-                   @endforeach
-                   @endif
-                </tbody>
-            </table>
-        </x-slot>
-        <x-slot name="footer">
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                            </x-slot>   
+                                            </x-slot>
+                                            <x-slot name="content">
+                                                {{ __('Are you sure you want to delete ?') }}
+                                            </x-slot>
+                                            <x-slot name="footer">
+                                                <x-jet-danger-button class="ml-3 mx-4"
+                                                    wire:click="deleteInvoice({{ $item->id }})"
+                                                    wire:loading.attr="disabled">
+                                                    {{ __('Delete') }}
+                                                </x-jet-danger-button>
+                                                <x-jet-secondary-button
+                                                    wire:click="$toggle('modalConfirmDeleteVisible')"
+                                                    wire:loading.attr="disabled">
+                                                    {{ __('Cancel') }}
+                                                </x-jet-secondary-button>
+                                            </x-slot>
+                                        </x-jet-dialog-modal>
+
+                                    </td>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+            </x-slot>
+            <x-slot name="footer">
                 <x-jet-secondary-button wire:click="$toggle('orderdetail')" wire:loading.attr="disabled">
                     {{ __('Cancel') }}
                 </x-jet-secondary-button>
-        </x-slot>
-    </x-jet-dialog-modal>
-    
-    <x-jet-dialog-modal wire:model="order_detail" maxWidth="4xl">
-        <x-slot name="title">
-            {{ __('Order detail')}}
-            @if(isset($this->modelId_detail))
-            @foreach ($detailOrder as $item)
-            #{{$item->id}}
-            @endforeach
-            @endif
-        </x-slot>
-        <x-slot name="content">
-             <table class="w-full text-sm text-left text-gray-500 ">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
-                    <tr>
-                        <th scope="col" class="py-3 px-6">
-                            {{ __('Food name')}}
-                        </th>
-                        <th scope="col" class="py-3 px-6">
-                            {{ __('Food price')}}
-                        </th>
-                        <th scope="col" class="py-3 px-6 ">
-                            {{ __('Quantity')}}
-                        </th>
-                        <th scope="col" class="py-3 px-6">
-                            {{ __('Amount')}}
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                   @if(isset($this->modelId_detail))
-                   @foreach ($detailOrder as $item)
-                   <tr class="bg-white border-b">
-                    <td class="py-4 px-6">
-                        <div class="flex items-center">
-                        {{$item->food_name}}
-                        </div>
-                    </td>
-                    <td class="py-4 px-6">
-                        <div class="flex items-center">
-                        {{$item->food_price}}
-                        </div>
-                    </td>
-                    <td class="py-4 px-9">
-                        <div class="flex items-center">
-                        {{$item->quantity}}
-                        </div>
-                    </td>
-                    <td class="py-4 px-6">
-                        <div class="flex items-center">
-                        {{$item->amount}}
-                        </div>
-                    </td>
-                </tr>
-                   @endforeach
-                   @endif
-                </tbody>
-            </table>
-            {{-- <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+            </x-slot>
+        </x-jet-dialog-modal>
+
+        <x-jet-dialog-modal wire:model="order_detail" maxWidth="4xl">
+            <x-slot name="title">
+                {{ __('Order detail') }}
+                @if (isset($this->modelId_detail))
+                    @foreach ($detailOrder as $item)
+                        #{{ $item->id }}
+                    @endforeach
+                @endif
+            </x-slot>
+            <x-slot name="content">
+                <table class="w-full text-sm text-left text-gray-500 ">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                        <tr>
+                            <th scope="col" class="py-3 px-6">
+                                {{ __('Food name') }}
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                {{ __('Food price') }}
+                            </th>
+                            <th scope="col" class="py-3 px-6 ">
+                                {{ __('Quantity') }}
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                {{ __('Amount') }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (isset($this->modelId_detail))
+                            @foreach ($detailOrder as $item)
+                                <tr class="bg-white border-b">
+                                    <td class="py-4 px-6">
+                                        <div class="flex items-center">
+                                            {{ $item->food_name }}
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="flex items-center">
+                                            {{ $item->food_price }}
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-9">
+                                        <div class="flex items-center">
+                                            {{ $item->quantity }}
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="flex items-center">
+                                            {{ $item->amount }}
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+                {{-- <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
                 <div class="flex justify-between items-center pb-4 border-b border-gray-200 dark:border-gray-700 mb-3">
                   <div class="flex flex-col">
                     <div class="text-3xl font-bold mb-1">
@@ -251,7 +349,7 @@
                     Andreas-Doe@domain.com<br>
                     +123 456 7890</p>
                   </div>
-                  @if(isset($this->modelId_detail))
+                  @if (isset($this->modelId_detail))
             @foreach ($detailOrder as $item)
                   <div class="flex-1">
                     <div class="flex justify-between mb-2">
@@ -261,7 +359,7 @@
                       <div class="flex-1 font-semibold">Ngày tạo:</div><div class="flex-1 ltr:text-right rtl:text-left">{{$item->created_at->format('d/m/Y')}}</div>
                     </div>
                     <div class="flex justify-between mb-2">
-                        @foreach($order2 as $order2)
+                        @foreach ($order2 as $order2)
                       <div class="flex-1 font-semibold">Trạng thái:</div><div class="flex-1 ltr:text-right rtl:text-left">{{$order2->state}}</div>
                       @endforeach
                     </div>
@@ -316,35 +414,35 @@
               </div>
               @endforeach
               @endif --}}
-        </x-slot>
-        <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$toggle('order_detail')" wire:loading.attr="disabled">
-                {{ __('Cancel') }}
-            </x-jet-secondary-button>
-        </x-slot>
-    </x-jet-dialog-modal>
-    <x-jet-dialog-modal wire:model="showState" maxWidth="2xl">
-        <x-slot name="title">
-            {{ __('Cập nhật trạng thái đơn hàng')}}
-        </x-slot>
-        <x-slot name="content">
-<label for="state" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Trạng thái</label>
-<select id="state" wire:model="state" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-    <option selected>Chọn trạng thái</option>
-    <option value="Đã thanh toán" >Đã thanh toán</option>
-    <option value="Chờ thanh toán">Chờ thanh toán</option>
-    <option value="Đã hủy">Đã hủy</option>
-</select>
-        </x-slot>
-        <x-slot name="footer">
-            <x-jet-secondary-button wire:click="updateState()">
-                {{ __('Cập nhật') }}
-            </x-jet-secondary-button>
+            </x-slot>
+            <x-slot name="footer">
+                <x-jet-secondary-button wire:click="$toggle('order_detail')" wire:loading.attr="disabled">
+                    {{ __('Cancel') }}
+                </x-jet-secondary-button>
+            </x-slot>
+        </x-jet-dialog-modal>
+        <x-jet-dialog-modal wire:model="showState" maxWidth="2xl">
+            <x-slot name="title">
+                {{ __('Cập nhật trạng thái đơn hàng') }}
+            </x-slot>
+            <x-slot name="content">
+                <label for="state" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Trạng
+                    thái</label>
+                <select id="state" wire:model="state"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>Chọn trạng thái</option>
+                    <option value="Đã thanh toán">Đã thanh toán</option>
+                    <option value="Chờ thanh toán">Chờ thanh toán</option>
+                    <option value="Đã hủy">Đã hủy</option>
+                </select>
+            </x-slot>
+            <x-slot name="footer">
+                <x-jet-secondary-button wire:click="updateState()">
+                    {{ __('Cập nhật') }}
+                </x-jet-secondary-button>
                 <x-jet-secondary-button wire:click="$toggle('showState')" wire:loading.attr="disabled">
                     {{ __('Cancel') }}
                 </x-jet-secondary-button>
-        </x-slot>
-    </x-jet-dialog-modal>
-</div>
-
-
+            </x-slot>
+        </x-jet-dialog-modal>
+    </div>

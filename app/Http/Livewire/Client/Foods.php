@@ -33,7 +33,7 @@ class Foods extends Component
         $cart->add([$item]);
 
         $this->emit('cart_updated');
-        session()->flash('message', 'Cập nhật giỏ hàng thành công');
+        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Cập nhật giỏ hàng thành công']);
     }
 
     public function saveComment($user_id, $food_id)
@@ -42,7 +42,7 @@ class Foods extends Component
         $comment_line = ['text' => $data['comment'], 'user_id' => $user_id, 'food_id' => $food_id];
 
         Comment::create($comment_line);
-        session()->flash('message', 'Cập nhật bình luận thành công');
+        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Cập nhật bình luận thành công']);
         $this->comment = '';
     }
 

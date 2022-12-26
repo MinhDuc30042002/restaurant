@@ -55,5 +55,31 @@ class Profile extends Component
         User::where('id', Auth::user()->id)->update([...$this->updatedData(), 'profile_photo_path' => $photo_origin ?? $this->account['profile_photo_path']]);
         $this->emit('call_mount');
         $this->emit('cart_updated');
+        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Đã cập nhật tài khoản']);
     }
+
+    protected $rules = [
+        'name' =>  'required',
+        'email' =>  'required',
+        'phone_number' =>   'required',
+        'address' =>  'required',
+    ];
+
+    protected $messages = [
+        'fillable.name.required' => ':attribute không được để trống',
+        'fillable.email.required' => ':attribute không được để trống',
+        'fillable.email.email' => ':attribute chưa đúng định dạng',
+        'fillable.phone.required' => ':attribute không được để trống',
+        'fillable.phone.digits' => ':attribute phải 10 số',
+        'fillable.phone.numeric' => ':attribute phải là số ký tự',
+        'fillable.address.required' => ':attribute không được để trống',
+        'shipRate.required' => 'Vui lòng chọn :attribute'
+    ];
+
+    protected $validationAttributes = [
+        'email' => 'Địa chỉ email',
+        'name' => 'Tên người dùng',
+        'phone' => 'Số điện thoại',
+        'address' => 'Địa chỉ',
+    ];
 }

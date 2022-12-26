@@ -1,7 +1,7 @@
 <x-layout.client>
     <div class="flex px-8 mx-auto my-6 max-w-7xl xl:px-5">
         {{-- Left menu --}}
-        <div class="w-64" aria-label="Sidebar">
+        <div class="w-64 hidden lg:block md:block" aria-label="Sidebar">
             <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
                 <ul x-data="{ currentNavLink: 'profile' }" class="space-y-5">
                     <div class="sm:hidden">
@@ -11,12 +11,16 @@
                         <select
                             class="border border-gray-300 rounded-md focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 block w-full"
                             @change="currentNavLink = $event.target.value">
-                            <option :selected="currentNavLink === 'profile'" value="profile" selected="selected">
-                                Tài khoản của tôi
-                            </option>
-                            <option :selected="currentNavLink === 'orders'" value="orders">
-                                Lịch sử đơn hàng
-                            </option>
+                            <a href="/setting/profile">
+                                <option :selected="currentNavLink === 'profile'" value="profile" selected="selected">
+                                    Tài khoản của tôi
+                                </option>
+                            </a>
+                            <a href="/setting/orders">
+                                <option :selected="currentNavLink === 'orders'" value="orders">
+                                    Lịch sử đơn hàng
+                                </option>
+                            </a>
                             <option :selected="currentNavLink === 'notifications'" value="notifications">
                                 Thông báo
                             </option>

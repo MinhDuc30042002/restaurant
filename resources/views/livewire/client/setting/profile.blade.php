@@ -1,4 +1,4 @@
-<div class="w-full mx-auto px-4 lg:px-0 flex">
+<div class="w-full mx-auto px-4 lg:px-0 sm:flex grid grid-cols-1 justify-items-center">
     <div class="mt-6 w-1/5 mx-auto">
         @if (gettype($account['profile_photo_path']) === 'object')
             <img wire:loading.class='opacity-75' class="rounded-lg mx-auto" width="100" height="100"
@@ -10,8 +10,8 @@
 
         <div class="flex items-center justify-center w-2/3 mx-auto">
             <label for="dropzone-file"
-                class="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 mt-4">
-                <div class="flex flex-col items-center justify-center">
+                class="sm:flex flex-col items-center justify-center sm:w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 mt-4">
+                <div class="flex flex-col items-center justify-center w-max">
                     <p class="block text-sm text-gray-500 p-2 font-semibold">Thay đổi</p>
                 </div>
                 <input wire:model='account.profile_photo_path' id="dropzone-file" type="file" class="hidden" />
@@ -29,9 +29,11 @@
                 <option :selected="currentTab == 'profile'" value="profile" selected="selected">
                     Tài khoản của tôi
                 </option>
-                <option :selected="currentTab == 'password'" value="password">
-                    Cập nhật mật khẩu
-                </option>
+                @if (!isset(Auth::user()->google_id))
+                    <option :selected="currentTab == 'password'" value="password">
+                        Cập nhật mật khẩu
+                    </option>
+                @endif
             </select>
         </div>
         <div class="hidden sm:block">
