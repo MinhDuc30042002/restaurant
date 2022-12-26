@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Tracking;
+use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +11,7 @@ class Order extends Model
 {
     use HasFactory;
     use Tracking;
+    use BroadcastsEvents;
 
     protected $fillable = [
         'state', 'type_id', 'partner_id', 'address', 'email', 'name', 'phone', 'amount', 'ship_rate', 'tax_float', 'subtotal_float',
@@ -20,6 +22,14 @@ class Order extends Model
         return [
             'state', 'type_id', 'partner_id', 'address', 'email', 'name', 'phone', 'amount', 'ship_rate', 'tax_float', 'subtotal_float',
         ];
+    }
+
+    public function broadcastOn($event)
+    {
+        return match ($event) {
+            'created' => ['App.Models.Order'],
+            default => [$this],
+        };
     }
 
     /*

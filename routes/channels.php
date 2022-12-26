@@ -16,3 +16,46 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+Broadcast::channel('App.Models.Food', function ($user) {
+    return true;
+});
+Broadcast::channel('App.Models.Food.{id}', function ($user, $id) {
+    return true;
+});
+Broadcast::channel('App.Models.Order', function ($user) {
+    return true;
+});
+Broadcast::channel('App.Models.Order.{id}', function ($user, $id) {
+    return true;
+});
+Broadcast::channel('App.Models.Comment', function ($user) {
+    return true;
+});
+Broadcast::channel('App.Models.Comment.{id}', function ($user, $id) {
+    return true;
+});
+Broadcast::channel('App.Models.Category', function ($user) {
+    return true;
+});
+Broadcast::channel('App.Models.Category.{id}', function ($user, $id) {
+    return true;
+});
+Broadcast::channel('App.Models.Partner', function ($user) {
+    return true;
+});
+Broadcast::channel('App.Models.Partner.{id}', function ($user, $id) {
+    return true;
+});
+Broadcast::channel('App.Models.Table', function ($user) {
+    return true;
+});
+Broadcast::channel('App.Models.Table.{id}', function ($user, $id) {
+    return true;
+});
+Broadcast::channel('App.Models.User', function ($user) {
+    return true;
+});
+Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
+    return true;
+});

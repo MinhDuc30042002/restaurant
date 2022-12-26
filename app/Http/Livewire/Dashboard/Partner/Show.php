@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Dashboard\Partner;
 use App\Models\Order;
 use App\Models\OrderLine;
 use Livewire\Component;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class Show extends Component
 {
@@ -49,7 +49,7 @@ class Show extends Component
         $this->modalConfirmDeleteVisible = false;
     }
     public function generatepdf()
-    {  
+    {
         $order2 = Order::where('partner_id',$this->modelId_detail)->get();
         $order1 = Order::find($this->modelId_detail);
         $partner2 = $order1->partner()->get();
@@ -72,7 +72,7 @@ class Show extends Component
         $this->validate();
         $product = $this->detailOrder[$productIndex] ?? NULL;
         OrderLine::find($product['id'])->update(['quantity' => $product->quantity]);
-        
+
         $this->editedProductIndex = null;
     }
 }

@@ -13,4 +13,9 @@ class HomeController extends Controller
         $categories = Category::all();
         return view('index', ['data' => $categories]);
     }
+
+    public function contact()
+    {
+        return view('client.contact.index');
+    }
 }

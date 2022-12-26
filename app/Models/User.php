@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Tracking;
+use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,6 +20,7 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use Tracking;
+    use BroadcastsEvents;
 
     /**
      * The attributes that are mass assignable.
@@ -36,6 +38,7 @@ class User extends Authenticatable
         'password',
         'is_staff',
         'is_manager',
+        'partner_id'
     ];
 
     /**
@@ -81,7 +84,16 @@ class User extends Authenticatable
             'password',
             'is_staff',
             'is_manager',
+
         ];
+    }
+
+    public function broadcastOn($event)
+    {
+        return match ($event) {
+            'created' => ['App.Models.User'],
+            default => [$this],
+        };
     }
 
     /*
@@ -93,6 +105,11 @@ class User extends Authenticatable
     public function groups()
     {
         return $this->belongsToMany(Group::class, 'group_user', 'user_id', 'group_id');
+    }
+
+    public function partners()
+    {
+        return $this->hasOne(Partner::class, 'partner_id');
     }
 
     public function permissions(): Collection
