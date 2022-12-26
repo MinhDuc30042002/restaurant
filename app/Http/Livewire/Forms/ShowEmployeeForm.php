@@ -53,8 +53,10 @@ class ShowEmployeeForm extends Component
         $this->manager = $user->is_manager;
         $this->profile_photo_path = $user->profile_photo_path;
 
-        $gr = $this->user->groups()->get();
-        $this->group = $gr[0]->name;
+        $gr = $this->user->groups;
+        if ($gr->count()) {
+            $this->group = $gr[0]->name;
+        }
 
         $this->created_at = $user->created_at;
         $this->open = true;
