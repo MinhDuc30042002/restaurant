@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <livewire:dashboard.partner.index />
+            <livewire:dashboard.order.show :action="$action" :order_id="$order_id"/>
         </div>
     </div>
 

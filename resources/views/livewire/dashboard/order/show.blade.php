@@ -1,112 +1,9 @@
-{{-- <div>
-    <div class="md:flex md:items-center md:justify-between py-8 p-4">
-        <div class="flex-1 min-w-0">
-            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Chi tiết đơn hàng
-                #{{ $modelId_detail }}</h2>
-        </div>
-        <!-- print -->
-        <button wire:click="generatepdf()"
-            class="inline-flex items-center justify-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-medium text-white hover:bg-green-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-600 transition sm:text-sm">
-            {{ __('Print') }}
-        </button>
-        <!-- End print -->
-    </div>
-
-    <div class="overflow-x-auto relative">
-        <table class="w-full text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 text-center">
-                <tr>
-                    <th scope="col" class="py-3 px-6">
-                        {{ __('STT') }}
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        {{ __('Name') }}
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        {{ __('Quantity') }}
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        {{ __('Food price') }}
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        {{ __('Action') }}
-                    </th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @php
-                    $stt = 0;
-                @endphp
-                @foreach ($detailOrder as $index => $item)
-                    <tr class="bg-white border-b text-center">
-                        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap ">
-                            {{ ++$stt }}
-                        </th>
-                        <td class="py-4 px-6">
-                            <span class="text-base font-semibold">
-                                {{ $item->food_name }}
-                            </span>
-                        </td>
-                        <td class="py-4 px-6">
-                            @if ($editedProductIndex !== $index)
-                                {{ $item->quantity }}
-                            @else
-                                <input type="number" class="w-14 rounded-lg"
-                                    wire:model.defer="detailOrder.{{ $index }}.quantity">
-                            @endif
-                        </td>
-                        <td class="py-4 px-6">
-                            {{ $item->food_price }}
-                        </td>
-                        <td class="py-4 px-6">
-                            @if ($editedProductIndex !== $index)
-                                <button wire:click.prevent="editProduct({{ $index }})" type="button"
-                                    class="text-gray-600 hover:text-red-700">
-                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                                        </path>
-                                    </svg>
-                                </button>
-                            @else
-                                <button wire:click.prevent="saveProduct({{ $index }})" type="button"
-                                    class="text-gray-600 hover:text-red-700"><svg xmlns="http://www.w3.org/2000/svg"
-                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                        class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0120.25 6v12A2.25 2.25 0 0118 20.25H6A2.25 2.25 0 013.75 18V6A2.25 2.25 0 016 3.75h1.5m9 0h-9" />
-                                    </svg>
-                                </button>
-                            @endif
-                            <button wire:click="deleteInvoice({{ $item->id }})" type="button"
-                                class="text-gray-600 hover:text-red-700">
-                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                                    </path>
-                                </svg>
-                            </button>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <div class="p-2">
-
-        </div>
-    </div>
-</div> --}}
-
-
 <div class="py-6">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <div class="md:flex md:items-center md:justify-between">
             <div class="flex-1 min-w-0">
                 <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-                    Đơn hàng: #{{ $modelId_detail }}
+                    Đơn hàng: #{{ $order_detail->id }}
                 </h2>
                 <div class="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">
                     <div class="mt-2 flex items-center text-sm text-gray-500">
@@ -115,11 +12,16 @@
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
                             </path>
-                        </svg> {{ $order->created_at }}
+                        </svg> {{ $order_detail->created_at }}
                     </div>
                     <div class="mt-2 flex items-center text-sm text-gray-500 space-x-1">
-                        <span class="block w-2 h-2 rounded-full" style="background-color: #fbbf24"></span>
-                        <span>{{ $order->state }}</span>
+                        @if ($order_detail->state == 'Đã xác nhận')
+                            <span class="block w-2 h-2 rounded-full" style="background-color: #20c929"></span>
+                            <span>{{ $order_detail->state }}</span>
+                        @else
+                            <span class="block w-2 h-2 rounded-full" style="background-color: #fbbf24"></span>
+                            <span>{{ $order_detail->state }}</span>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -157,7 +59,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200">
-                                        @foreach ($detailOrder as $line)
+                                        @foreach ($order_lines as $line)
                                             <tr>
                                                 <td
                                                     class="px-3 py-4 sm:px-6 whitespace-nowrap w-full max-w-sm text-sm text-gray-5">
@@ -205,11 +107,19 @@
                 </div>
                 <div class="mt-4">
                     <!-- print -->
-                    <button wire:click="generatepdf()"
+                    <button wire:click="generatepdf({{ $order_detail->id }})"
                         class="inline-flex items-center justify-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-medium text-white hover:bg-green-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-600 transition sm:text-sm">
                         {{ __('Print') }}
                     </button>
                     <!-- End print -->
+                    <!-- Confirm order -->
+                    @if ($order_detail->state === 'Chờ xác nhận')
+                        <button wire:click="changeState({{ $order_detail->id }})"
+                            class="inline-flex items-center justify-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-medium text-white hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-600 transition sm:text-sm">
+                            Duyệt đơn hàng
+                        </button>
+                    @endif
+                    <!-- End confirm order -->
                 </div>
             </div>
             <div class="mt-6 w-2/6 mx-auto">
@@ -233,7 +143,7 @@
                                 </div>
                                 <div class="flex justify-between items-center w-full">
                                     <p class="text-sm font-medium hover:text-blue-600">
-                                        {{ $order->name }}
+                                        {{ $order_detail->name }}
                                     </p>
                                     <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -249,10 +159,10 @@
                                 </h4>
                                 <ul class="mt-3 space-y-1">
                                     <li class="">
-                                        {{ $order->email }}
+                                        {{ $order_detail->email }}
                                     </li>
                                     <li class="text-gray-500">
-                                        {{ $order->phone }}
+                                        {{ $order_detail->phone }}
                                     </li>
                                 </ul>
                             </div>
@@ -262,7 +172,7 @@
                                     Địa chỉ giao hàng
                                 </h4>
                                 <address class="mt-2 not-italic">
-                                    {{ $order->address }}
+                                    {{ $order_detail->address }}
                                 </address>
                             </div>
                         </div>
@@ -284,7 +194,7 @@
                                     <dd
                                         class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 sm:text-right tabular-nums">
                                         <b>
-                                            {{ number_format($order->subtotal_float, 0, '', '.') }} đ
+                                            {{ number_format($order_detail->subtotal_float, 0, '', '.') }} đ
                                         </b>
                                     </dd>
                                 </div>
@@ -295,7 +205,7 @@
                                     <dd
                                         class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 sm:text-right tabular-nums">
                                         <b>
-                                            {{ number_format($order->ship_rate, 0, '', '.') }} đ
+                                            {{ number_format($order_detail->ship_rate, 0, '', '.') }} đ
                                         </b>
                                     </dd>
                                 </div>
@@ -306,7 +216,7 @@
                                     <dd
                                         class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 sm:text-right tabular-nums">
                                         <b>
-                                            {{ number_format($order->tax_float, 0, '', '.') }} đ
+                                            {{ number_format($order_detail->tax_float, 0, '', '.') }} đ
                                         </b>
                                     </dd>
                                 </div>
@@ -316,7 +226,7 @@
                                     </dt>
                                     <dd
                                         class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 sm:text-right tabular-nums">
-                                        <b>{{ number_format($order->amount, 0, '', '.') }} đ</b>
+                                        <b>{{ number_format($order_detail->amount, 0, '', '.') }} đ</b>
                                     </dd>
                                 </div>
                             </dl>

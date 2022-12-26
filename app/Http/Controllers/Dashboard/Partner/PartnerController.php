@@ -16,7 +16,7 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        return view('dashboard.partner.index',);
+        return view('dashboard.partner.index');
     }
 
     /**

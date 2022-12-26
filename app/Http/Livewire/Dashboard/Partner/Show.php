@@ -40,7 +40,7 @@ class Show extends Component
     {
         $order1 = Order::find($this->modelId_detail);
         $this->detailOrder = $order1->lines()->where('order_id', $this->modelId_detail)->get();
-        return view('livewire.dashboard.partner.show',['detailOrder' => $this->detailOrder]);
+        return view('livewire.dashboard.partner.show',['detailOrder' => $this->detailOrder, 'order' => $order1]);
     }
     public function deleteInvoice($id)
     {

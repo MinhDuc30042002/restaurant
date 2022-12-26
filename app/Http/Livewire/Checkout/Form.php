@@ -12,10 +12,11 @@ class Form extends Component
     public $fillable = [];
     public $shipRate;
     public $setClicked = false;
+    public $taxRate = 0;
 
     public function render(Cart $cart)
     {
-        return view('livewire.checkout.form', ['data' => $cart->content(), 'subtotal' => $cart->subtotalFloat(), 'taxRate' => $cart->taxFloat()]);
+        return view('livewire.checkout.form', ['data' => $cart->content(), 'subtotal' => $cart->subtotalFloat()]);
     }
 
     public function autoRefill()
@@ -43,10 +44,11 @@ class Form extends Component
         ];
     }
 
-    public function chooseShipRate()
+    public function chooseShipRate(Cart $cart)
     {
         $this->shipRate = 25000;
         $this->setClicked = true;
+        $this->taxRate = ($cart->subtotalFloat() + $this->shipRate) * 0.1;
     }
 
     public function sendOrder(Cart $cart)

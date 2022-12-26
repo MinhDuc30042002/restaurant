@@ -29,7 +29,7 @@ class Foods extends Component
     public function addToCart(Cart $cart)
     {
         $item = ['id' => $this->data->id, 'name' => $this->data->name, 'qty' => $this->addToCart['quantity'], 'price' => $this->data->price, 'weight' => 0, 'options' => ['image' => $this->data->image]];
-        $cart->setGlobalTax(0.5);
+        $cart->setGlobalTax(0);
         $cart->add([$item]);
 
         $this->emit('cart_updated');

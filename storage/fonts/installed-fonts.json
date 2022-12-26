@@ -9,9 +9,9 @@
         "bold_italic": "C:\\Users\\ASUS\\OneDrive\\M\u00e1y t\u00ednh\\Graduate-Project\\graduation-project-phase-2\\vendor\\dompdf\\dompdf\/lib\/fonts\/Helvetica-BoldOblique"
     },
     "bevietnampro": {
-        "normal": "bevietnampro_normal_9d77d9cd9076533e8ff9d6bce838ccd5",
-        "italic": "C:\\Users\\ASUS\\OneDrive\\M\u00e1y t\u00ednh\\Graduate-Project\\graduation-project-phase-2\\storage\\fonts\/bevietnampro_italic_9d77d9cd9076533e8ff9d6bce838ccd5",
-        "bold": "C:\\Users\\ASUS\\OneDrive\\M\u00e1y t\u00ednh\\Graduate-Project\\graduation-project-phase-2\\storage\\fonts\/bevietnampro_bold_36c4cc121ff20cee908ed227d3ce909c"
+        "normal": "C:\\xampp\\htdocs\\graduation-project-phase-2\\storage\\fonts\/bevietnampro_normal_9d77d9cd9076533e8ff9d6bce838ccd5",
+        "italic": "C:\\xampp\\htdocs\\graduation-project-phase-2\\storage\\fonts\/bevietnampro_italic_f110a041a5f22361b16ffe69a24b1648",
+        "bold": "bevietnampro_bold_29c9f42375c775439e58a3e92feef55b"
     },
     "fontawesome": {
         "normal": "fontawesome_normal_a07c54af815ea54af1b5e5aa13cc5f8b"

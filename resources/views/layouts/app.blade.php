@@ -99,8 +99,6 @@
     <div x-data="setup()"">
         <!--  -->
         <div class="flex h-screen antialiased text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
-
-
             <!-- Sidebar -->
             <aside class="flex-shrink-0 hidden w-64 bg-white border-r dark:border-blue-800 dark:bg-darker md:block">
                 <div class="flex flex-col h-full">
@@ -162,16 +160,49 @@
                             </svg> Nhóm
                         </a>
 
-                        <a href="{{route('partners.index')}}"
-                            class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
-                            <svg class="mr-3 flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4">
-                                </path>
-                            </svg> Đơn hàng
-                        </a>
+
+                        <div class="relative" x-data="{ open: false }">
+                            <div @click="open = ! open">
+                                <button class="group -m-2 p-2 flex items-center" type="button">
+                                    <span class="sr-only">Open user menu</span>
+                                    <a
+                                        class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
+                                        <svg class="mr-3 flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4">
+                                            </path>
+                                        </svg> Đơn hàng
+                                    </a>
+                                </button>
+                            </div>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="absolute z-50 mt-2 w-60 rounded-md shadow-lg origin-top-right right-0"
+                                style="display: none;">
+                                <div class="m-auto rounded-md ring-1 ring-opacity-5 py-1 bg-white">
+                                    <div class="px-4 py-2 ">
+                                        <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                            aria-labelledby="dropdownUserAvatarButton">
+                                            <li>
+                                                <a href="/dashboard/orders/online"
+                                                    class="block py-2 px-4 hover:bg-gray-100">Đơn hàng online</a>
+                                            </li>
+                                            <li>
+                                                <a href="/dashboard/orders/offline"
+                                                    class="block py-2 px-4 hover:bg-gray-100">Tại quán</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </nav>
                 </div>
             </aside>

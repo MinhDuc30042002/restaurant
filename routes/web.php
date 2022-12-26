@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\Partner\PartnerController;
 // use App\Http\Controllers\Dashboard\TableController;
 use App\Http\Controllers\Dashboard\FoodController;
+use App\Http\Controllers\Dashboard\OrderController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
@@ -39,19 +40,21 @@ Route::middleware([
         Route::resource('categories', CategoriesController::class);
         Route::resource('food', FoodController::class);
         Route::resource('partners', PartnerController::class);
+        Route::get('orders/{action}', [OrderController::class, 'index']);
+        Route::get('orders/{action}/{id}', [OrderController::class, 'show']);
     });
     Route::get('/dashboard/employees', [App\Http\Controllers\Dashboard\EmployeeController::class, 'index'])->name('employees');
     Route::get('/dashboard/users', function () {
         return 'Page users';
     })->name('users');
-    });
-    Route::resource('/dashboard/groups', App\Http\Controllers\Dashboard\GroupController::class);
-    Route::get('/dashboard/services', function () {
-        return 'Page services';
-    })->name('services');
-    Route::get('/dashboard/foods', function () {
-        return 'Page foods';
-    })->name('foods');
+});
+Route::resource('/dashboard/groups', App\Http\Controllers\Dashboard\GroupController::class);
+Route::get('/dashboard/services', function () {
+    return 'Page services';
+})->name('services');
+Route::get('/dashboard/foods', function () {
+    return 'Page foods';
+})->name('foods');
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/mon-an/{slug}', [ClientFoodController::class, 'index']);
 Route::resource('the-loai', CategoryController::class);
