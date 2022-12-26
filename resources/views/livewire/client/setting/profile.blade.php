@@ -5,7 +5,7 @@
                 src="{{ @$account['profile_photo_path']->temporaryUrl() }}" alt="Avatar">
         @else
             <img wire:loading.class='opacity-75' class="rounded-lg mx-auto" width="100" height="100"
-                src="{{ asset('profile_photos/' . Auth::user()->profile_photo_path) }}" alt="Avatar">
+                src="{{ asset(Auth::user()->profile_photo_path) }}" alt="Avatar">
         @endif
 
         <div class="flex items-center justify-center w-2/3 mx-auto">
