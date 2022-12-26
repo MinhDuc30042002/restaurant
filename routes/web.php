@@ -74,6 +74,6 @@ Route::get('/vnpay-return', function (Request $request){
     if ($request->vnp_ResponseCode == '00') {
         $order = Order::find($request->vnp_TxnRef);
         $order->update(['state' => 'Đã thanh toán']);
-        return redirect(route('settings.orders'));
+        return redirect(route('setting.orders'));
     } 
 });
