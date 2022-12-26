@@ -7,6 +7,7 @@ use App\Http\Controllers\Client\FoodController as ClientFoodController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProfileController;
 use App\Http\Controllers\Dashboard\CategoriesController;
+use App\Http\Controllers\Dashboard\DasboardController;
 use App\Http\Controllers\Dashboard\Partner\PartnerController;
 // use App\Http\Controllers\Dashboard\TableController;
 use App\Http\Controllers\Dashboard\FoodController;
@@ -34,7 +35,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::prefix('dashboard')->group(function () {
-        Route::get('/', function () {return view('dashboard');})->name('dashboard');
+        Route::get('/', [DasboardController::class,'index'])->name('dashboard');
         Route::resource('categories', CategoriesController::class);
         Route::resource('food', FoodController::class);
         Route::resource('partners', PartnerController::class);
