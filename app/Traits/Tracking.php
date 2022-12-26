@@ -57,6 +57,9 @@ trait Tracking
             'res_id' => $this->id,
         ])->first();
         $messages = $activity ? $activity->messages : [];
+        if ($messages->count()) {
+            $messages = $messages->sortByDesc('updated_at');
+        }
 
         return $messages;
     }

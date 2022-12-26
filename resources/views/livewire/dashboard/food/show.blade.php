@@ -104,7 +104,7 @@
 
     </div>
     <div class="flex flex-col">
-        @foreach ($foodDetail->getMessages()->sortByDesc('updated_at') as $log)
+        @foreach ($foodDetail->getMessages() as $log)
         <div>
             <div>
                 <button class="group -m-2 p-2 flex items-center"
