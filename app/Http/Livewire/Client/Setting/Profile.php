@@ -52,7 +52,7 @@ class Profile extends Component
             $photo_origin = $this->account['profile_photo_path']->getClientOriginalName();
         }
 
-        User::where('id', Auth::user()->id)->update([...$this->updatedData(), 'profile_photo_path' => $photo_origin ?? $this->account['profile_photo_path']]);
+        User::where('id', Auth::user()->id)->update([...$this->updatedData(), 'profile_photo_path' => 'profile-photos/'.$photo_origin ?? $this->account['profile_photo_path']]);
         $this->emit('call_mount');
         $this->emit('cart_updated');
         $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Đã cập nhật tài khoản']);
