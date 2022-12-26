@@ -548,7 +548,7 @@
                                                                     class="divide-y divide-gray-200 overflow-auto">
                                                                     @foreach ($cart as $item)
                                                                         <li class="py-6 flex">
-                                                                            <img src="{{ asset('images/products/' . $item->options['image']) }}"
+                                                                            <img src="{{ asset('storage/upload/' . $item->options['image']) }}"
                                                                                 alt="{{ $item->image }}"
                                                                                 class="flex-none h-16 w-16 rounded-md border border-gray-200 object-cover object-center">
                                                                             <div

@@ -112,7 +112,7 @@
                                         @foreach ($order->lines()->get() as $item)
                                             <!-- Items order -->
                                             <li class="flex p-4 sm:p-6 space-x-6">
-                                                <img src="{{ asset('images/products/' . $item->food_image) }}"
+                                                <img src="{{ asset('storage/upload/' . $item->food_image) }}"
                                                     alt="{{ $item->food_image }}"
                                                     class="flex-none w-28 h-28 bg-gray-100 rounded-md object-center object-cover sm:w-32 sm:h-32">
                                                 <div class="flex-auto flex flex-col space-y-1">
@@ -217,7 +217,7 @@
                                         @foreach ($order_pending->lines()->get() as $item)
                                             <!-- Items order -->
                                             <li class="flex p-4 sm:p-6 space-x-6">
-                                                <img src="{{ asset('images/products/' . $item->food_image) }}"
+                                                <img src="{{ asset('storage/upload/' . $item->food_image) }}"
                                                     alt="{{ $item->food_image }}"
                                                     class="flex-none w-28 h-28 bg-gray-100 rounded-md object-center object-cover sm:w-32 sm:h-32">
                                                 <div class="flex-auto flex flex-col space-y-1">
@@ -321,7 +321,7 @@
                                         @foreach ($order_handle->lines()->get() as $item)
                                             <!-- Items order -->
                                             <li class="flex p-4 sm:p-6 space-x-6">
-                                                <img src="{{ asset('images/products/' . $item->food_image) }}"
+                                                <img src="{{ asset('storage/upload/' . $item->food_image) }}"
                                                     alt="{{ $item->food_image }}"
                                                     class="flex-none w-28 h-28 bg-gray-100 rounded-md object-center object-cover sm:w-32 sm:h-32">
                                                 <div class="flex-auto flex flex-col space-y-1">

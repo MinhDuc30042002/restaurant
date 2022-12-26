@@ -230,7 +230,7 @@
                         <li class="flex items-start space-x-4 pb-6">
                             <div class="flex-shrink-0">
                                 <img class="w-20 h-auto rounded-md"
-                                    src="{{ asset('images/products/' . $item->options['image']) }}"
+                                    src="{{ asset('storage/upload/' . $item->options['image']) }}"
                                     alt="{{ $item->options['image'] }}">
 
                             </div>

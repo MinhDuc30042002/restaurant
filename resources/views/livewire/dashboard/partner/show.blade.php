@@ -164,7 +164,7 @@
                                                     <div class="flex items-center">
                                                         <div class="h-10 w-10 flex-shrink-0">
                                                             <img class="h-10 w-10 rounded object-center object-cover"
-                                                                src="{{ asset('images/products/' . $line->food_image) }}"
+                                                                src="{{ asset('storage/upload/' . $line->food_image) }}"
                                                                 alt="{{ $line->food_image }}">
                                                         </div>
                                                         <div class="ml-4 max-w-xs flex flex-col">
