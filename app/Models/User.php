@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Tracking;
+use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,6 +20,7 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use Tracking;
+    use BroadcastsEvents;
 
     /**
      * The attributes that are mass assignable.
@@ -84,6 +86,14 @@ class User extends Authenticatable
             'is_manager',
 
         ];
+    }
+
+    public function broadcastOn($event)
+    {
+        return match ($event) {
+            'created' => ['App.Models.User'],
+            default => [$this],
+        };
     }
 
     /*

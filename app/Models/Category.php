@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Tracking;
+use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -11,6 +12,7 @@ class Category extends Model
 {
     use HasFactory;
     use Tracking;
+    use BroadcastsEvents;
 
     protected $fillable = [
         'name', 'slug',
@@ -21,6 +23,14 @@ class Category extends Model
         return [
             'name',
         ];
+    }
+
+    public function broadcastOn($event)
+    {
+        return match ($event) {
+            'created' => ['App.Models.Category'],
+            default => [$this],
+        };
     }
 
     /*
