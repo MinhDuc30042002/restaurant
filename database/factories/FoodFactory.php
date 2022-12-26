@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class CommentFactory extends Factory
+class FoodFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,11 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'text' => fake()->name(),
-            'user_id' => rand(4, 16),
-            'food_id' => rand(1, 41),
+            'name' => fake()->unique()->name(),
+            'price' => random_int(50, 100) * 1000.0,
+            'available_quantity' => random_int(10, 20),
+            'image' => 'download.jpg',
+            'description' => fake()->text(),
         ];
     }
 }

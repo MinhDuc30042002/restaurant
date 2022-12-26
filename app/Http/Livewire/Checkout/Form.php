@@ -10,9 +10,14 @@ use Livewire\Component;
 class Form extends Component
 {
     public $fillable = [];
+
     public $shipRate;
+
     public $setClicked = false;
+
     public $taxRate = 0;
+
+    public $paymentMethod;
 
     public function render(Cart $cart)
     {
@@ -35,11 +40,18 @@ class Form extends Component
 
     public function modelDataAuth()
     {
+        $user = Auth::user();
+        $partner = $user->partner;
+        $partner_id = null;
+        if ($partner) {
+            $partner_id = $partner->id;
+        }
+
         return [
             $this->fillable['name'] = Auth::user()->name,
             $this->fillable['email'] = Auth::user()->email,
             $this->fillable['phone'] = Auth::user()->phone_number,
-            $this->fillable['partner_id'] = Auth::user()->id,
+            $this->fillable['partner_id'] = $partner_id,
             $this->fillable['address'] = Auth::user()->address,
         ];
     }
@@ -65,7 +77,12 @@ class Form extends Component
             $order_id->add_line($item->id, $item->qty);
         }
         $cart->destroy();
-        return redirect('/setting/order/' . $order['id']);
+
+        if ($this->paymentMethod == 'online') {
+            return $order->checkout();
+        }
+
+        return redirect('/setting/order/'.$order['id']);
     }
 
     protected $rules = [
@@ -73,7 +90,7 @@ class Form extends Component
         'fillable.email' => 'required | email',
         'fillable.phone' => 'required | digits:10 | numeric',
         'fillable.address' => 'required',
-        'shipRate' => 'required'
+        'shipRate' => 'required',
     ];
 
     protected $messages = [
@@ -84,7 +101,7 @@ class Form extends Component
         'fillable.phone.digits' => ':attribute phải 10 số',
         'fillable.phone.numeric' => ':attribute phải là số ký tự',
         'fillable.address.required' => ':attribute không được để trống',
-        'shipRate.required' => 'Vui lòng chọn :attribute'
+        'shipRate.required' => 'Vui lòng chọn :attribute',
     ];
 
     protected $validationAttributes = [
@@ -92,6 +109,6 @@ class Form extends Component
         'fillable.name' => 'Tên',
         'fillable.phone' => 'Số điện thoại',
         'fillable.address' => 'Địa chỉ',
-        'shipRate' => 'phương thức vận chuyển'
+        'shipRate' => 'phương thức vận chuyển',
     ];
 }
