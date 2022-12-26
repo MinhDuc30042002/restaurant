@@ -20,6 +20,8 @@ class Index extends Component
 
     public $modelId;
 
+    protected $listeners = ['echo:App.Models.Food,.FoodCreated' => 'getFoods'];
+
     protected $queryString = [
         'selectedCategories' => ['as' => 'categories'],
         'search' => ['as' => 'q'],

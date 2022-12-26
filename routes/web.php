@@ -26,17 +26,15 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 |
 */
 
+//DASHBOARD
 Route::middleware([
     'staff',
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
     Route::prefix('dashboard')->group(function () {
+        Route::get('/', function () {return view('dashboard');})->name('dashboard');
         Route::resource('categories', CategoriesController::class);
         Route::resource('food', FoodController::class);
         Route::resource('partners', PartnerController::class);
@@ -44,18 +42,11 @@ Route::middleware([
         Route::get('orders/{action}/{id}', [OrderController::class, 'show']);
     });
     Route::get('/dashboard/employees', [App\Http\Controllers\Dashboard\EmployeeController::class, 'index'])->name('employees');
-    Route::get('/dashboard/users', function () {
-        return 'Page users';
-    })->name('users');
+    Route::resource('/dashboard/groups', App\Http\Controllers\Dashboard\GroupController::class);
 });
-Route::resource('/dashboard/groups', App\Http\Controllers\Dashboard\GroupController::class);
-Route::get('/dashboard/services', function () {
-    return 'Page services';
-})->name('services');
-Route::get('/dashboard/foods', function () {
-    return 'Page foods';
-})->name('foods');
+
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/lien-he', [HomeController::class, 'contact'])->name('contact');
 Route::get('/mon-an/{slug}', [ClientFoodController::class, 'index']);
 Route::resource('the-loai', CategoryController::class);
 Route::get('/cart', [CartController::class, 'index']);

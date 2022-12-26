@@ -103,7 +103,7 @@
             <div class="mt-2 text-sm text-gray-500">
                 Authentication and registration views are included with Laravel Jetstream, as well as support for user email verification and resetting forgotten passwords. So, you're free to get started what matters most: building your application.
             </div>
-            <a href="{{route('foods')}}">
+            <a href="{{route('food.index')}}">
                 <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
                         <div>Khám phá danh sách sản phẩm</div>
 

@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use App\Models\Partner;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -47,7 +48,12 @@ class CreateNewUser implements CreatesNewUsers
             'password.confirmed' => 'Mật khẩu xác nhận không trùng khớp',
 
         ])->validate();
-
+        $partner = Partner::create([
+            'name' => $input['firstname'].' '.$input['lastname'],
+            'phone' => $input['phone_number'],
+            'email' => $input['email'],
+            'address' => $input['address'],
+        ]);
         return User::create([
             'name' => $input['firstname'].' '.$input['lastname'],
             'email' => $input['email'],
@@ -58,6 +64,7 @@ class CreateNewUser implements CreatesNewUsers
             'phone_number' => $input['phone_number'],
             'address' => $input['address'],
             'password' => Hash::make($input['password']),
+            'partner_id' => $partner->id,
         ]);
     }
 }
