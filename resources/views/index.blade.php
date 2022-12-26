@@ -19,8 +19,8 @@
                 <div aria-hidden="true" class="absolute inset-0 flex flex-col sm:hidden">
                     <div class="flex-1 relative w-full bg-gray-800">
                         <div class="absolute inset-0 overflow-hidden">
-                            <img src="https://xinhevent.com/wp-content/uploads/2020/06/M%E1%BA%ABu-b%C4%83ng-r%C3%B4n-%C4%91%E1%BA%B9p-khuy%E1%BA%BFn-m%C3%A3i.jpg" alt="Mid-Season Sale"
-                                class="w-full h-full object-center object-cover">
+                            <img src="https://xinhevent.com/wp-content/uploads/2020/06/M%E1%BA%ABu-b%C4%83ng-r%C3%B4n-%C4%91%E1%BA%B9p-khuy%E1%BA%BFn-m%C3%A3i.jpg"
+                                alt="Mid-Season Sale" class="w-full h-full object-center object-cover">
                         </div>
                         <div class="absolute inset-0 bg-gray-900 opacity-50"></div>
                     </div>
@@ -42,8 +42,8 @@
                         <div>
                             <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                                 <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                                    <img src="https://dashboard-api.flyfood.vn/system/product_images/4079/image.jpg"
-                                        alt="Món ngón mỗi ngày" class="w-full h-full object-center object-cover">
+                                    <img src="{{ asset('images/products/37.jpg') }}" alt="Món ngón mỗi ngày"
+                                        class="w-full h-full object-center object-cover">
                                 </div>
                                 <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50">
                                 </div>
@@ -68,8 +68,8 @@
                         <div>
                             <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                                 <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                                    <img src="	https://dashboard-api.flyfood.vn/system/product_images/4014/image.jpg"
-                                        alt="Hình ảnh các món gà" class="w-full h-full object-center object-cover">
+                                    <img src="{{ asset('images/products/2.jpg') }}" alt="Hình ảnh các món gà"
+                                        class="w-full h-full object-center object-cover">
                                 </div>
                                 <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50">
                                 </div>
@@ -94,8 +94,8 @@
                         <div>
                             <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                                 <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                                    <img src="https://dashboard-api.flyfood.vn/system/product_images/3745/image.jpg"
-                                        alt="Accessories" class="w-full h-full object-center object-cover">
+                                    <img src="{{ asset('images/products/7.jpg') }}" alt="Accessories"
+                                        class="w-full h-full object-center object-cover">
                                 </div>
                                 <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50">
                                 </div>
@@ -120,8 +120,8 @@
                         <div>
                             <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                                 <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                                    <img src="https://dashboard-api.flyfood.vn/system/product_images/3654/image.jpg"
-                                        alt="Accessories" class="w-full h-full object-center object-cover">
+                                    <img src="{{ asset('images/products/22.jpg') }}" alt="Accessories"
+                                        class="w-full h-full object-center object-cover">
                                 </div>
                                 <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50">
                                 </div>
@@ -146,8 +146,8 @@
                         <div>
                             <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                                 <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                                    <img src="https://dashboard-api.flyfood.vn/system/product_images/3822/image.jpg"
-                                        alt="Accessories" class="w-full h-full object-center object-cover">
+                                    <img src="{{ asset('images/products/30.jpg') }}" alt="Accessories"
+                                        class="w-full h-full object-center object-cover">
                                 </div>
                                 <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50">
                                 </div>
@@ -185,7 +185,8 @@
                         </a>
                     </div>
 
-                    <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-5 sm:gap-x-6 md:grid-cols-2 md:gap-8 xl:grid-cols-5">
+                    <div
+                        class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-5 sm:gap-x-6 md:grid-cols-2 md:gap-8 xl:grid-cols-5">
                         @foreach ($item->foods()->get() as $food)
                             <div class="group relative">
                                 <div class="rounded-md overflow-hidden group-hover:opacity-75">
@@ -210,7 +211,8 @@
 
                     </div>
                     <div class="mt-8 text-sm md:hidden">
-                        <a href="/the-loai/{{ $item->slug }}" class="font-medium text-blue-600 hover:text-blue-500">
+                        <a href="/the-loai/{{ $item->slug }}"
+                            class="font-medium text-blue-600 hover:text-blue-500">
                             Xem thêm<span aria-hidden="true"> &rarr;</span>
                         </a>
                     </div>
