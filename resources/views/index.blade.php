@@ -190,7 +190,7 @@
                             <div class="group relative">
                                 <div class="rounded-md overflow-hidden group-hover:opacity-75">
                                     <img class="w-full h-36 object-cover object-center" loading="lazy"
-                                        src="{{ asset('images/products/' . $food->image) }}"
+                                        src="{{ asset('storage/upload/' . $food->image) }}"
                                         onerror="this.src='https://dashboard-api.flyfood.vn/system/product_images/3822/image.jpg'"
                                         alt="Food image">
                                 </div>
