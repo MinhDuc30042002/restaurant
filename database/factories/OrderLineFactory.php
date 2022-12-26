@@ -19,9 +19,9 @@ class OrderLineFactory extends Factory
     {
         return [
             'order_id' => Order::factory(),
-            'food_id' => rand(1,43),
-            'food_price' =>  fake()->randomFloat(2, max: '9' * 8),
-            'amount' =>  fake()->randomFloat(2, max: '9' * 8)
+            'food_id' => rand(1, 43),
+            'food_price' => fake()->randomFloat(2, max: '9' * 8),
+            'amount' => fake()->randomFloat(2, max: '9' * 8),
         ];
     }
 }

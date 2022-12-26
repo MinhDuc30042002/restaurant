@@ -390,7 +390,7 @@
                                                 </a>
                                             </div>
                                             <div class="relative flex">
-                                                <a href="/contact"
+                                                <a href="{{ route('contact') }}"
                                                     class="border-transparent text-gray-700 hover:text-gray-800 relative z-10 flex items-center transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px">
                                                     Liên hệ
                                                 </a>

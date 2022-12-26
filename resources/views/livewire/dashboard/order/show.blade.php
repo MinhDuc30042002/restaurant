@@ -45,7 +45,7 @@
                                                 class="px-3 py-3 sm:px-6 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase">
                                             </th>
                                             <th scope="col"
-                                                class="block w-max px-3 py-3 sm:px-6 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase">
+                                                class="mx-auto block w-max px-3 py-3 sm:px-6 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase">
                                                 Số lượng
                                             </th>
                                             <th scope="col"
@@ -59,7 +59,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200">
-                                        @foreach ($order_lines as $line)
+                                        @foreach ($order_lines as $key => $line)
                                             <tr>
                                                 <td
                                                     class="px-3 py-4 sm:px-6 whitespace-nowrap w-full max-w-sm text-sm text-gray-5">
@@ -80,9 +80,35 @@
                                                 </td>
                                                 <td
                                                     class="px-3 py-4 sm:px-6 whitespace-nowrap text-center text-sm text-black">
-                                                    <b>
-                                                        {{ $line->quantity }}
-                                                    </b>
+                                                    <div class="flex items-center space-x-3">
+                                                        <p wire:click="decreaseQty('{{ $key }}', {{ $line->quantity }})"
+                                                            class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white rounded-full border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200">
+                                                            <span class="sr-only">Quantity button</span>
+                                                            <svg class="w-4 h-4" aria-hidden="true" fill="currentColor"
+                                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                                                    clip-rule="evenodd"></path>
+                                                            </svg>
+                                                        </p>
+                                                        <div>
+                                                            <input value="{{ $line->quantity }}"
+                                                                wire:loading.class="opacity-50"
+                                                                class="shadow-sm border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md block w-20 text-center sm:text-sm show-spinners disabled:bg-white"
+                                                                type="text" min="1" max="99" disabled>
+                                                        </div>
+                                                        <button
+                                                            wire:click="increaseQty('{{ $key }}', {{ $line->quantity }})"
+                                                            class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white rounded-full border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                                                            <span class="sr-only">Quantity button</span>
+                                                            <svg class="w-4 h-4" aria-hidden="true" fill="currentColor"
+                                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                                                    clip-rule="evenodd"></path>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
                                                 </td>
                                                 <td
                                                     class="px-3 py-4 sm:px-6 whitespace-nowrap text-right text-sm text-black tabular-nums">
@@ -93,7 +119,8 @@
                                                 <td
                                                     class="px-3 py-4 sm:px-6 whitespace-nowrap text-right text-sm text-black tabular-nums">
                                                     <b>
-                                                        {{ number_format($line->amount, 0, '', '.') }} đ
+                                                        {{ number_format($line->food_price * $line->quantity, 0, '', '.') }}
+                                                        đ
                                                     </b>
                                                 </td>
                                             </tr>
@@ -194,7 +221,7 @@
                                     <dd
                                         class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 sm:text-right tabular-nums">
                                         <b>
-                                            {{ number_format($order_detail->subtotal_float, 0, '', '.') }} đ
+                                            {{ number_format($subtotal, 0, '', '.') }} đ
                                         </b>
                                     </dd>
                                 </div>
@@ -216,7 +243,7 @@
                                     <dd
                                         class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 sm:text-right tabular-nums">
                                         <b>
-                                            {{ number_format($order_detail->tax_float, 0, '', '.') }} đ
+                                            {{ number_format($taxRate, 0, '', '.') }} đ
                                         </b>
                                     </dd>
                                 </div>
@@ -226,7 +253,7 @@
                                     </dt>
                                     <dd
                                         class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 sm:text-right tabular-nums">
-                                        <b>{{ number_format($order_detail->amount, 0, '', '.') }} đ</b>
+                                        <b>{{ number_format($amount, 0, '', '.') }} đ</b>
                                     </dd>
                                 </div>
                             </dl>
