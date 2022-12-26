@@ -161,7 +161,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody wire:loading.class="opacity-50">
                     @foreach ($employees as $emp)
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -177,7 +177,7 @@
                                 class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
                                 @if ($emp->profile_photo_path)
                                     <img class="w-10 h-10 rounded-full"
-                                        src="{{asset('storage2/'.$emp->profile_photo_path)}}"
+                                        src="{{asset($emp->profile_photo_path)}}"
                                         alt="">
                                 @else
                                     <div
@@ -267,9 +267,14 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="p-4">
-                {{ $employees->links() }}
-            </div>
+            @if (count($employees) >= 10)
+                <div class="flex space-x-2 justify-center my-4">
+                    <button wire:click="loadMoreFoods" type="button"
+                        class="inline-block px-6 py-2.5 bg-white-600 text-blue font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+                        Xem thêm >>
+                    </button>
+                </div>
+            @endif
 
             <!-- Delete Modal -->
             <livewire:forms.destroy-employee-form>

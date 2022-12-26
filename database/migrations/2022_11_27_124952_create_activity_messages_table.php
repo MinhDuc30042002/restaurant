@@ -17,9 +17,13 @@ return new class extends Migration
         Schema::create('activity_messages', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->text('body');
+            $table->text('body')->nullable();
+            $table->text('origin')->nullable();
+            $table->text('new')->nullable();
+            $table->text('field')->nullable();
             //
             $table->foreignId('activity_id')->constrained('activities')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
         });
         Permission::crud('activity_messages');
     }

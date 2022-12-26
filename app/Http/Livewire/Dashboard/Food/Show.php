@@ -10,9 +10,16 @@ class Show extends Component
 {
     public $identify;
 
+    public $fillable = array();
+
+    public $foodDetail;
+
     public function render()
     {
-        return view('livewire.dashboard.food.show');
+
+        return view('livewire.dashboard.food.show',[
+            'list_categories' => Category::all(),
+        ]);
     }
 
     public function mount()
@@ -36,20 +43,22 @@ class Show extends Component
         dd($id);
     }
 
-    public function updateFood($id)
+    public function updateFood()
     {
-        Food::find($id)->update($this->fillable());
-        $this->action['updated'] = true;
-        session()->flash('success', 'Updated item successfully');
+        Food::find($this->identify)->update($this->fillable);
+        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Cập nhật thành công']);
     }
 
     public function modelData()
-    {
+    {    $categories = $this->foodDetail->categories()->get();
+         $category = $categories[0]->id;
         return [
-            $this->food['name'] = $this->foodDetail->name,
-            $this->food['price'] = $this->foodDetail->price,
-            $this->food['image'] = $this->foodDetail->image,
-            $this->food['description'] = $this->foodDetail->description
+
+            $this->fillable['name'] = $this->foodDetail->name,
+            $this->fillable['price'] = $this->foodDetail->price,
+            $this->fillable['image'] = $this->foodDetail->image,
+            $this->fillable['description'] = $this->foodDetail->description,
+            $this->fillable['category'] = $category
         ];
     }
 

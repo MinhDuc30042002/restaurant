@@ -93,7 +93,7 @@
                             Chi tiết
                         </h2>
                         <div class="mt-4 prose prose-sm max-w-none text-gray-500">
-                            <p>{{ $data->description }}</p>
+                            <p>{!! $data->description !!}</p>
                         </div>
                     </div>
                 </div>

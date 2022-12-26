@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Tracking;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -9,10 +10,18 @@ use Illuminate\Support\Str;
 class Category extends Model
 {
     use HasFactory;
+    use Tracking;
 
     protected $fillable = [
-        'name', 'slug'
+        'name', 'slug',
     ];
+
+    public function tracking(): array
+    {
+        return [
+            'name',
+        ];
+    }
 
     /*
     |--------------------------------------------------------------------------

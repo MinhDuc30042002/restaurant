@@ -11,8 +11,8 @@
                         <!-- Profile Card -->
                         <div class="flex flex-row bg-white p-3 border-t-4 border-green-400">
                             <div class="image overflow-hidden w-4/12">
-                                <img class="h-auto w-44 mx-auto rounded-full"
-                                    src="{{asset('storage2/'.$profile_photo_path)}}"
+                                <img class="h-44 w-44 rounded object-center object-cover"
+                                    src="{{asset($profile_photo_path)}}"
                                     alt="">
                             </div>
                             <div class="w-8/12">

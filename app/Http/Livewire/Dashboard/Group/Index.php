@@ -10,12 +10,18 @@ class Index extends Component
 {
     use WithPagination;
 
+    public $showMore = 10;
+
     protected $listeners = ['resetPage' => 'resetPage'];
 
     public function getGroup()
     {
         $groups = Group::with('permissions');
-        return $groups->paginate(10);
+        return $groups->paginate($this->showMore);
+    }
+
+    public function buttonShowMore(){
+        $this->showMore = $this->showMore + 5;
     }
 
     public function render()

@@ -10,6 +10,7 @@ class ActivityMessage extends Model
     use HasFactory;
 
     protected $fillable = [
-        'body', 'activity_id',
+        'body', 'activity_id', 'user_id',
+        'field', 'origin', 'new',
     ];
 }

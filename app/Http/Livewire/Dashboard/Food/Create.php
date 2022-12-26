@@ -50,7 +50,7 @@ class Create extends Component
 
     protected $rules = [
         'fillable.name' => 'required',
-        'fillable.price' => 'required',
+        'fillable.price' => 'required|max:6',
         'fillable.available_quantity' => 'required',
         'fillable.category' => 'required',
         'fillable.image' => 'required',

@@ -53,12 +53,13 @@ class Store extends Component
             $permissionId = Permission::whereIn('id', $this->permission)->pluck('id');
             $groups->permissions()->attach($permissionId);
         }
+        $this->reset();
         $this->open = false;
-        // $this->reset();
         $this->emitTo('dashboard.group.index', 'resetPage');
     }
 
     public function show(){
+        $this->reset();
         $this->open = true;
     }
 
