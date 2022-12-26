@@ -18,7 +18,7 @@ class Orders extends Component
 
     public function render()
     {
-        $partner_id = Auth::user()->id;
+        $partner_id = Auth::user()->partner->id;
 
         $this->orders = Order::where('partner_id', $partner_id)->paginate($this->limitPerPage);
         $orders_pending = Order::where('partner_id', $partner_id)->where('state', 'Chờ xác nhận')->paginate($this->limitPerPage);

@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             OrderLineSeeder::class,
             OrderSeeder::class,
-            CommentSeeder::class
+            CommentSeeder::class,
         ]);
     }
 }

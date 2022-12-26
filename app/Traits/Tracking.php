@@ -14,9 +14,14 @@ trait Tracking
                 'res_model' => $model::class,
                 'res_id' => $model->id,
             ]);
+            $user = Auth::user();
+            $user_id = null;
+            if ($user) {
+                $user_id = $user->id;
+            }
             $activity->messages()->create([
                 'body' => 'New record created',
-                'user_id' => Auth::user()->id,
+                'user_id' => $user_id,
             ]);
         });
         static::saved(function ($model) {
@@ -24,6 +29,11 @@ trait Tracking
                 'res_model' => $model::class,
                 'res_id' => $model->id,
             ]);
+            $user = Auth::user();
+            $user_id = null;
+            if ($user) {
+                $user_id = $user->id;
+            }
             foreach ($model->tracking() as $key) {
                 if ($model->wasChanged($key)) {
                     $activity->messages()->create([
@@ -31,7 +41,7 @@ trait Tracking
                         'origin' => $model->getOriginal($key),
                         'new' => $model[$key],
                         'body' => '',
-                        'user_id' => Auth::user()->id,
+                        'user_id' => $user_id,
                     ]);
                 }
             }
