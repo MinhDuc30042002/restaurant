@@ -432,9 +432,9 @@
                                                                             sơ cá nhân</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="{{ route('partners') }}"
+                                                                        {{-- <a href="{{ route('partners') }}"
                                                                             class="block py-2 px-4 hover:bg-gray-100">Lịch
-                                                                            sử đơn hàng</a>
+                                                                            sử đơn hàng</a> --}}
                                                                     </li>
                                                                     <li>
                                                                         <form method="POST"

@@ -36,6 +36,7 @@ class User extends Authenticatable
         'password',
         'is_staff',
         'is_manager',
+        'partner_id'
     ];
 
     /**
@@ -81,6 +82,7 @@ class User extends Authenticatable
             'password',
             'is_staff',
             'is_manager',
+
         ];
     }
 
@@ -93,6 +95,11 @@ class User extends Authenticatable
     public function groups()
     {
         return $this->belongsToMany(Group::class, 'group_user', 'user_id', 'group_id');
+    }
+
+    public function partners()
+    {
+        return $this->hasOne(Partner::class, 'partner_id');
     }
 
     public function permissions(): Collection
