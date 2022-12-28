@@ -111,6 +111,11 @@ class User extends Authenticatable
     {
         return $this->hasOne(Partner::class, 'partner_id');
     }
+    
+    public function partner()
+    {
+        return $this->belongsTo(Partner::class, 'partner_id');
+    }
 
     public function permissions(): Collection
     {

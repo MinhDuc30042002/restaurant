@@ -60,7 +60,7 @@
                         <div x-ref="slider"
                             class="flex flex-1 overflow-x-scroll scroll-no-bar scroll-smooth snap-mandatory snap-x w-auto">
                             <div class="snap-center flex-shrink-0 w-full h-full">
-                                <img src="{{ asset('images/products/' . $data->image) }}" alt="Product image">
+                                <img src="{{ asset('storage/upload/' . $data->image) }}" alt="Product image">
                             </div>
                         </div>
                     </div>
@@ -210,7 +210,7 @@
                     <div class="relative group flex flex-col">
                         <div class="aspect-w-8 aspect-h-9 rounded-lg overflow-hidden bg-slate-100">
                             <img class="w-full h-full object-cover object-center" loading="lazy"
-                                src="{{ asset('images/products/' . $item->image) }}">
+                                src="{{ asset('storage/upload/' . $item->image) }}">
 
                             <div class="flex items-end opacity-0 p-4 group-hover:opacity-100" aria-hidden="true">
                                 <div

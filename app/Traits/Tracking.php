@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Models\Activity;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
 
 trait Tracking
 {
@@ -56,7 +57,10 @@ trait Tracking
             'res_model' => $this::class,
             'res_id' => $this->id,
         ])->first();
-        $messages = $activity ? $activity->messages : [];
+        $messages = $activity ? $activity->messages : new Collection();
+        if ($messages->count()) {
+            $messages = $messages->sortByDesc('updated_at');
+        }
 
         return $messages;
     }

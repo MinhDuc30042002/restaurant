@@ -13,4 +13,9 @@ class ActivityMessage extends Model
         'body', 'activity_id', 'user_id',
         'field', 'origin', 'new',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

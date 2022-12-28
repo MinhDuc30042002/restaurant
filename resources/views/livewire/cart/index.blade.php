@@ -56,7 +56,7 @@
                                         @foreach ($cart as $key => $item)
                                             <tr wire:loading.class='opacity-50' class="bg-white border-b">
                                                 <td class="p-4 w-32">
-                                                    <img src="{{ asset('images/products/' . $item->options['image']) }}"
+                                                    <img src="{{ asset('storage/upload/' . $item->options['image']) }}"
                                                         alt="{{ $item->options['image'] }}">
                                                 </td>
                                                 <td class="py-4 px-6 font-semibold text-gray-900 ">

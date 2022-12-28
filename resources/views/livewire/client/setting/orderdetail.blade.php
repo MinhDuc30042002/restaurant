@@ -40,7 +40,7 @@
             class="mt-6 text-sm font-medium text-gray-500 border-t border-gray-200 divide-y divide-gray-200">
             @foreach ($order_lines as $order_line)
                 <li class="flex py-6 space-x-6">
-                    <img src="{{ asset('images/products/' . $order_line->food_image) }}" alt="Organic Raglan Pullover"
+                    <img src="{{ asset('storage/upload/' . $order_line->food_image) }}" alt="Organic Raglan Pullover"
                         class="flex-none w-24 h-28 bg-gray-100 rounded-md object-center object-cover sm:w-32 sm:h-36">
                     <div class="flex-auto flex flex-col space-y-1">
                         <h3 class="text-gray-700 hover:text-gray-800">

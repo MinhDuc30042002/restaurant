@@ -1,11 +1,11 @@
 <div class="w-full mx-auto px-4 lg:px-0 sm:flex grid grid-cols-1 justify-items-center">
     <div class="mt-6 w-1/5 mx-auto">
         @if (gettype($account['profile_photo_path']) === 'object')
-            <img wire:loading.class='opacity-75' class="rounded-lg mx-auto" width="100" height="100"
+            <img wire:loading.class='opacity-75' class="w-100 h-100 rounded-lg mx-auto" width="100" height="100"
                 src="{{ @$account['profile_photo_path']->temporaryUrl() }}" alt="Avatar">
         @else
             <img wire:loading.class='opacity-75' class="rounded-lg mx-auto" width="100" height="100"
-                src="{{ asset('profile_photos/' . Auth::user()->profile_photo_path) }}" alt="Avatar">
+                src="{{ asset(Auth::user()->profile_photo_path) }}" alt="Avatar">
         @endif
 
         <div class="flex items-center justify-center w-2/3 mx-auto">

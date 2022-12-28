@@ -102,8 +102,10 @@ class UpdateEmployeeForm extends Component
         $this->lastname = $user->lastname;
         $this->address = $user->address;
 
-        $gr = $this->user->groups()->get();
-        $this->group_id = $gr[0]->id;
+        $gr = $this->user->groups;
+        if ($gr->count()) {
+            $this->group_id = $gr[0]->id;
+        }
 
         $this->phone_number = $user->phone_number;
         $this->gender = $user->gender;

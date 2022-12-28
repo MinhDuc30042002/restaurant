@@ -1,5 +1,4 @@
 <div>
-
     <header
         class="relative max-w-7xl mx-auto bg-gray-50 py-6 lg:bg-transparent lg:grid lg:grid-cols-2 lg:gap-x-16 lg:px-8 lg:pt-16 lg:pb-10">
         <div class="max-w-2xl mx-auto flex px-4 lg:max-w-lg lg:w-full lg:px-0">
@@ -164,8 +163,8 @@
                             <label
                                 class="relative block border rounded-lg shadow-sm px-6 py-4 cursor-pointer sm:flex sm:justify-between focus:outline-none">
                                 <input
-                                    class="border-gray-300 shadow-sm  focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 sr-only"
-                                    type="radio" value="6">
+                                    class="border-gray-300 shadow-sm checked:border-blue-300 checked:bg-blue-50 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 sr-only"
+                                    type="radio" value="cash" wire:model="paymentMethod">
                                 <div class="flex items-center">
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -193,8 +192,8 @@
                             <label
                                 class="relative block border rounded-lg shadow-sm px-6 py-4 cursor-pointer sm:flex sm:justify-between focus:outline-none">
                                 <input
-                                    class="border-gray-300 shadow-sm  focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 sr-only"
-                                    type="radio" value="6">
+                                    class="border-gray-300 shadow-sm checked:border-blue-300 checked:bg-blue-50 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 sr-only"
+                                    type="radio" value="online" wire:model="paymentMethod">
                                 <div class="flex items-center">
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -231,7 +230,7 @@
                         <li class="flex items-start space-x-4 pb-6">
                             <div class="flex-shrink-0">
                                 <img class="w-20 h-auto rounded-md"
-                                    src="{{ asset('images/products/' . $item->options['image']) }}"
+                                    src="{{ asset('storage/upload/' . $item->options['image']) }}"
                                     alt="{{ $item->options['image'] }}">
 
                             </div>

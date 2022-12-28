@@ -7,11 +7,15 @@ use App\Http\Controllers\Client\FoodController as ClientFoodController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProfileController;
 use App\Http\Controllers\Dashboard\CategoriesController;
+use App\Http\Controllers\Dashboard\DasboardController;
 use App\Http\Controllers\Dashboard\Partner\PartnerController;
 // use App\Http\Controllers\Dashboard\TableController;
 use App\Http\Controllers\Dashboard\FoodController;
 use App\Http\Controllers\Dashboard\OrderController;
 use App\Http\Controllers\LoginController;
+use App\Models\Order;
+use App\Http\Livewire\Client\Contact\Index;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
@@ -34,7 +38,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::prefix('dashboard')->group(function () {
-        Route::get('/', function () {return view('dashboard');})->name('dashboard');
+        Route::get('/', [DasboardController::class,'index'])->name('dashboard');
         Route::resource('categories', CategoriesController::class);
         Route::resource('food', FoodController::class);
         Route::resource('partners', PartnerController::class);
@@ -64,4 +68,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/orders', [ProfileController::class, 'orders'])->name('setting.orders');
         Route::get('/order/{id}', [ProfileController::class, 'orderDetail']);
     });
+});
+
+Route::get('/vnpay-return', function (Request $request){
+    if ($request->vnp_ResponseCode == '00') {
+        $order = Order::find($request->vnp_TxnRef);
+        $order->update(['state' => 'Đã thanh toán']);
+        return redirect(route('setting.orders'));
+    } 
 });

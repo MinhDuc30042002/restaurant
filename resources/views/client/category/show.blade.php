@@ -24,7 +24,7 @@
                                     class="rounded-lg overflow-hidden bg-gray-200 aspect-w-8 aspect-h-9 group-hover:opacity-75">
                                     <img class="w-full h-full object-cover object-center"
                                         onerror="this.src='https://dashboard-api.flyfood.vn/system/product_images/3822/image.jpg'"
-                                        src="{{ asset('images/products/' . $item->image) }}">
+                                        src="{{ asset('storage/upload/' . $item->image) }}">
                                 </div>
                                 <div class="pt-10
                                             pb-4 text-center">

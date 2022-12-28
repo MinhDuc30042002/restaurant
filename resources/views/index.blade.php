@@ -42,8 +42,8 @@
                         <div>
                             <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                                 <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                                    <img src="{{ asset('images/products/37.jpg') }}" alt="Món ngón mỗi ngày"
-                                        class="w-full h-full object-center object-cover">
+                                    <img src="{{ asset('storage/upload/37.jpg') }}"
+                                        alt="Món ngón mỗi ngày" class="w-full h-full object-center object-cover">
                                 </div>
                                 <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50">
                                 </div>
@@ -68,8 +68,8 @@
                         <div>
                             <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                                 <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                                    <img src="{{ asset('images/products/2.jpg') }}" alt="Hình ảnh các món gà"
-                                        class="w-full h-full object-center object-cover">
+                                    <img src="	https://dashboard-api.flyfood.vn/system/product_images/4014/image.jpg"
+                                        alt="Hình ảnh các món gà" class="w-full h-full object-center object-cover">
                                 </div>
                                 <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50">
                                 </div>
@@ -94,8 +94,8 @@
                         <div>
                             <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                                 <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                                    <img src="{{ asset('images/products/7.jpg') }}" alt="Accessories"
-                                        class="w-full h-full object-center object-cover">
+                                    <img src="https://dashboard-api.flyfood.vn/system/product_images/3745/image.jpg"
+                                        alt="Accessories" class="w-full h-full object-center object-cover">
                                 </div>
                                 <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50">
                                 </div>
@@ -120,8 +120,8 @@
                         <div>
                             <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                                 <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                                    <img src="{{ asset('images/products/22.jpg') }}" alt="Accessories"
-                                        class="w-full h-full object-center object-cover">
+                                    <img src="https://dashboard-api.flyfood.vn/system/product_images/3654/image.jpg"
+                                        alt="Accessories" class="w-full h-full object-center object-cover">
                                 </div>
                                 <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50">
                                 </div>
@@ -146,8 +146,8 @@
                         <div>
                             <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                                 <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                                    <img src="{{ asset('images/products/30.jpg') }}" alt="Accessories"
-                                        class="w-full h-full object-center object-cover">
+                                    <img src="https://dashboard-api.flyfood.vn/system/product_images/3822/image.jpg"
+                                        alt="Accessories" class="w-full h-full object-center object-cover">
                                 </div>
                                 <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50">
                                 </div>
@@ -191,7 +191,7 @@
                             <div class="group relative">
                                 <div class="rounded-md overflow-hidden group-hover:opacity-75">
                                     <img class="w-full h-36 object-cover object-center" loading="lazy"
-                                        src="{{ asset('images/products/' . $food->image) }}"
+                                        src="{{ asset('storage/upload/' . $food->image) }}"
                                         onerror="this.src='https://dashboard-api.flyfood.vn/system/product_images/3822/image.jpg'"
                                         alt="Food image">
                                 </div>

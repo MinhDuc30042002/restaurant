@@ -101,6 +101,34 @@
                 <x-jet-button wire:click="updateFood">{{ __('Update') }}</x-jet-button>
             </div>
         </form>
+
+    </div>
+    <div class="flex flex-col">
+        @foreach ($foodDetail->getMessages() as $log)
+        <div>
+            <div>
+                <button class="group -m-2 p-2 flex items-center"
+                    type="button">
+                    <img class="w-8 h-8 rounded-full object-cover"
+                        src="{{ asset($log->user->profile_photo_path) }}"
+                        alt="user photo">
+                </button>
+            </div>
+            <time>{{ $log->created_at }}</time>
+        </div>
+        <div class="flex items-center">
+            @if($log->body)
+            <span class="font-bold">{{ $log->body }}<span>
+            @else
+            <span class="font-bold mr-2">{{ $log->field }}:</span>
+            <span class="italic">{{ $log->origin }}<span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="inline mx-2 bi bi-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+            <span>{{ $log->new }}<span>
+            @endif
+        </div>
+        @endforeach
     </div>
     @push('css')
         <!-- CK Editor -->

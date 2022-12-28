@@ -390,7 +390,7 @@
                                                 </a>
                                             </div>
                                             <div class="relative flex">
-                                                <a href="/contact"
+                                                <a href="{{ route('contact') }}"
                                                     class="border-transparent text-gray-700 hover:text-gray-800 relative z-10 flex items-center transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px">
                                                     Liên hệ
                                                 </a>
@@ -431,7 +431,7 @@
                                                             type="button">
                                                             <span class="sr-only">Open user menu</span>
                                                             <img class="w-8 h-8 rounded-full object-cover"
-                                                                src="{{ asset('profile_photos/' . Auth::user()->profile_photo_path) }}"
+                                                                src="{{ asset(Auth::user()->profile_photo_path) }}"
                                                                 alt="user photo">
                                                         </button>
                                                     </div>
@@ -464,7 +464,7 @@
                                                                     <li>
                                                                         <a href="/setting/orders"
                                                                             class="block py-2 px-4 hover:bg-gray-100">Lịch
-                                                                            sử đơn hàng</a> --}}
+                                                                            sử đơn hàng</a>
                                                                     </li>
                                                                     <li>
                                                                         <form method="POST"
@@ -548,7 +548,7 @@
                                                                     class="divide-y divide-gray-200 overflow-auto">
                                                                     @foreach ($cart as $item)
                                                                         <li class="py-6 flex">
-                                                                            <img src="{{ asset('images/products/' . $item->options['image']) }}"
+                                                                            <img src="{{ asset('storage/upload/' . $item->options['image']) }}"
                                                                                 alt="{{ $item->image }}"
                                                                                 class="flex-none h-16 w-16 rounded-md border border-gray-200 object-cover object-center">
                                                                             <div
