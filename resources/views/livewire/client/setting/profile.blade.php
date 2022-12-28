@@ -148,37 +148,49 @@
                 <div class="sm:grid sm:grid-cols-5 sm:gap-5 sm:items-start pt-5">
                     <label class="block font-medium text-sm text-gray-700 sm:mt-px sm:pt-2 sm:col-span-2"
                         for="current-password">
-                        Current password
+                        Mật khẩu hiện tại
                     </label>
                     <div class="mt-1 sm:mt-0 sm:col-span-3">
                         <input
                             class="shadow-sm border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md max-w-lg block w-full sm:text-sm"
-                            type="password" wire:model.defer="state.current_password" id="current-password"
+                            type="password" wire:model.defer="current_password" id="current-password"
                             autocomplete="current-password">
+                        @error('current_password')
+                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                {{ $message }}.</p>
+                        @enderror
                     </div>
                 </div>
                 <div class="sm:grid sm:grid-cols-5 sm:gap-5 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                     <label class="block font-medium text-sm text-gray-700 sm:mt-px sm:pt-2 sm:col-span-2"
                         for="new-password">
-                        New password
+                        Mật khẩu mới
                     </label>
                     <div class="mt-1 sm:mt-0 sm:col-span-3">
                         <input
                             class="shadow-sm border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md max-w-lg block w-full sm:text-sm"
-                            type="password" wire:model.defer="state.password" id="new-password"
+                            type="password" wire:model.defer="password" id="new-password"
                             autocomplete="new-password">
+                        @error('password')
+                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                {{ $message }}.</p>
+                        @enderror
                     </div>
                 </div>
                 <div class="sm:grid sm:grid-cols-5 sm:gap-5 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                     <label class="block font-medium text-sm text-gray-700 sm:mt-px sm:pt-2 sm:col-span-2"
                         for="new-password-confirmation">
-                        Confirm new password
+                        Xác nhận mật khẩu
                     </label>
                     <div class="mt-1 sm:mt-0 sm:col-span-3">
                         <input
                             class="shadow-sm border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md max-w-lg block w-full sm:text-sm"
-                            type="password" wire:model.defer="state.password_confirmation"
-                            id="new-password-confirmation" autocomplete="new_password_confirmation">
+                            type="password" wire:model.defer="password_confirmation" id="new-password-confirmation"
+                            autocomplete="new_password_confirmation">
+                        @error('password_confirmation')
+                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                {{ $message }}.</p>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -187,7 +199,7 @@
                     <button
                         class="inline-flex items-center justify-center px-4 py-2 text-sm border border-transparent rounded-md font-medium focus:outline-none focus:ring disabled:opacity-25 disabled:cursor-not-allowed transition bg-blue-600 text-white hover:bg-blue-500 focus:border-blue-700 focus:ring-blue-200 active:bg-blue-600 ml-3 text-sm"
                         type="submit">
-                        Save changes
+                        Lưu thay đổi
                     </button>
                 </div>
             </div>

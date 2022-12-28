@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Hash;
 
 class Profile extends Component
 {
@@ -13,6 +14,9 @@ class Profile extends Component
 
     public $account = [];
     protected $listeners = ['call_mount' => 'mount'];
+    public $current_password;
+    public $password;
+    public $password_confirmation;
 
     public function render()
     {
@@ -58,6 +62,22 @@ class Profile extends Component
         $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Đã cập nhật tài khoản']);
     }
 
+    public function updatePassword()
+    {
+        $user = User::find(Auth::user()->id);
+        $this->validate([
+            'password' => 'required',
+            'current_password' => 'required',
+            'password_confirmation' => 'required |confirmed',
+        ]);
+
+        if (Hash::check($this->current_password, Auth::user()->password) && $this->password == $this->password_confirmation) {
+            $user->update(['password' => $this->password]);
+        }
+
+        $this->dispatchBrowserEvent('alert', ['type' => 'success',  'message' => 'Đã cập nhật tài khoản']);
+    }
+
     protected $rules = [
         'name' =>  'required',
         'email' =>  'required',
@@ -73,7 +93,10 @@ class Profile extends Component
         'fillable.phone.digits' => ':attribute phải 10 số',
         'fillable.phone.numeric' => ':attribute phải là số ký tự',
         'fillable.address.required' => ':attribute không được để trống',
-        'shipRate.required' => 'Vui lòng chọn :attribute'
+        'shipRate.required' => 'Vui lòng chọn :attribute',
+        'password.required' => ':attribute không được để trống',
+        'current_password.required' => ':attribute không được để trống',
+        'password_confirmation.required' => ':attribute không được để trống',
     ];
 
     protected $validationAttributes = [
@@ -81,5 +104,8 @@ class Profile extends Component
         'name' => 'Tên người dùng',
         'phone' => 'Số điện thoại',
         'address' => 'Địa chỉ',
+        'password' => 'Mật khẩu',
+        'current_password' => 'Mật khẩu hiện tại',
+        'password_confirmation' => 'Xác nhận mật khẩu',
     ];
 }
